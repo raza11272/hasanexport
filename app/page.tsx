@@ -1,19 +1,55 @@
-import { Button } from "@/components/ui/button"
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import ProcessSection from '@/components/ProcessSection';
+import MDMessage from '@/components/MDMessage';
+import Achievements from '@/components/Achievements';
+import Gallery from '@/components/Gallery';
+import ContactSection from '@/components/ContactSection';
+import GlobalFootprint from '@/components/GlobalFootprint';
+import IndustrialConcerns from '@/components/IndustrialConcerns';
+import Footer from '@/components/Footer';
 
-export default function Page() {
+export const metadata = {
+  title: 'Hasan Group | Global Jute & Industrial Excellence',
+  description: 'Premium industrial portal for Hasan Jute Mills and associated concerns. Leading the way in sustainable jute, spinning, and paper manufacturing.',
+};
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="min-h-screen bg-[#fcf9f8]">
+      {/* Background Subtle Texture */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0" 
+           style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} />
+      
+      <Navbar />
+      
+      <main className="relative z-10">
+        <Hero />
+        
+        {/* About / Vision Section */}
+        <MDMessage />
+        
+        {/* Business Scale Section */}
+        <IndustrialConcerns />
+        
+        {/* Global Impact Section */}
+        <GlobalFootprint />
+        
+        {/* Quality & Manufacturing Section */}
+        <ProcessSection />
+        
+        {/* Trust & Social Proof Section */}
+        <Achievements />
+        
+        {/* Visual Showcase Section */}
+        <Gallery />
+        
+        {/* Engagement Section */}
+        <ContactSection />
+      </main>
+      
+      <Footer />
     </div>
-  )
+  );
 }

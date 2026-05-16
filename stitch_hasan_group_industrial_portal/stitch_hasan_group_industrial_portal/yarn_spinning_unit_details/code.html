@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "inverse-surface": "#313030",
+                        "primary": "#002e0b",
+                        "surface": "#fcf9f8",
+                        "primary-fixed-dim": "#99d599",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-primary-container": "#7ab47b",
+                        "on-surface-variant": "#41493f",
+                        "on-primary-fixed-variant": "#195123",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-tint": "#336a38",
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-secondary-fixed": "#241a00",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "surface-container-highest": "#e5e2e1",
+                        "inverse-primary": "#99d599",
+                        "outline": "#71796f",
+                        "outline-variant": "#c1c9bc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#a5a6a6",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fed65b",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-container": "#3a3c3c",
+                        "on-primary-fixed": "#002106",
+                        "primary-fixed": "#b4f2b3",
+                        "secondary": "#735c00",
+                        "secondary-fixed": "#ffe088",
+                        "tertiary": "#242627",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#eae7e7",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "on-secondary-container": "#745c00",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "background": "#fcf9f8",
+                        "primary-container": "#0b4619"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Noto Serif"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Noto Serif"],
+                        "technical-header": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "display-lg": ["Noto Serif"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "technical-header": ["18px", {"lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 46, 11, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl dark:bg-surface-container/70 border-b border-primary/5 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">Hasan Jute Mills</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Heritage</a>
+<a class="font-technical-header text-technical-header text-primary border-b-2 border-primary pb-1" href="#">Our Factories</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Technical Specs</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sustainability</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Global Reach</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 bg-primary text-on-primary font-bold transition-all active:opacity-80">Export Inquiry</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Hero Section -->
+<section class="relative h-[614px] flex items-center mb-20">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-30" data-alt="A high-resolution industrial view of a spinning mill interior. Rows of large, metallic spinning frames extend into the distance, with thousands of golden jute fibers being spun onto bobbins. The lighting is dramatic and overhead, casting soft industrial shadows on the concrete floor. The overall mood is authoritative and eco-conscious, reflecting a premium sustainable manufacturing environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2PCCkKTf5XqUXpAglFdBQLnei5nskuGxe-a7EZvgyY2rvO71F-34a7L-s_tACXfJenCgJ3YaZ78elvs2VH0KwDjqWKA_-s4vk47q7DrZ9ARvJHisR_121-bXQUYKtcQnKN7BJaCnyXyVVes8LdjtHSeiDiCHtS_Qdk8fZK1ELmbR_vH6HoD6tBIq1VSS7GohNV7UCDVBKIRwoD_h8NKcCpeZrLFIw5SBCDvzwb1HdSMIs0NTD5eJd67FecJ5mjzGAU9J4TQxi5FjO"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full mb-6 border border-primary/20">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Live Production Status: Active</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary max-w-2xl mb-4 uppercase">Yarn Spinning Unit</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    Our Factory 1 represents the pinnacle of jute technical engineering, specializing in high-tenacity yarn and precision-balanced twine for global industrial applications.
+                </p>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Technical Specs & Gallery (Main Content) -->
+<div class="md:col-span-8 space-y-20">
+<!-- Technical Specifications Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase">Technical Specifications</h2>
+</div>
+<div class="overflow-hidden border border-outline-variant/30 rounded-lg">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary text-on-primary">
+<th class="p-4 font-technical-header text-technical-header border-r border-on-primary/10">Metric</th>
+<th class="p-4 font-technical-header text-technical-header">Specification Range</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<tr class="border-b border-outline-variant/10 hover:bg-primary/5 transition-colors">
+<td class="p-4 font-bold border-r border-outline-variant/10 text-primary">HS Code (Raw/Yarn)</td>
+<td class="p-4">5307.10.00 / 5307.20.00</td>
+</tr>
+<tr class="bg-primary/5 border-b border-outline-variant/10 hover:bg-primary/10 transition-colors">
+<td class="p-4 font-bold border-r border-outline-variant/10 text-primary">HS Code (Twine/Rope)</td>
+<td class="p-4">5607.90.00</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-primary/5 transition-colors">
+<td class="p-4 font-bold border-r border-outline-variant/10 text-primary">Yarn Counts</td>
+<td class="p-4">4 lbs to 72 lbs (Single &amp; Multi-ply)</td>
+</tr>
+<tr class="bg-primary/5 border-b border-outline-variant/10 hover:bg-primary/10 transition-colors">
+<td class="p-4 font-bold border-r border-outline-variant/10 text-primary">Quality Metric (CB)</td>
+<td class="p-4">&gt; 95% Consistency Rating</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-primary/5 transition-colors">
+<td class="p-4 font-bold border-r border-outline-variant/10 text-primary">Twist Direction</td>
+<td class="p-4">S-Twist / Z-Twist Capabilities</td>
+</tr>
+<tr class="bg-primary/5 hover:bg-primary/10 transition-colors">
+<td class="p-4 font-bold border-r border-outline-variant/10 text-primary">Moisture Regain</td>
+<td class="p-4">Standard 13.75% (Adjustable)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Gallery Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="gallery_thumbnail">gallery_thumbnail</span>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase">Fibre Gallery</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-[4/5] overflow-hidden rounded-lg group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A macro close-up of high-quality jute yarn spools. The natural golden-brown fibers are sharp and detailed, showcasing the intricate twist and texture of the technical yarn. The lighting is clean and industrial, highlighting the premium quality of the material. The background is a soft-focus industrial setting that maintains the brand's authoritative and clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQQdQqjl6NvGFg4dG61Sj4F_3a4kti9gKtwl2xjKVAH_iHFOSiL1ZltKaIbrw7K_AJ3lebhJFw4auFbb8ZjV0mro6LNL47poYweeMFt-Xn8oKJ2pjGqO62xSm-L5WOAK9tC4_XNXb4oZbxlBe5uBak5ls9otqxpr24AeCtEdVyHLfOjdZGqP0q1JnQNLq58z8aBZRbbEaH0iARKQVuilEqem_s6xZiPodjMVAoQCxY3P4bUukCNWEb3Wu_8YDxH0CmuD2ljHnT4OsN"/>
+</div>
+<div class="grid grid-rows-2 gap-4">
+<div class="overflow-hidden rounded-lg group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Technical view of multiple jute twine bobbins stacked neatly in a warehouse. The composition is structured and geometric, reflecting a modern industrial precision. The colors are a mix of natural earth tones and clean white light, creating a professional and sustainable visual identity. The textures of the woven fibers are crisp and high-definition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuynBy1Bni90tduiZ8NpSYqh7dKqEqDaViCFxu0uXhwzUkJVPFlFyJEHMlYPdEr6RMx4ILu7-JEPxV6ojR58ST2atyaFGwhw4qYEe0_ISxRMfZJizIp5mByFoUIM_ygvmFOczy_y1tC6hzntXmPfai7F_mT15caAgfRcWFi9OTddV4jwyqBejOocWPS4oHcdXTXIKcSykjelD878mTnMx0UthB13cfQB1yvCmokqPPpS39kGn917YhH0ErrpfrErBjKSoWt-YlXSYw"/>
+</div>
+<div class="overflow-hidden rounded-lg group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A high-contrast industrial shot of spinning machinery in operation. Blurred motion of golden fibers passing through steel guides creates a sense of dynamic production speed. The scene is illuminated by technical daylighting, reinforcing the precision engineering aspects of Hasan Jute Mills. The color palette stays within professional greens and neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV90ir7oMILWsxxB7sx-AKBF3JSypz5yw6MKhPlqNV5yyBDJWhNrkMLkLFl0x_vsfBWrQNNDZ-ZjjAx5S5R9Ysa8sCHkTZ6XSf6c-3aarGiUWHIGJi1PVs6lKaAA0CFA6sLTIBgqKXSkIhWylIInLzr4i9RYhZgijM0P6CkeBDzOxLKsgZXOXHr5xr6Uab-DPx6Dig03VAfTSI7yn4O-9qqEjRB-0tguWmNWDWNnMHFi-vpAxJgjattAJjX8zKPRvLWf7sOHPV6Gix"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar/CTA -->
+<aside class="md:col-span-4">
+<div class="sticky top-28 space-y-6">
+<!-- Inquiries Card -->
+<div class="glass-card p-8 shadow-sm">
+<h3 class="font-technical-header text-technical-header text-primary mb-4 uppercase">Bulk Export Inquiries</h3>
+<p class="text-on-surface-variant mb-6 text-body-md">For specialized technical requirements, custom yarn counts, or high-volume global shipping quotations.</p>
+<div class="space-y-4 mb-8">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="account_circle">account_circle</span>
+<div>
+<p class="font-bold text-on-surface">Deputy Managing Director</p>
+<p class="text-on-surface-variant font-data-mono">+88 01771 855823</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="mail">mail</span>
+<div>
+<p class="font-bold text-on-surface">Corporate Email</p>
+<p class="text-on-surface-variant font-data-mono">brohasan773@gmail.com</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                            Request Price List
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full mt-3 py-4 border border-secondary text-secondary font-bold hover:bg-secondary/5 transition-all flex items-center justify-center gap-2">
+                            Technical Data Sheet (PDF)
+                            <span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- Factory Location Info -->
+<div class="p-6 bg-surface-container border border-outline-variant/20">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-3">Unit Location</h4>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<p class="font-data-mono text-on-surface">Islampur, Harigari, Bogra</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-tertiary dark:bg-inverse-surface text-on-tertiary dark:text-inverse-on-surface w-full py-16 border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-lg text-headline-lg text-on-tertiary mb-6 block">Hasan Jute Mills</span>
+<p class="text-on-tertiary/80 font-body-md pr-4">Pioneering sustainable industrial fibers through traditional heritage and modern precision engineering since inception.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-technical-header text-technical-header text-secondary-fixed font-bold uppercase mb-2">Production Units</h4>
+<ul class="space-y-2">
+<li class="text-secondary-fixed font-bold flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-secondary-fixed rounded-full"></span>
+                        Factory 1: Spinning
+                    </li>
+<li class="text-on-tertiary/80 hover:text-secondary-fixed transition-colors transform hover:translate-x-1 duration-200">Factory 2: Weaving</li>
+<li class="text-on-tertiary/80 hover:text-secondary-fixed transition-colors transform hover:translate-x-1 duration-200">Factory 3: Finishing</li>
+<li class="text-on-tertiary/80 hover:text-secondary-fixed transition-colors transform hover:translate-x-1 duration-200">Factory 4: Export</li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-technical-header text-technical-header text-secondary-fixed font-bold uppercase mb-2">Direct Contact</h4>
+<ul class="space-y-2 font-data-mono">
+<li class="text-on-tertiary/80 hover:text-secondary-fixed transition-colors">+88 01771 855823</li>
+<li class="text-on-tertiary/80 hover:text-secondary-fixed transition-colors">brohasan773@gmail.com</li>
+<li class="text-on-tertiary/80">Islampur, Harigari, Bogra</li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-technical-header text-technical-header text-secondary-fixed font-bold uppercase mb-2">Certifications</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-on-tertiary/10 text-on-tertiary text-[10px] font-bold border border-on-tertiary/20 uppercase tracking-widest">ISO 9001</span>
+<span class="px-2 py-1 bg-on-tertiary/10 text-on-tertiary text-[10px] font-bold border border-on-tertiary/20 uppercase tracking-widest">Global Green</span>
+<span class="px-2 py-1 bg-on-tertiary/10 text-on-tertiary text-[10px] font-bold border border-on-tertiary/20 uppercase tracking-widest">OEKO-TEX</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop max-w-container-max mx-auto mt-16 pt-8 border-t border-on-tertiary/10">
+<p class="text-on-tertiary/60 font-body-md">© 2024 Hasan Jute Mills Limited. All Rights Reserved.</p>
+</div>
+</footer>
+</body></html>

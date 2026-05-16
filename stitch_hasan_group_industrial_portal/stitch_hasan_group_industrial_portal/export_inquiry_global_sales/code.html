@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#1c1b1b",
+                    "inverse-surface": "#313030",
+                    "primary": "#002e0b",
+                    "surface": "#fcf9f8",
+                    "primary-fixed-dim": "#99d599",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-primary-container": "#7ab47b",
+                    "on-surface-variant": "#41493f",
+                    "on-primary-fixed-variant": "#195123",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "surface-tint": "#336a38",
+                    "on-secondary-fixed-variant": "#574500",
+                    "on-secondary-fixed": "#241a00",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "surface-dim": "#dcd9d9",
+                    "surface-container-highest": "#e5e2e1",
+                    "inverse-primary": "#99d599",
+                    "outline": "#71796f",
+                    "outline-variant": "#c1c9bc",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#a5a6a6",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#fed65b",
+                    "surface-container-low": "#f6f3f2",
+                    "tertiary-container": "#3a3c3c",
+                    "on-primary-fixed": "#002106",
+                    "primary-fixed": "#b4f2b3",
+                    "secondary": "#735c00",
+                    "secondary-fixed": "#ffe088",
+                    "tertiary": "#242627",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e5e2e1",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#eae7e7",
+                    "on-error": "#ffffff",
+                    "surface-container": "#f0eded",
+                    "on-secondary-container": "#745c00",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "secondary-fixed-dim": "#e9c349",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "background": "#fcf9f8",
+                    "primary-container": "#0b4619"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Noto Serif"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Noto Serif"],
+                    "technical-header": ["Inter"],
+                    "data-mono": ["Inter"],
+                    "display-lg": ["Noto Serif"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "technical-header": ["18px", {"lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-primary/5 shadow-sm">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold text-primary">Hasan Jute Mills</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors" href="#">Heritage</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors" href="#">Our Factories</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors" href="#">Technical Specs</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="font-technical-header text-technical-header text-primary border-b-2 border-primary pb-1" href="#">Global Reach</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex font-technical-header text-technical-header text-on-surface-variant hover:text-primary">Language</button>
+<button class="bg-primary text-on-primary px-6 py-2 font-technical-header text-technical-header shadow-md hover:opacity-90 active:opacity-80 transition-all">Export Inquiry</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Hero & Contact Section -->
+<section class="max-w-container-max mx-auto px-6 md:px-margin-desktop mb-20">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-6">Partnering with the World for a Sustainable Future.</h1>
+<p class="text-body-md text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                        Hasan Jute Mills Limited is a premier manufacturer and exporter of high-grade jute products. We bridge the gap between traditional craftsmanship and global industrial standards.
+                    </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="glass-card p-6 border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-4" style="font-size: 32px;">phone_callback</span>
+<h3 class="font-technical-header text-technical-header text-primary mb-1">Direct Line</h3>
+<p class="font-data-mono text-data-mono text-on-surface">+88 01771 855823</p>
+<p class="text-label-sm text-on-surface-variant mt-2">DMD Direct Office</p>
+</div>
+<div class="glass-card p-6 border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-4" style="font-size: 32px;">mail</span>
+<h3 class="font-technical-header text-technical-header text-primary mb-1">Official Email</h3>
+<p class="font-data-mono text-data-mono text-on-surface">brohasan773@gmail.com</p>
+<p class="text-label-sm text-on-surface-variant mt-2">Export Relations</p>
+</div>
+</div>
+</div>
+<div class="relative group h-[500px] overflow-hidden rounded-lg shadow-xl">
+<img alt="Global Logistics Hub" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-angle professional photograph of a bustling modern logistics shipping terminal at sunset. Massive cargo ships are being loaded with stacks of industrial containers, bathed in a warm golden hour light that reflects off the steel and water. The atmosphere is productive and authoritative, capturing the immense scale of global trade and industrial exports with high-contrast, clean corporate lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANr_XMv-MqaOeymFmaSSu14jQH3Exr0SO4vq54Kp4rEakCFIeiFJEpesyyAe7IthZBtuvpKgH2vPsyN8QL8by_5_nuuMYFQre2ae49qz3HTBW9voV93hSMhHjr4M696cFbYFTcCEzk8fZwzFFqCkNZQIN3S1DqSnuj7wprilAwVD0hzDo0qGi8LKHzEkMTJ6xoH8fCa1Rzn45Fkpoe20at_9cFYIi55gr4JNewqRVo9m-bbENeuf4xcYVsul_UNpkrJ066PRSmULTg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-on-primary">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary-fixed">verified</span>
+<span class="font-technical-header text-technical-header">Verified Global Exporter</span>
+</div>
+<p class="text-body-md opacity-90">Serving 40+ countries across 5 continents.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Reach Map Graphic -->
+<section class="bg-tertiary-fixed/30 py-20 mb-20 overflow-hidden">
+<div class="max-w-container-max mx-auto px-6 md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Our Global Footprint</h2>
+<div class="w-24 h-1 bg-secondary mx-auto"></div>
+</div>
+<div class="relative bg-white p-4 rounded-xl shadow-inner border border-outline-variant/30">
+<img alt="Global Reach Map" class="w-full h-[600px] object-cover opacity-80" data-alt="A clean, minimalist vector-style world map displayed on a technical glass screen. Key export hubs are illuminated with glowing Forest Green dots and subtle connecting lines representing trade routes. The aesthetic is sophisticated and digital, using a soft gray background with vibrant green highlights to communicate a sense of high-tech supply chain transparency and international reliability." data-location="Bogra, Bangladesh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2zlr3bFBOIjnoxaSzI8-WZ42cCw-mMnJ5IBdIF8VUxS7-GlL5IFwZiEKyFHaQJGRCumc9LivsLK28ECLnTu0UAytBI7A3dpL2cRS7SUqjwHMBu7kVS4fwsEpiLRTrJlnDKRHx0wNVVGVVC3AiJDLzSz7hTjW49ofU_e_pjXhVJb7tWh8Uwd-pMb3cYpiJjKLyuxDZQSbwjPUtILFoHpPriCs9yLk3uoGqggOuKXi9Dg7FuX45ot3TVFaLZiraV3oxSDMOhkDu5vl8"/>
+<!-- Floating Data Points -->
+<div class="absolute top-1/4 right-1/4 glass-card p-4 border border-primary/20 hidden lg:block">
+<div class="text-primary font-bold">Western Europe</div>
+<div class="text-label-sm text-on-surface-variant">Primary Hub: Rotterdam</div>
+<div class="text-data-mono text-primary font-semibold mt-1">24% Market Share</div>
+</div>
+<div class="absolute bottom-1/3 left-1/3 glass-card p-4 border border-primary/20 hidden lg:block">
+<div class="text-primary font-bold">South East Asia</div>
+<div class="text-label-sm text-on-surface-variant">Primary Hub: Singapore</div>
+<div class="text-data-mono text-primary font-semibold mt-1">18% Market Share</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Inquiry Form & Office Details -->
+<section class="max-w-container-max mx-auto px-6 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Technical Inquiry Form -->
+<div class="lg:col-span-2 glass-card p-8 md:p-12 border border-primary/10 shadow-lg">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary" style="font-size: 40px;">request_quote</span>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Export Inquiry Form</h2>
+<p class="text-body-md text-on-surface-variant">Specify your technical requirements for an official quotation.</p>
+</div>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Full Name / Company Representative</label>
+<input class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="e.g. John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Company Name</label>
+<input class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Global Logistics Ltd." type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Product Selection</label>
+<select class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all appearance-none bg-white">
+<option>Jute Sacks (Grade A)</option>
+<option>Jute Yarn (High Tensile)</option>
+<option>Technical Jute Fabric</option>
+<option>Geo-Textiles</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Quantity (Metric Tons)</label>
+<input class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Min 10 MT" type="number"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Port of Destination</label>
+<input class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="e.g. Port of Hamburg" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Contact Email</label>
+<input class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="official@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-technical-header text-label-sm text-primary uppercase tracking-wider">Technical Specifications &amp; Notes</label>
+<textarea class="border border-outline-variant p-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none" placeholder="Mention specific weave density, ply, or certifications required..." rows="4"></textarea>
+</div>
+<div class="md:col-span-2">
+<button class="w-full bg-primary text-on-primary py-4 font-technical-header text-technical-header hover:shadow-xl hover:translate-y-[-2px] transition-all flex items-center justify-center gap-2" type="submit">
+                            Submit Formal Inquiry <span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Office & Support Details -->
+<div class="flex flex-col gap-8">
+<div class="bg-primary text-on-primary p-8 shadow-lg">
+<h3 class="font-headline-lg text-headline-lg mb-4">Headquarters</h3>
+<div class="flex items-start gap-3 mb-6">
+<span class="material-symbols-outlined mt-1">location_on</span>
+<p class="text-body-md opacity-90 italic">Islampur, Harigari, Bogra, Bangladesh</p>
+</div>
+<div class="h-[200px] w-full bg-white/10 relative overflow-hidden group">
+<img alt="Bogra Factory Exterior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" data-alt="A professional architectural photograph of a high-tech industrial manufacturing facility at dusk. The building features clean lines, steel reinforcements, and warm interior lights shining through wide windows. The setting is clean and orderly, showcasing a modern industrial environment that communicates efficiency, scale, and high-quality production standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJqsNVXuxojDgO1Jc11J5IanbnjttormJrTwxRLhULCljT52_CpNefivw1TUopBg4gtR3eKyLp-fmL1aO8ugd60cd5lvuwJ47ODuwKHp9T1TBif4CR86EgbOuJU4rtWnT8M5U1UNE80Vloj_grcoBfKdQytywFVUGYy_nu-3f-cz-5666RhN88PGqbxqbNRQr03QOZFFftzk8xu5_ZRqmDtVA1B2TVxKxzRJ6ravxeDY3vgLJNBFOP-pVB_hu-jZx6j7kq47KuxRey"/>
+<div class="absolute inset-0 flex items-center justify-center bg-primary/40 group-hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-4xl">map</span>
+</div>
+</div>
+</div>
+<div class="glass-card p-8 border border-primary/10">
+<h3 class="font-technical-header text-technical-header text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">support_agent</span> 
+                        Support Schedule
+                    </h3>
+<ul class="space-y-4">
+<li class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-on-surface-variant">Sat - Thu</span>
+<span class="font-data-mono">09:00 - 18:00 (GMT+6)</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="text-on-surface-variant">Friday</span>
+<span class="text-secondary font-bold">Closed</span>
+</li>
+<li class="flex justify-between pt-2">
+<span class="text-on-surface-variant">Urgent Export Inquiry</span>
+<span class="text-primary font-bold">24/7 Digital</span>
+</li>
+</ul>
+</div>
+<div class="glass-card p-8 border-l-4 border-secondary">
+<p class="text-body-md italic text-on-surface-variant mb-4">"Our commitment to quality starts at the fiber level and ends at your doorstep, anywhere in the world."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-technical-header text-label-sm text-primary">Hasan Bro</p>
+<p class="text-[10px] uppercase text-on-surface-variant">Deputy Managing Director</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-tertiary text-on-tertiary w-full py-16 border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-on-tertiary mb-6">Hasan Jute Mills</div>
+<p class="text-body-md text-on-tertiary/60 mb-6">Sustainable fiber solutions for the modern industrial age. From Islampur to the world.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-technical-header text-technical-header text-secondary-fixed">Factory Hubs</h4>
+<a class="text-on-tertiary/80 hover:text-secondary-fixed hover:translate-x-1 transition-all" href="#">Factory 1: Spinning</a>
+<a class="text-on-tertiary/80 hover:text-secondary-fixed hover:translate-x-1 transition-all" href="#">Factory 2: Weaving</a>
+<a class="text-on-tertiary/80 hover:text-secondary-fixed hover:translate-x-1 transition-all" href="#">Factory 3: Finishing</a>
+<a class="text-on-tertiary/80 hover:text-secondary-fixed hover:translate-x-1 transition-all" href="#">Factory 4: Export</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-technical-header text-technical-header text-secondary-fixed">Direct Contact</h4>
+<div class="flex flex-col gap-2">
+<p class="text-on-tertiary/80">Contact DMD: +88 01771 855823</p>
+<p class="text-on-tertiary/80">Email: brohasan773@gmail.com</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-technical-header text-technical-header text-secondary-fixed">Location</h4>
+<p class="text-on-tertiary/80 leading-relaxed">
+                    Islampur, Harigari,<br/>
+                    Bogra, Bangladesh
+                </p>
+<div class="flex gap-4 mt-2">
+<span class="material-symbols-outlined text-on-tertiary/60 hover:text-secondary-fixed cursor-pointer">language</span>
+<span class="material-symbols-outlined text-on-tertiary/60 hover:text-secondary-fixed cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-tertiary/60 hover:text-secondary-fixed cursor-pointer">partner_exchange</span>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-6 md:px-margin-desktop mt-16 pt-8 border-t border-on-tertiary/10 text-center md:text-left">
+<p class="font-body-md text-body-md text-on-tertiary/40">© 2024 Hasan Jute Mills Limited. All Rights Reserved.</p>
+</div>
+</footer>
+</body></html>

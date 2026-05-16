@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#242627",
+                        "surface-container": "#f0eded",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-container": "#745c00",
+                        "primary-container": "#0b4619",
+                        "secondary-container": "#fed65b",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#99d599",
+                        "on-primary-fixed-variant": "#195123",
+                        "surface-tint": "#336a38",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#313030",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002106",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary": "#002e0b",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed": "#b4f2b3",
+                        "background": "#fcf9f8",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface-variant": "#41493f",
+                        "primary-fixed-dim": "#99d599",
+                        "tertiary-fixed": "#e2e2e2",
+                        "tertiary-container": "#3a3c3c",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-container": "#7ab47b",
+                        "on-tertiary-container": "#a5a6a6",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#241a00",
+                        "secondary-fixed": "#ffe088",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c1c9bc",
+                        "outline": "#71796f",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-fixed-variant": "#574500",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#735c00",
+                        "surface-variant": "#e5e2e1",
+                        "surface": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-surface": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Noto Serif"],
+                        "data-mono": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Noto Serif"],
+                        "technical-header": ["Inter"],
+                        "headline-lg-mobile": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "technical-header": ["18px", {"lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-primary/5 shadow-sm">
+<div class="flex justify-between items-center px-64 md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold text-primary">Hasan Jute Mills</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Heritage</a>
+<a class="font-technical-header text-technical-header text-primary border-b-2 border-primary pb-1" href="#">Our Factories</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Technical Specs</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sustainability</a>
+<a class="font-technical-header text-technical-header text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Global Reach</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block px-6 py-2 bg-primary text-on-primary font-bold rounded-lg hover:opacity-80 transition-all">Export Inquiry</button>
+<span class="material-symbols-outlined text-primary cursor-pointer">language</span>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative h-[716px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A massive industrial warehouse filled with huge rolls of textured brown Kraft paper stacked meticulously. The lighting is dramatic and warm, highlighting the organic texture of the paper against the cool steel structures of the factory. The scene conveys a sense of immense scale, industrial precision, and high-performance manufacturing in a clean, professional environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAO4TnmdlQ0WYxUNk4OnJadXD-5qOiC7nTnhgL2_d3NhGMQWxxSFv47q2gdU6bfROBDlvbOWRdfdbaQv_RaTKNn4JTZ8a5CsBUBEN9e3mzDzLMiZk2R9IfiB5--c2WV3emQX_-c_bc-sV6zA-HnHM--lCZ2b9w-8BZ4soGp-GT32w_JLEF6OoRTOyuWh4TcgMyqdA5VrONemDh_savjJO6r1X2xymPxw_tnMGXGP_cMjsKWg86gY5DVQZ7OJ03k9aM-CSDtbLSVYFjl')">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
+</div>
+<div class="relative h-full max-w-container-max mx-auto px-margin-desktop flex flex-col justify-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full w-fit mb-6">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-label-sm text-label-sm uppercase">Certified Sustainable</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-white max-w-2xl mb-4">Hasan Pulp &amp; Paper Mills Unit-1</h1>
+<p class="font-headline-lg text-headline-lg text-white/90 max-w-xl font-light">Precision Engineered Brown Paper for Global Industrial Packaging.</p>
+</div>
+</section>
+<!-- Technical Overview: Bento Grid -->
+<section class="py-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Specs Card -->
+<div class="md:col-span-8 glass-panel border border-primary/10 rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h2 class="font-technical-header text-technical-header text-primary mb-6">Unit-1 Technical Specifications</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="border-l-2 border-secondary pl-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">GSM Range</p>
+<p class="font-headline-lg text-headline-lg text-primary">80 - 250</p>
+</div>
+<div class="border-l-2 border-secondary pl-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Burst Factor</p>
+<p class="font-headline-lg text-headline-lg text-primary">22 - 35</p>
+</div>
+<div class="border-l-2 border-secondary pl-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Moisture</p>
+<p class="font-headline-lg text-headline-lg text-primary">7 ± 1%</p>
+</div>
+<div class="border-l-2 border-secondary pl-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Brightness</p>
+<p class="font-headline-lg text-headline-lg text-primary">Natural</p>
+</div>
+</div>
+</div>
+<div class="mt-12 overflow-x-auto">
+<table class="w-full text-left font-data-mono text-data-mono">
+<thead>
+<tr class="bg-primary text-on-primary">
+<th class="p-3">Property</th>
+<th class="p-3">Method</th>
+<th class="p-3">Unit</th>
+<th class="p-3">Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-3">Tensile Strength (MD)</td>
+<td class="p-3">ISO 1924-2</td>
+<td class="p-3">kN/m</td>
+<td class="p-3">7.5 - 12.0</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors bg-surface-container-low">
+<td class="p-3">Tearing Resistance</td>
+<td class="p-3">ISO 1974</td>
+<td class="p-3">mN</td>
+<td class="p-3">900 - 2200</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-3">Cobb (60s)</td>
+<td class="p-3">ISO 535</td>
+<td class="p-3">g/m²</td>
+<td class="p-3">30 - 45</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Process Highlight -->
+<div class="md:col-span-4 space-y-gutter">
+<div class="bg-tertiary text-on-tertiary p-8 rounded-xl h-1/2 flex flex-col justify-center">
+<span class="material-symbols-outlined text-secondary-fixed text-4xl mb-4">factory</span>
+<h3 class="font-technical-header text-technical-header mb-2">Pulp Processing</h3>
+<p class="font-body-md text-body-md opacity-80">Our Unit-1 utilizes high-yield mechanical pulping mixed with recycled fiber to ensure maximum strength with minimum environmental footprint.</p>
+</div>
+<div class="relative rounded-xl h-1/2 overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A detailed, macro view of the paper manufacturing process where a continuous sheet of brown paper moves rapidly over industrial rollers. The water droplets are visible, reflecting soft overhead lighting, creating a high-tech yet organic atmosphere. The focus is sharp on the texture of the moving paper, emphasizing technical precision and quality control." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBZQGwzm9j460CFg06O32T8iEksLmbDYbh2L8ISgQkEqNMsZ4FX-FkN9o3-Ar2JBgjdD76puFRFFPxj-cOdbfLK4b1SWoRqowaznvN2tc1r7gbnJ3R0YBbfaUekisvvnYRZG_WsfDyBDjx-A4vRfpz3v7-JGSPAH9i85apzIxTHUNWxXThIKzA2QJpW3jWb93_GmobLaedjREXChR5v7_4HQdDaOg-CWaHu-D0RtBR3Njq6WsW7ZbMG7SfeVVRUXvzmN2ia45RFVGS"/>
+<div class="absolute inset-0 bg-primary/20 flex items-end p-6">
+<p class="text-white font-technical-header">Real-time Quality Monitoring</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sustainability & Applications -->
+<section class="bg-surface-container py-20">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter items-center">
+<div class="md:w-1/2">
+<h2 class="font-display-lg text-display-lg text-primary mb-8">Circular Industrial Design</h2>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-primary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">recycling</span>
+</div>
+<div>
+<h4 class="font-technical-header text-technical-header text-on-surface">100% Recyclable Solutions</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Every ton of paper produced in Unit-1 is fully biodegradable and recyclable, supporting your ESG goals without compromising on tensile performance.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-primary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<h4 class="font-technical-header text-technical-header text-on-surface">Zero Liquid Discharge</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Our unit operates an advanced ETP (Effluent Treatment Plant) that recycles 95% of process water back into the manufacturing cycle.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 gap-4">
+<div class="aspect-square bg-white p-6 border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">shopping_bag</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Heavy-Duty Bags</span>
+</div>
+<div class="aspect-square bg-white p-6 border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">inventory_2</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Corrugated Fluting</span>
+</div>
+<div class="aspect-square bg-white p-6 border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">mail</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Envelopes &amp; Wraps</span>
+</div>
+<div class="aspect-square bg-white p-6 border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">construction</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Industrial Liners</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto text-center">
+<div class="glass-panel border border-primary/10 rounded-2xl p-16 shadow-lg">
+<h2 class="font-display-lg text-display-lg text-primary mb-6">Partner with the Leaders of Sustainable Fiber</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto mb-10">Request a technical sample kit or schedule a factory visit to Unit-1 in Bogra to see our quality assurance protocols in action.</p>
+<div class="flex flex-col md:flex-row justify-center gap-4">
+<button class="px-10 py-4 bg-primary text-on-primary font-bold rounded-lg shadow-md hover:bg-primary/90 transition-all">Request Technical Data Sheet</button>
+<button class="px-10 py-4 border-2 border-secondary text-secondary font-bold rounded-lg hover:bg-secondary/5 transition-all">Contact Technical Sales</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-tertiary text-on-tertiary w-full py-16 border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div>
+<div class="font-headline-lg text-headline-lg text-on-tertiary mb-6">Hasan Jute Mills</div>
+<p class="font-body-md text-body-md opacity-60">Pioneering sustainable industrial fiber solutions for a global B2B marketplace since 1974.</p>
+</div>
+<div>
+<h5 class="font-technical-header text-technical-header text-secondary-fixed mb-4">Industrial Units</h5>
+<ul class="space-y-2 font-body-md text-body-md text-on-tertiary/80">
+<li class="hover:text-secondary-fixed transition-colors cursor-pointer">Factory 1: Spinning</li>
+<li class="hover:text-secondary-fixed transition-colors cursor-pointer">Factory 2: Weaving</li>
+<li class="hover:text-secondary-fixed transition-colors cursor-pointer">Factory 3: Finishing</li>
+<li class="hover:text-secondary-fixed transition-colors cursor-pointer">Factory 4: Export</li>
+</ul>
+</div>
+<div>
+<h5 class="font-technical-header text-technical-header text-secondary-fixed mb-4">Contact Info</h5>
+<ul class="space-y-2 font-body-md text-body-md text-on-tertiary/80">
+<li>Contact DMD: +88 01771 855823</li>
+<li>Email: brohasan773@gmail.com</li>
+<li>Location: Islampur, Harigari, Bogra</li>
+</ul>
+</div>
+<div>
+<h5 class="font-technical-header text-technical-header text-secondary-fixed mb-4">Certifications</h5>
+<div class="flex flex-wrap gap-4 opacity-50">
+<span class="material-symbols-outlined text-4xl">verified</span>
+<span class="material-symbols-outlined text-4xl">inventory</span>
+<span class="material-symbols-outlined text-4xl">public</span>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-on-tertiary/10 text-center text-on-tertiary/40 font-body-md text-body-md px-margin-desktop">
+            © 2024 Hasan Jute Mills Limited. All Rights Reserved.
+        </div>
+</footer>
+</body></html>
