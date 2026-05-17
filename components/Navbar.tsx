@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -17,10 +18,16 @@ const Navbar = () => {
       <nav className="flex justify-between items-center px-6 md:px-16 py-4 max-w-[1400px] mx-auto">
         {/* Logo Section */}
         <Link href="/" className="group flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 backdrop-blur-sm">
-            <Globe className="text-[#fed65b] w-6 h-6" />
+          <div className="bg-white px-3 py-1.5 rounded-lg flex items-center justify-center shadow-md border border-white/10 hover:shadow-lg hover:bg-white/95 transition-all duration-300">
+            <Image 
+              src="/img/Hasan-Group.png" 
+              alt="Hasan Group" 
+              width={140} 
+              height={40} 
+              className="object-contain h-8 w-auto"
+              priority
+            />
           </div>
-          <div className="font-serif text-2xl font-bold text-white">Hasan Group</div>
         </Link>
 
         {/* Desktop Nav */}

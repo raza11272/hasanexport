@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Globe, Share2, MessageSquare, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Share2, MessageSquare, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -11,10 +12,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-[#d4af37] rounded flex items-center justify-center">
-                <Globe size={18} className="text-[#1a1a1a]" />
+              <div className="bg-white px-3 py-1.5 rounded-lg flex items-center justify-center shadow-md border border-white/10 hover:shadow-lg hover:bg-white/95 transition-all duration-300">
+                <Image 
+                  src="/img/Hasan-Group.png" 
+                  alt="Hasan Group" 
+                  width={130} 
+                  height={36} 
+                  className="object-contain h-7 w-auto"
+                />
               </div>
-              <span className="font-serif text-2xl font-bold">Hasan Group</span>
             </div>
             <p className="text-white/60 leading-relaxed mb-8">
               Decades of excellence in industrial manufacturing, pioneering sustainable solutions for a global market.

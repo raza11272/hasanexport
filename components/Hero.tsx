@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -83,18 +82,6 @@ const Hero = () => {
         <div className="w-12 h-[2px] bg-[#d4af37]" />
         <div className="w-12 h-[2px] bg-white/30" />
       </div>
-
-      {/* WhatsApp Floating Button */}
-      <motion.a 
-        href="https://wa.me/yournumber"
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-[#25d366] rounded-full flex items-center justify-center text-white shadow-2xl transition-transform"
-      >
-        <MessageCircle size={32} fill="currentColor" className="text-white" />
-      </motion.a>
     </section>
   );
 };

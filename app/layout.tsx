@@ -3,6 +3,7 @@ import { Inter, Noto_Serif } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,7 +34,10 @@ export default function RootLayout({
       )}
     >
       <body className="font-sans">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <WhatsAppButton />
+        </ThemeProvider>
       </body>
     </html>
   )
