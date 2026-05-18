@@ -104,7 +104,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-white/40 text-xs font-medium">
-            © 2024 Hasan Jute Mills Limited. All Rights Reserved. Built for Global Excellence.
+            ©2026 Hasan Group Limited. All Rights Reserve.
           </p>
           <div className="flex gap-8">
             <a href="#" className="text-white/40 hover:text-white text-xs transition-colors">Privacy Policy</a>
