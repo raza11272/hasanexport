@@ -31,18 +31,19 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8 lg:gap-12 items-center">
+        <div className="hidden md:flex gap-6 lg:gap-8 items-center">
           {[
-            { name: 'Legacy', id: 'legacy' },
-            { name: 'Concerns', id: 'factories' },
-            { name: 'Global', id: 'global-reach' },
-            { name: 'Process', id: 'process' },
-            { name: 'Gallery', id: 'gallery' },
-            { name: 'Contact', id: 'contact' },
+            { name: 'Legacy', href: '/#legacy' },
+            { name: 'Concerns', href: '/#factories' },
+            { name: 'Products', href: '/products' },
+            { name: 'Global', href: '/#global-reach' },
+            { name: 'Process', href: '/#process' },
+            { name: 'Gallery', href: '/#gallery' },
+            { name: 'Contact', href: '/#contact' },
           ].map((item) => (
             <Link 
               key={item.name}
-              href={`/#${item.id}`}
+              href={item.href}
               className="text-white/80 hover:text-[#fed65b] font-bold text-[13px] tracking-[0.1em] uppercase transition-all"
             >
               {item.name}
@@ -52,13 +53,15 @@ const Navbar = () => {
 
         {/* Action Button */}
         <div className="flex items-center gap-4">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-2.5 bg-[#fed65b] text-[#064015] font-bold text-[13px] rounded-lg hover:shadow-xl hover:shadow-[#fed65b]/20 transition-all hidden md:block uppercase tracking-wider"
-          >
-            Export Inquiry
-          </motion.button>
+          <Link href="/inquiry">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-2.5 bg-[#fed65b] text-[#064015] font-bold text-[13px] rounded-lg hover:shadow-xl hover:shadow-[#fed65b]/20 transition-all hidden md:block uppercase tracking-wider"
+            >
+              Export Inquiry
+            </motion.button>
+          </Link>
           
           {/* Mobile Menu Toggle */}
           <button 
@@ -79,25 +82,28 @@ const Navbar = () => {
         >
           <div className="flex flex-col gap-6">
             {[
-              { name: 'Legacy', id: 'legacy' },
-              { name: 'Concerns', id: 'factories' },
-              { name: 'Global', id: 'global-reach' },
-              { name: 'Process', id: 'process' },
-              { name: 'Gallery', id: 'gallery' },
-              { name: 'Contact', id: 'contact' },
+              { name: 'Legacy', href: '/#legacy' },
+              { name: 'Concerns', href: '/#factories' },
+              { name: 'Products', href: '/products' },
+              { name: 'Global', href: '/#global-reach' },
+              { name: 'Process', href: '/#process' },
+              { name: 'Gallery', href: '/#gallery' },
+              { name: 'Contact', href: '/#contact' },
             ].map((item) => (
               <Link 
                 key={item.name}
-                href={`/#${item.id}`}
+                href={item.href}
                 onClick={() => setIsOpen(false)}
                 className="text-lg font-serif font-bold text-white hover:text-[#fed65b]"
               >
                 {item.name}
               </Link>
             ))}
-            <button className="w-full py-4 bg-[#fed65b] text-[#064015] font-bold rounded-xl shadow-lg uppercase tracking-widest text-sm">
-              Export Inquiry
-            </button>
+            <Link href="/inquiry" onClick={() => setIsOpen(false)}>
+              <button className="w-full py-4 bg-[#fed65b] text-[#064015] font-bold rounded-xl shadow-lg uppercase tracking-widest text-sm">
+                Export Inquiry
+              </button>
+            </Link>
           </div>
         </motion.div>
       )}

@@ -6,30 +6,30 @@ import { motion, useScroll, useSpring, useTransform, useInView } from 'framer-mo
 const phases = [
   {
     id: 1,
-    title: "Raw Cultivation",
+    title: "Sourcing & Raw Cultivation",
     phase: "PHASE 1",
-    description: "Sourcing premium jute from the finest soils of Bangladesh.",
+    description: "Sourcing premium golden jute directly from the most fertile silt-rich delta regions of Bangladesh, working with thousands of certified local farming families to guarantee organic quality.",
     side: "right",
   },
   {
     id: 2,
-    title: "Reting & Stripping",
+    title: "Natural Water Retting",
     phase: "PHASE 2",
-    description: "Traditional water-retting ensuring robust, luminous fibers.",
+    description: "Utilizing slow water-retting and manual stripping to carefully extract high-strength, long-filament fibers without using harsh synthetic chemicals, preserving their natural elasticity.",
     side: "left",
   },
   {
     id: 3,
-    title: "Spinning & Weaving",
+    title: "High-Precision Spinning",
     phase: "PHASE 3",
-    description: "State-of-the-art looming creating impeccable fabrics.",
+    description: "Processing raw fibers on high-speed industrial spinning frames and weaving looms to manufacture premium-grade carpet backing yarns, twills, and heavy-duty Hessian fabric sacks.",
     side: "right",
   },
   {
     id: 4,
-    title: "Global Export",
+    title: "Global Export Assurance",
     phase: "PHASE 4",
-    description: "Packaging the golden standards for international delivery.",
+    description: "Subjecting all finished products to strict ISO 9001:2015 moisture compliance and durability testing before dispatching secure custom ocean shipments to our clients in over 35 countries.",
     side: "left",
   },
 ];
@@ -112,7 +112,7 @@ const ProcessSection = () => {
             transition={{ delay: 0.1 }}
             className="font-serif text-4xl md:text-6xl font-bold text-[#002e0b]"
           >
-            Journey to the <span className="text-[#d4af37] italic">Golden Fiber</span>
+            <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Journey to the</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Golden Fiber</span>
           </motion.h2>
         </div>
 

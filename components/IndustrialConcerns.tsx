@@ -16,7 +16,7 @@ const concerns = [
     textColor: "text-[#745c00]",
     span: "md:col-span-7",
     icon: <Factory size={24} />,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC9lQ7GcXdeP-NNjeU1FYkfBUgQ2RdFxAyatVr-vOvG5_aMPAgnKvCdloMFDkOdZC3p6zqZ0Ec_9wLo77mNMdUXGKR33YPDYoMLzVfRngpjPAk9IWK7fenRU5BZqcCDN8MYHP_cH_ZsTeCpdc36PKGmJiBL3j9PIyawxhJyzlFsdlFjjOWr4DehmTmeJC_gSUg33KKd9Bv1qfeYSoOpi5CgWnpsKPo61lac19-4uyuGrUdInATmOyLU0z-dRvx3IuncYTI2hnE_uxeZ"
+    image: "https://daidung.com/daidung-content/uploads/2025/06/A-Comprehensive-Guide-600x400.jpg"
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const concerns = [
     textColor: "text-[#195123]",
     span: "md:col-span-5",
     icon: <Settings size={24} />,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDV90ir7oMILWsxxB7sx-AKBF3JSypz5yw6MKhPlqNV5yyBDJWhNrkMLkLFl0x_vsfBWrQNNDZ-ZjjAx5S5R9Ysa8sCHkTZ6XSf6c-3aarGiUWHIGJi1PVs6lKaAA0CFA6sLTIBgqKXSkIhWylIInLzr4i9RYhZgijM0P6CkeBDzOxLKsgZXOXHr5xr6Uab-DPx6Dig03VAfTSI7yn4O-9qqEjRB-0tguWmNWDWNnMHFi-vpAxJgjattAJjX8zKPRvLWf7sOHPV6Gix"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5FOcH0bCYPP5ZpH4YoGG1vhyOf9JblV1big&s"
   },
   {
     id: 3,
@@ -38,18 +38,18 @@ const concerns = [
     textColor: "text-[#1a1c1c]",
     span: "md:col-span-6",
     icon: <Leaf size={24} />,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAO4TnmdlQ0WYxUNk4OnJadXD-5qOiC7nTnhgL2_d3NhGMQWxxSFv47q2gdU6bfROBDlvbOWRdfdbaQv_RaTKNn4JTZ8a5CsBUBEN9e3mzDzLMiZk2R9IfiB5--c2WV3emQX_-c_bc-sV6zA-HnHM--lCZ2b9w-8BZ4soGp-GT32w_JLEF6OoRTOyuWh4TcgMyqdA5VrONemDh_savjJO6r1X2xymPxw_tnMGXGP_cMjsKWg86gY5DVQZ7OJ03k9aM-CSDtbLSVYFjl"
+    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=1200"
   },
   {
     id: 4,
-    title: "Pulp & Paper Unit-2",
-    description: "Premium white paper manufacturing utilizing advanced bleaching and finishing technologies.",
-    tag: "Premium Grade",
+    title: "Hasan Metal Industries",
+    description: "Pioneering heavy metal fabrication, structural steel engineering, and precision spare parts manufacturing.",
+    tag: "Heavy Industry",
     color: "bg-white",
     textColor: "text-[#0b4619]",
     span: "md:col-span-6",
-    icon: <Globe size={24} />,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCEdBNoxNwtT1HTFc4wGwwK6A_jIKtrnRVy6lxMp8ttnA8xusL_PnfcT_MozPIltTooWVUpc7GNCYyNn1mnoClzhl7x0m8M8EVuAENVFWQeT7sQymxCq9dQv-pVSSyzFBO5jLQdEjkPFrESeesTra52PS8CObHKt96t_v259HQ8PmcucmseB3n2HGoBzIvWWNOUbkZLVVdGahTgGNXk-MCCZJykPbjweuwHV384G2Xauy_DORpUQYH2gOsQL550mb320ZrZiCUdhARX"
+    icon: <Factory size={24} />,
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200"
   }
 ];
 
@@ -57,15 +57,15 @@ const IndustrialConcerns = () => {
   return (
     <section id="factories" className="py-24 px-6 md:px-16 max-w-[1280px] mx-auto">
       <div className="mb-16">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-serif text-2xl md:text-4xl font-bold text-[#002e0b] mb-4"
+          className="font-serif text-3xl md:text-5xl font-bold text-[#002e0b] mb-4"
         >
-          Industrial Excellence
+          <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Industrial</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Excellence</span>
         </motion.h2>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -89,50 +89,50 @@ const IndustrialConcerns = () => {
             <Link href={`/units/${concern.id}`} className="block w-full h-full">
               {/* Background Image */}
               <div className="absolute inset-0 z-0">
-              <img 
-                src={concern.image} 
-                alt={concern.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/90 via-[#002e0b]/20 to-transparent" />
-            </div>
-
-            {/* Content */}
-            <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end">
-              <div className="mb-4">
-                <span className={`px-3 py-1 ${concern.color} ${concern.textColor} rounded-full text-[10px] font-bold uppercase tracking-wider`}>
-                  {concern.tag}
-                </span>
+                <img
+                  src={concern.image}
+                  alt={concern.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/90 via-[#002e0b]/20 to-transparent" />
               </div>
-              
-              <h3 className="font-serif text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                {concern.title}
-                <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={24} />
-              </h3>
-              
-              <p className="text-white/80 max-w-md mb-6 line-clamp-2">
-                {concern.description}
-              </p>
 
-              <div className="flex gap-4">
-                <button className="flex items-center gap-2 text-white font-semibold text-sm group/btn">
-                  Technical Specs
-                  <motion.div 
-                    whileHover={{ x: 5 }}
-                    className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center bg-white/10 backdrop-blur-md"
-                  >
-                    <ArrowUpRight size={14} />
-                  </motion.div>
-                </button>
+              {/* Content */}
+              <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end">
+                <div className="mb-4">
+                  <span className={`px-3 py-1 ${concern.color} ${concern.textColor} rounded-full text-[10px] font-bold uppercase tracking-wider`}>
+                    {concern.tag}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-3xl font-bold text-white mb-2 flex items-center gap-3">
+                  {concern.title}
+                  <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={24} />
+                </h3>
+
+                <p className="text-white/80 max-w-md mb-6 line-clamp-2">
+                  {concern.description}
+                </p>
+
+                <div className="flex gap-4">
+                  <button className="flex items-center gap-2 text-white font-semibold text-sm group/btn">
+                    Technical Specs
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center bg-white/10 backdrop-blur-md"
+                    >
+                      <ArrowUpRight size={14} />
+                    </motion.div>
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Hover Accent */}
-            <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-               <div className={`w-12 h-12 ${concern.color} ${concern.textColor} rounded-2xl flex items-center justify-center`}>
+              {/* Hover Accent */}
+              <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className={`w-12 h-12 ${concern.color} ${concern.textColor} rounded-2xl flex items-center justify-center`}>
                   {concern.icon}
-               </div>
-            </div>
+                </div>
+              </div>
             </Link>
           </motion.div>
         ))}

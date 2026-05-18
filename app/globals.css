@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Alex+Brush&family=Dancing+Script:wght@500;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -82,4 +83,16 @@
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
+}
+
+.font-script {
+  font-family: 'Alex Brush', cursive !important;
+}
+
+.font-signature {
+  font-family: 'Pinyon Script', cursive !important;
+}
+
+.font-fancy {
+  font-family: 'Dancing Script', cursive !important;
 }

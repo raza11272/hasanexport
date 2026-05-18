@@ -8,6 +8,7 @@ import Gallery from '@/components/Gallery';
 import ContactSection from '@/components/ContactSection';
 import GlobalFootprint from '@/components/GlobalFootprint';
 import IndustrialConcerns from '@/components/IndustrialConcerns';
+import ProductMarquee from '@/components/ProductMarquee';
 import Footer from '@/components/Footer';
 
 export const metadata = {
@@ -32,6 +33,9 @@ export default function HomePage() {
         
         {/* Business Scale Section */}
         <IndustrialConcerns />
+        
+        {/* Dynamic Infinite Product Marquee Section */}
+        <ProductMarquee />
         
         {/* Global Impact Section */}
         <GlobalFootprint />

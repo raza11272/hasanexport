@@ -13,7 +13,7 @@ const unitData: Record<string, any> = {
     title: "Hasan Jute Mills Ltd",
     tag: "Core Concern",
     description: "Specializing in heavy-duty sacks and industrial woven fabrics for global agricultural export requirements.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC9lQ7GcXdeP-NNjeU1FYkfBUgQ2RdFxAyatVr-vOvG5_aMPAgnKvCdloMFDkOdZC3p6zqZ0Ec_9wLo77mNMdUXGKR33YPDYoMLzVfRngpjPAk9IWK7fenRU5BZqcCDN8MYHP_cH_ZsTeCpdc36PKGmJiBL3j9PIyawxhJyzlFsdlFjjOWr4DehmTmeJC_gSUg33KKd9Bv1qfeYSoOpi5CgWnpsKPo61lac19-4uyuGrUdInATmOyLU0z-dRvx3IuncYTI2hnE_uxeZ",
+    image: "https://daidung.com/daidung-content/uploads/2025/06/A-Comprehensive-Guide-600x400.jpg",
     stats: [
       { label: "Daily Output", value: "45 MT" },
       { label: "Machinery", value: "250+ Looms" },
@@ -34,16 +34,16 @@ const unitData: Record<string, any> = {
       { step: "Finishing", detail: "Specialized coating and stitching for heavy-duty use." }
     ],
     products: [
-      { title: "Standard Hessian Sacks", img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" },
-      { title: "Heavy Cees Bags", img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=800" },
-      { title: "Industrial Twills", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800" }
+      { title: "Standard Hessian Sacks", img: "https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?auto=format&fit=crop&q=80&w=800" },
+      { title: "Heavy Cees Bags", img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=800" },
+      { title: "Industrial Twills", img: "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&q=80&w=800" }
     ]
   },
   "2": {
     title: "Hasan Jute & Spinning",
     tag: "High Precision",
     description: "Manufacturing premium yarn and high-tensile twine for technical textile applications.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDV90ir7oMILWsxxB7sx-AKBF3JSypz5yw6MKhPlqNV5yyBDJWhNrkMLkLFl0x_vsfBWrQNNDZ-ZjjAx5S5R9Ysa8sCHkTZ6XSf6c-3aarGiUWHIGJi1PVs6lKaAA0CFA6sLTIBgqKXSkIhWylIInLzr4i9RYhZgijM0P6CkeBDzOxLKsgZXOXHr5xr6Uab-DPx6Dig03VAfTSI7yn4O-9qqEjRB-0tguWmNWDWNnMHFi-vpAxJgjattAJjX8zKPRvLWf7sOHPV6Gix",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5FOcH0bCYPP5ZpH4YoGG1vhyOf9JblV1big&s",
     stats: [
       { label: "Spindle Count", value: "5,000+" },
       { label: "Yarn Precision", value: "High-Tensile" },
@@ -65,15 +65,15 @@ const unitData: Record<string, any> = {
     ],
     products: [
       { title: "Carpet Backing Yarn", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800" },
-      { title: "Precision Twine", img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=800" },
-      { title: "Specialty Fibers", img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" }
+      { title: "Precision Twine", img: "https://images.unsplash.com/photo-1520038410233-7141be7e6f97?auto=format&fit=crop&q=80&w=800" },
+      { title: "Specialty Fibers", img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" }
     ]
   },
   "3": {
     title: "Pulp & Paper Unit-1",
     tag: "Packaging",
     description: "Dedicated production of high-strength industrial brown paper and sustainable packaging solutions.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAO4TnmdlQ0WYxUNk4OnJadXD-5qOiC7nTnhgL2_d3NhGMQWxxSFv47q2gdU6bfROBDlvbOWRdfdbaQv_RaTKNn4JTZ8a5CsBUBEN9e3mzDzLMiZk2R9IfiB5--c2WV3emQX_-c_bc-sV6zA-HnHM--lCZ2b9w-8BZ4soGp-GT32w_JLEF6OoRTOyuWh4TcgMyqdA5VrONemDh_savjJO6r1X2xymPxw_tnMGXGP_cMjsKWg86gY5DVQZ7OJ03k9aM-CSDtbLSVYFjl",
+    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=1200",
     stats: [
       { label: "GSM Stability", value: "±2%" },
       { label: "Bursting Factor", value: "22-28" },
@@ -94,39 +94,39 @@ const unitData: Record<string, any> = {
       { step: "Reeling", detail: "Precision winding for automated converters." }
     ],
     products: [
-      { title: "Kraft Sack Paper", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" },
-      { title: "Medium Liner Board", img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=800" },
-      { title: "Packaging Kraft", img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" }
+      { title: "Kraft Sack Paper", img: "https://images.unsplash.com/photo-1603513492128-ba7bc9bca206?auto=format&fit=crop&q=80&w=800" },
+      { title: "Medium Liner Board", img: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=800" },
+      { title: "Packaging Kraft", img: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800" }
     ]
   },
   "4": {
-    title: "Pulp & Paper Unit-2",
-    tag: "Premium Grade",
-    description: "Premium white paper manufacturing utilizing advanced bleaching and finishing technologies.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCEdBNoxNwtT1HTFc4wGwwK6A_jIKtrnRVy6lxMp8ttnA8xusL_PnfcT_MozPIltTooWVUpc7GNCYyNn1mnoClzhl7x0m8M8EVuAENVFWQeT7sQymxCq9dQv-pVSSyzFBO5jLQdEjkPFrESeesTra52PS8CObHKt96t_v259HQ8PmcucmseB3n2HGoBzIvWWNOUbkZLVVdGahTgGNXk-MCCZJykPbjweuwHV384G2Xauy_DORpUQYH2gOsQL550mb320ZrZiCUdhARX",
+    title: "Hasan Metal Industries",
+    tag: "Heavy Industry",
+    description: "Pioneering heavy metal fabrication, structural steel engineering, and precision spare parts manufacturing for global industrial infrastructures.",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200",
     stats: [
-      { label: "Brightness", value: "92% ISO" },
-      { label: "Machine Deckle", value: "2850mm" },
-      { label: "Basis Weight", value: "45-120g" },
-      { label: "FSC Status", value: "Certified" }
+      { label: "Daily Output", value: "75 MT" },
+      { label: "Machineries", value: "CNC & Plasma" },
+      { label: "Workforce", value: "450+ Crew" },
+      { label: "Certifications", value: "ISO 9001, CE" }
     ],
     specs: [
-      { name: "Paper Type", value: "Premium White Writing" },
-      { name: "Brightness", value: "92% ISO Brightness" },
-      { name: "Finish", value: "Super Calendered" },
-      { name: "Opacity", value: "> 95% High Opacity" },
-      { name: "Certifications", value: "FSC Certified" }
+      { name: "Steel Category", value: "Structural Fabrication & Casting" },
+      { name: "Main Machinery", value: "High-Power CNC Laser, Furnaces" },
+      { name: "Material Grade", value: "Q345B, ASTM A36, Forged Steel" },
+      { name: "Custom Casting", value: "Up to 10 Tons Single Pour" },
+      { name: "Quality Standard", value: "NDT / Ultrasonic Tested" }
     ],
     process: [
-      { step: "Bleaching", detail: "Advanced ECF bleaching for high brightness." },
-      { step: "Formation", detail: "Headbox precision for uniform sheet weight." },
-      { step: "Calendering", detail: "Surface finishing for premium smoothness." },
-      { step: "Slitting", detail: "Dust-free cutting for high-speed printers." }
+      { step: "Design", detail: "Bespoke CAD modeling & load calculations." },
+      { step: "Machining", detail: "High-precision laser cutting & CNC boring." },
+      { step: "Welding", detail: "Certified gas-shielded structural assembly." },
+      { step: "Coating", detail: "Protective sandblasting & primer coating." }
     ],
     products: [
-      { title: "Premium Bond Paper", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" },
-      { title: "Executive Stationery", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800" },
-      { title: "White Liner Paper", img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=800" }
+      { title: "Structural Steel Beams", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" },
+      { title: "Pre-Engineered Frames", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" },
+      { title: "Castings & Spare Parts", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" }
     ]
   }
 };

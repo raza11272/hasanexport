@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 const ContactSection = () => {
   return (
@@ -23,11 +24,14 @@ const ContactSection = () => {
               TRUSTED BY PARTNERS WORLDWIDE
             </span>
             <h2 className="font-serif text-3xl md:text-5xl text-white mb-10 leading-tight">
-              Ready to experience the <span className="text-[#d4af37] italic">Golden Standard?</span>
+              <span className="font-signature text-white normal-case tracking-normal font-normal text-3xl md:text-5xl">Ready to experience the</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-3xl md:text-5xl">Golden Standard?</span>
             </h2>
-            <button className="px-10 py-5 bg-[#d4af37] text-[#002e0b] font-bold rounded-xl hover:scale-105 transition-transform shadow-2xl uppercase tracking-widest text-sm">
+            <Link 
+              href="/inquiry" 
+              className="px-10 py-5 bg-[#d4af37] text-[#002e0b] font-bold rounded-xl hover:scale-105 transition-transform shadow-2xl uppercase tracking-widest text-sm inline-block"
+            >
               Request A Quote
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -39,7 +43,7 @@ const ContactSection = () => {
             GET IN TOUCH
           </span>
           <h2 className="font-serif text-4xl md:text-6xl text-[#002e0b]">
-            Contact <span className="text-[#d4af37] italic">Us</span>
+            <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Contact</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Us</span>
           </h2>
           <div className="w-20 h-[2px] bg-[#d4af37] mx-auto mt-6" />
         </div>

@@ -55,7 +55,7 @@ const Achievements = () => {
             MILESTONES & RECOGNITION
           </span>
           <h2 className="font-serif text-4xl md:text-6xl text-[#002e0b] mb-6">
-            Our <span className="text-[#d4af37] italic">Achievements</span>
+            <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Our</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Achievements</span>
           </h2>
           <p className="text-[#41493f] max-w-2xl mx-auto text-lg">
             Decades of dedication have earned us national recognition, international 

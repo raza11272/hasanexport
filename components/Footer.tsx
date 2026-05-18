@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Share2, MessageSquare, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -42,12 +43,17 @@ const Footer = () => {
           <div>
             <h4 className="text-[#d4af37] font-bold uppercase tracking-widest text-sm mb-8">Industrial Units</h4>
             <ul className="space-y-4">
-              {['Hasan Jute Mills', 'Spinning & Yarn', 'Pulp & Paper Unit 1', 'Pulp & Paper Unit 2'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
+              {[
+                { name: 'Hasan Jute Mills', href: '/units/1' },
+                { name: 'Spinning & Yarn', href: '/units/2' },
+                { name: 'Pulp & Paper Unit 1', href: '/units/3' },
+                { name: 'Pulp & Paper Unit 2', href: '/units/4' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 bg-[#d4af37] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {item}
-                  </a>
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>

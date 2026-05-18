@@ -54,7 +54,7 @@ const Gallery = () => {
               PRODUCT SHOWCASE
             </span>
             <h2 className="font-serif text-4xl md:text-6xl text-[#002e0b]">
-              The Golden Fiber <span className="text-[#d4af37] italic">Gallery</span>
+              <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">The Golden Fiber</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Gallery</span>
             </h2>
             <div className="w-20 h-[2px] bg-[#0b4619]/20 mt-6" />
           </div>
