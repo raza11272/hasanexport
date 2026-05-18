@@ -103,9 +103,21 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-white/40 text-xs font-medium">
-            ©2026 Hasan Group Limited. All Rights Reserve.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-white/40 text-xs font-medium text-center md:text-left">
+            <span>Copyright &copy; 2026 Hasan Group Limited - All Rights Reserved.</span>
+            <span className="hidden md:inline text-white/10">|</span>
+            <span>
+              Powered by{' '}
+              <a 
+                href="https://wavelinecorp.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-[#d4af37] hover:text-[#d4af37]/80 hover:underline transition-colors"
+              >
+                Waveline Corp.
+              </a>
+            </span>
+          </div>
           <div className="flex gap-8">
             <a href="#" className="text-white/40 hover:text-white text-xs transition-colors">Privacy Policy</a>
             <a href="#" className="text-white/40 hover:text-white text-xs transition-colors">Terms of Service</a>
