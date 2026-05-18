@@ -13,7 +13,7 @@ const unitData: Record<string, any> = {
     title: "Hasan Jute Mills Ltd",
     tag: "Core Concern",
     description: "Specializing in heavy-duty sacks and industrial woven fabrics for global agricultural export requirements.",
-    image: "https://daidung.com/daidung-content/uploads/2025/06/A-Comprehensive-Guide-600x400.jpg",
+    image: "https://sashamimjutemillsltd.com/wp-content/uploads/2024/10/Why-SA-Shamim-Jute-Mills-Ltd-is-the-Top-Jute-Mills-in-Bangladesh.jpg",
     stats: [
       { label: "Daily Output", value: "45 MT" },
       { label: "Machinery", value: "250+ Looms" },
@@ -34,16 +34,16 @@ const unitData: Record<string, any> = {
       { step: "Finishing", detail: "Specialized coating and stitching for heavy-duty use." }
     ],
     products: [
-      { title: "Standard Hessian Sacks", img: "https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?auto=format&fit=crop&q=80&w=800" },
-      { title: "Heavy Cees Bags", img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=800" },
-      { title: "Industrial Twills", img: "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&q=80&w=800" }
+      { title: "Standard Hessian Jute Bags", img: "https://s.alicdn.com/@sc04/kf/H10bbd75fd3344674b8bd980f53613d0e9/Custom-Natural-Jute-Sack-Source-Factory-30kg-Food-Grade-Burlap-Bag-for-Grain-Cocoa-Coffee-Agricultural-Storage.png" },
+      { title: "Heavy Cees Jute Bags", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvUeOuiMJAfIBDD5N7XoVbriHIa3APY2vqTA&s" },
+      { title: "Erosion Control Jute Geotextiles", img: "https://5.imimg.com/data5/SELLER/Default/2025/10/550380119/FR/QU/IK/130477180/20kg-jute-gunny-bag.jpg" }
     ]
   },
   "2": {
     title: "Hasan Jute & Spinning",
     tag: "High Precision",
     description: "Manufacturing premium yarn and high-tensile twine for technical textile applications.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5FOcH0bCYPP5ZpH4YoGG1vhyOf9JblV1big&s",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGVreLiid8nwyINOSXS-gnvxkGszVfoDwHg&s",
     stats: [
       { label: "Spindle Count", value: "5,000+" },
       { label: "Yarn Precision", value: "High-Tensile" },
@@ -64,16 +64,16 @@ const unitData: Record<string, any> = {
       { step: "Testing", detail: "Tensile strength and moisture verification." }
     ],
     products: [
-      { title: "Carpet Backing Yarn", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800" },
-      { title: "Precision Twine", img: "https://images.unsplash.com/photo-1520038410233-7141be7e6f97?auto=format&fit=crop&q=80&w=800" },
-      { title: "Specialty Fibers", img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800" }
+      { title: "Traditional Jute Twine & Sutli", img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665129/IB/SW/YY/145877526/1-kg-jute-sutli-roll-500x500.jpg" },
+      { title: "Polished Jute Twine (Sutli)", img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665130/DE/OU/BQ/145877526/1-kg-jute-sutli-roll.jpg" },
+      { title: "Premium Jute Carpet Backing Yarn", img: "https://images.jdmagicbox.com/quickquotes/images_main/jute-yarn-sutli-387624519-6ltlq.jpg" }
     ]
   },
   "3": {
     title: "Pulp & Paper Unit-1",
     tag: "Packaging",
     description: "Dedicated production of high-strength industrial brown paper and sustainable packaging solutions.",
-    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=1200",
+    image: "https://static.vecteezy.com/system/resources/thumbnails/037/961/983/small/ai-generated-a-paper-production-line-at-a-waste-paper-recycling-factory-pulp-and-paper-mill-photo.jpg",
     stats: [
       { label: "GSM Stability", value: "±2%" },
       { label: "Bursting Factor", value: "22-28" },
@@ -94,16 +94,16 @@ const unitData: Record<string, any> = {
       { step: "Reeling", detail: "Precision winding for automated converters." }
     ],
     products: [
-      { title: "Kraft Sack Paper", img: "https://images.unsplash.com/photo-1603513492128-ba7bc9bca206?auto=format&fit=crop&q=80&w=800" },
-      { title: "Medium Liner Board", img: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=800" },
-      { title: "Packaging Kraft", img: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800" }
+      { title: "Industrial Kraft Paper Roll", img: "https://5.imimg.com/data5/XP/TJ/MY-6436108/brown-kraft-paper-roll-500x500.jpg" },
+      { title: "Corrugated Medium Liner Paper Roll", img: "https://www.startech.com.bd/image/cache/catalog/pos-printer/roll/pos-roll-500x500.webp" },
+      { title: "Machine Glazed Wrapping Paper Roll", img: "https://pixposbd.com/wp-content/uploads/2024/09/510yyfqzcoL._AC_UF8941000_QL80_.jpg" }
     ]
   },
   "4": {
     title: "Hasan Metal Industries",
     tag: "Heavy Industry",
     description: "Pioneering heavy metal fabrication, structural steel engineering, and precision spare parts manufacturing for global industrial infrastructures.",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200",
+    image: "https://media.licdn.com/dms/image/v2/C5112AQGSNTM3NmIWHg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520246655383?e=2147483647&v=beta&t=TDnH6_YS6lRD6kohsbKgg3PivkanoWjlpvJiiF5hh0Q",
     stats: [
       { label: "Daily Output", value: "75 MT" },
       { label: "Machineries", value: "CNC & Plasma" },
@@ -124,9 +124,9 @@ const unitData: Record<string, any> = {
       { step: "Coating", detail: "Protective sandblasting & primer coating." }
     ],
     products: [
-      { title: "Structural Steel Beams", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" },
-      { title: "Pre-Engineered Frames", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" },
-      { title: "Castings & Spare Parts", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" }
+      { title: "Structural Steel Beams", img: "https://www.bruker.com/en/applications/industrial/metals/_jcr_content/teaserImage.coreimg.jpeg/1733859095146/metal-tubes.jpeg" },
+      { title: "Pre-Engineered Metal Frames", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIgJH3_4DyiBchhRGu6au5-uvnE8IwMYI3cw&s" },
+      { title: "Castings & Heavy Spares", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2uHb-rqQObe5MFnRprIYqaGsoFOtAmkRLg&s" }
     ]
   }
 };

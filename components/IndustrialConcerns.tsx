@@ -14,9 +14,8 @@ const concerns = [
     tag: "Core Concern",
     color: "bg-[#fed65b]",
     textColor: "text-[#745c00]",
-    span: "md:col-span-7",
     icon: <Factory size={24} />,
-    image: "https://daidung.com/daidung-content/uploads/2025/06/A-Comprehensive-Guide-600x400.jpg"
+    image: "https://sashamimjutemillsltd.com/wp-content/uploads/2024/10/Why-SA-Shamim-Jute-Mills-Ltd-is-the-Top-Jute-Mills-in-Bangladesh.jpg"
   },
   {
     id: 2,
@@ -25,9 +24,8 @@ const concerns = [
     tag: "High Precision",
     color: "bg-[#b4f2b3]",
     textColor: "text-[#195123]",
-    span: "md:col-span-5",
     icon: <Settings size={24} />,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5FOcH0bCYPP5ZpH4YoGG1vhyOf9JblV1big&s"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGVreLiid8nwyINOSXS-gnvxkGszVfoDwHg&s"
   },
   {
     id: 3,
@@ -36,9 +34,8 @@ const concerns = [
     tag: "Packaging",
     color: "bg-[#e2e2e2]",
     textColor: "text-[#1a1c1c]",
-    span: "md:col-span-6",
     icon: <Leaf size={24} />,
-    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=1200"
+    image: "https://static.vecteezy.com/system/resources/thumbnails/037/961/983/small/ai-generated-a-paper-production-line-at-a-waste-paper-recycling-factory-pulp-and-paper-mill-photo.jpg"
   },
   {
     id: 4,
@@ -47,9 +44,8 @@ const concerns = [
     tag: "Heavy Industry",
     color: "bg-white",
     textColor: "text-[#0b4619]",
-    span: "md:col-span-6",
     icon: <Factory size={24} />,
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200"
+    image: "https://media.licdn.com/dms/image/v2/C5112AQGSNTM3NmIWHg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520246655383?e=2147483647&v=beta&t=TDnH6_YS6lRD6kohsbKgg3PivkanoWjlpvJiiF5hh0Q"
   }
 ];
 
@@ -76,7 +72,7 @@ const IndustrialConcerns = () => {
         </motion.p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {concerns.map((concern, index) => (
           <motion.div
             key={concern.id}
@@ -84,7 +80,7 @@ const IndustrialConcerns = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className={`${concern.span} group relative overflow-hidden rounded-3xl h-[450px] shadow-lg border border-[#0b4619]/5`}
+            className="group relative overflow-hidden rounded-3xl h-[450px] shadow-lg border border-[#0b4619]/5"
           >
             <Link href={`/units/${concern.id}`} className="block w-full h-full">
               {/* Background Image */}

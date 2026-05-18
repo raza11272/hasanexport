@@ -14,63 +14,63 @@ interface ProductItem {
 const products: ProductItem[] = [
   { 
     id: 1, 
-    title: "Standard Hessian Sacks", 
-    category: "Jute Packaging", 
-    img: "https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?auto=format&fit=crop&q=80&w=800" 
+    title: "Standard Hessian Jute Bags", 
+    category: "Jute Bags", 
+    img: "https://s.alicdn.com/@sc04/kf/H10bbd75fd3344674b8bd980f53613d0e9/Custom-Natural-Jute-Sack-Source-Factory-30kg-Food-Grade-Burlap-Bag-for-Grain-Cocoa-Coffee-Agricultural-Storage.png" 
   },
   { 
     id: 2, 
-    title: "Heavy Cees Sacks", 
-    category: "Heavy Duty Bags", 
-    img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=800" 
+    title: "Heavy Cees Jute Bags", 
+    category: "Jute Sacks", 
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvUeOuiMJAfIBDD5N7XoVbriHIa3APY2vqTA&s" 
   },
   { 
     id: 3, 
-    title: "Industrial Jute Yarn", 
-    category: "Jute Spinning", 
-    img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800" 
+    title: "Traditional Jute Twine & Sutli", 
+    category: "Jute Twine / Sutli", 
+    img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665129/IB/SW/YY/145877526/1-kg-jute-sutli-roll-500x500.jpg" 
   },
   { 
     id: 4, 
-    title: "Precision Twine", 
-    category: "Spinning & Ropes", 
-    img: "https://images.unsplash.com/photo-1520038410233-7141be7e6f97?auto=format&fit=crop&q=80&w=800" 
+    title: "Polished Jute Twine (Sutli)", 
+    category: "Precision Twine", 
+    img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665130/DE/OU/BQ/145877526/1-kg-jute-sutli-roll.jpg" 
   },
   { 
     id: 5, 
-    title: "Divergent Fine Plies", 
-    category: "Spun Yarn", 
-    img: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=800" 
+    title: "Erosion Control Jute Geotextiles", 
+    category: "Jute Related", 
+    img: "https://5.imimg.com/data5/SELLER/Default/2025/10/550380119/FR/QU/IK/130477180/20kg-jute-gunny-bag.jpg" 
   },
   { 
     id: 6, 
-    title: "Heavy Duty Kraft Paper", 
-    category: "Pulp & Paper", 
-    img: "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?auto=format&fit=crop&q=80&w=800" 
+    title: "Industrial Kraft Paper Roll", 
+    category: "Paper Roll", 
+    img: "https://5.imimg.com/data5/XP/TJ/MY-6436108/brown-kraft-paper-roll-500x500.jpg" 
   },
   { 
     id: 7, 
-    title: "High-Burst Linerboard", 
-    category: "Industrial Roll", 
-    img: "https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&q=80&w=800" 
+    title: "Corrugated Medium Liner Paper Roll", 
+    category: "Paper Roll", 
+    img: "https://www.startech.com.bd/image/cache/catalog/pos-printer/roll/pos-roll-500x500.webp" 
   },
   { 
     id: 8, 
-    title: "Structural Steel Beams", 
-    category: "Heavy Industry", 
-    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" 
+    title: "Machine Glazed Wrapping Paper Roll", 
+    category: "Paper Roll", 
+    img: "https://pixposbd.com/wp-content/uploads/2024/09/510yyfqzcoL._AC_UF8941000_QL80_.jpg" 
   },
   { 
     id: 9, 
-    title: "Pre-Engineered Metal Frames", 
-    category: "Metal Fabrication", 
-    img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" 
+    title: "Premium Jute Carpet Backing Yarn", 
+    category: "Jute Yarn", 
+    img: "https://images.jdmagicbox.com/quickquotes/images_main/jute-yarn-sutli-387624519-6ltlq.jpg" 
   },
   { 
     id: 10, 
-    title: "Castings & Heavy Spares", 
-    category: "Precision Casting", 
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" 
+    title: "Heavy-Duty Structural Steel Beams", 
+    category: "Metal Industry", 
+    img: "https://www.bruker.com/en/applications/industrial/metals/_jcr_content/teaserImage.coreimg.jpeg/1733859095146/metal-tubes.jpeg" 
   }
 ];
 
