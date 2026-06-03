@@ -1,23 +1,51 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
+
+const GET_HERO_DATA = gql`
+  query GetHeroData {
+    landingPage {
+      hero_slides {
+        industry_name
+        description
+        bg_image_url
+        bg_image {
+          url
+        }
+        logo_image_url
+        logo_image {
+          url
+        }
+      }
+    }
+  }
+`;
 
 const Hero = () => {
-  const factories = [
-    "HASAN JUTE MILLS LTD",
-    "HASAN JUTE & SPINNING",
-    "PULP & PAPER UNIT-1",
-    "HASAN METAL INDUSTRIES"
-  ];
-
+  const { data } = useQuery<any>(GET_HERO_DATA, { errorPolicy: 'all' });
+  const [slideIndex, setSlideIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
-  const [factoryIndex, setFactoryIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const activeSlides = data?.landingPage?.hero_slides?.map((slide: any) => ({
+    title: slide.industry_name,
+    description: slide.description,
+    bgImage: slide.bg_image?.url
+      ? (slide.bg_image.url.startsWith('http') ? slide.bg_image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${slide.bg_image.url}`)
+      : slide.bg_image_url,
+    logoImage: slide.logo_image?.url
+      ? (slide.logo_image.url.startsWith('http') ? slide.logo_image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${slide.logo_image.url}`)
+      : slide.logo_image_url
+  })) || [];
+
   useEffect(() => {
-    const currentFullText = factories[factoryIndex];
+    if (activeSlides.length === 0) return;
+
+    const currentFullText = activeSlides[slideIndex].title;
 
     const handleTyping = () => {
       if (!isDeleting) {
@@ -27,17 +55,17 @@ const Hero = () => {
 
         // Pause when fully typed
         if (nextText === currentFullText) {
-          setTimeout(() => setIsDeleting(true), 2200);
+          setTimeout(() => setIsDeleting(true), 3500); // 3.5 seconds reading pause
         }
       } else {
         // Rapid backspacing deleting phase
         const nextText = currentFullText.slice(0, displayedText.length - 1);
         setDisplayedText(nextText);
 
-        // Cycle to next factory when fully deleted
+        // Cycle to next slide when fully deleted
         if (nextText === "") {
           setIsDeleting(false);
-          setFactoryIndex((prev) => (prev + 1) % factories.length);
+          setSlideIndex((prev) => (prev + 1) % activeSlides.length);
         }
       }
     };
@@ -49,28 +77,74 @@ const Hero = () => {
     );
 
     return () => clearTimeout(typingTimer);
-  }, [displayedText, isDeleting, factoryIndex]);
+  }, [displayedText, isDeleting, slideIndex, activeSlides]);
+
+  if (activeSlides.length === 0) {
+    return (
+      <section className="h-screen w-full bg-[#121111] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-[#fed65b] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <span className="text-white/60 text-xs font-mono uppercase tracking-widest">Loading Portal...</span>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#121111]">
-      {/* Background Video */}
+      
+      {/* Cinematic Zoom Background Slider */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="w-full h-full object-cover select-none pointer-events-none"
-        >
-          <source src="https://hasan-mills.techsolutionfactory.com/assets/hero-video2-CW4XnXsL.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={slideIndex}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1.10 }}
+            exit={{ opacity: 0, scale: 1.15 }}
+            transition={{
+              opacity: { duration: 1.6, ease: "easeInOut" },
+              scale: { duration: 8.5, ease: "linear" }
+            }}
+            className="absolute inset-0 w-full h-full"
+          >
+            {activeSlides[slideIndex].bgImage ? (
+              <img 
+                src={activeSlides[slideIndex].bgImage} 
+                alt={activeSlides[slideIndex].title} 
+                className="w-full h-full object-cover select-none pointer-events-none"
+              />
+            ) : (
+              <div className="w-full h-full bg-[#064015]" />
+            )}
+          </motion.div>
+        </AnimatePresence>
         {/* Dark Overlay with Gradient */}
-        <div className="absolute inset-0 bg-black/60 bg-gradient-to-b from-black/50 via-transparent to-black/85" />
+        <div className="absolute inset-0 bg-black/65 bg-gradient-to-b from-black/55 via-transparent to-black/90 z-10" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20 md:pt-0 flex flex-col items-center justify-center">
+      {/* Content Container */}
+      <div className="relative z-20 text-center px-6 max-w-5xl mx-auto pt-20 md:pt-0 flex flex-col items-center justify-center">
+        
+        {/* Logo Image above title */}
+        {activeSlides[slideIndex].logoImage && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slideIndex}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 bg-white/95 px-5 py-2.5 rounded-2xl inline-flex items-center justify-center shadow-lg backdrop-blur-md border border-white/20 hover:scale-102 transition-transform duration-300"
+            >
+              <img 
+                src={activeSlides[slideIndex].logoImage} 
+                alt="Concern Logo" 
+                className="h-7 md:h-9 object-contain w-auto"
+              />
+            </motion.div>
+          </AnimatePresence>
+        )}
+
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -97,15 +171,23 @@ const Hero = () => {
           </span>
         </motion.h1>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-white/80 text-xs md:text-lg max-w-3xl mx-auto leading-relaxed mb-10 md:mb-12 font-sans font-light select-none"
-        >
-          Pioneering premium eco-friendly packaging, high-tensile spinning yarns, and superior kraft papers. We bridge natural heritage and state-of-the-art engineering across four major concern factories.
-        </motion.p>
+        {/* Dynamic Slide Description with crossfade */}
+        <div className="min-h-[60px] md:min-h-[90px] flex items-center justify-center w-full">
+          <AnimatePresence mode="wait">
+            <motion.p 
+              key={slideIndex}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-white/80 text-xs md:text-lg max-w-3xl mx-auto leading-relaxed mb-10 md:mb-12 font-sans font-light select-none"
+            >
+              {activeSlides[slideIndex].description}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
+        {/* Action Buttons */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -145,16 +227,28 @@ const Hero = () => {
       <motion.div 
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
         <div className="w-[2px] h-12 bg-gradient-to-b from-[#d4af37] to-transparent" />
       </motion.div>
 
-      {/* Carousel Indicators (Static as per layout) */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-3">
-        <div className="w-12 h-[2px] bg-[#d4af37]" />
-        <div className="w-12 h-[2px] bg-white/30" />
+      {/* Slide Indicators */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {activeSlides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              setSlideIndex(idx);
+              setDisplayedText("");
+              setIsDeleting(false);
+            }}
+            className={`h-[2.5px] rounded-full transition-all duration-500 ${
+              slideIndex === idx ? "w-12 bg-[#fed65b]" : "w-12 bg-white/20 hover:bg-white/40"
+            }`}
+          />
+        ))}
       </div>
+
     </section>
   );
 };

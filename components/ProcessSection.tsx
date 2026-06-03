@@ -2,39 +2,24 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform, useInView } from 'framer-motion';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
 
-const phases = [
-  {
-    id: 1,
-    title: "Sourcing & Raw Cultivation",
-    phase: "PHASE 1",
-    description: "Sourcing premium golden jute directly from the most fertile silt-rich delta regions of Bangladesh, working with thousands of certified local farming families to guarantee organic quality.",
-    side: "right",
-  },
-  {
-    id: 2,
-    title: "Natural Water Retting",
-    phase: "PHASE 2",
-    description: "Utilizing slow water-retting and manual stripping to carefully extract high-strength, long-filament fibers without using harsh synthetic chemicals, preserving their natural elasticity.",
-    side: "left",
-  },
-  {
-    id: 3,
-    title: "High-Precision Spinning",
-    phase: "PHASE 3",
-    description: "Processing raw fibers on high-speed industrial spinning frames and weaving looms to manufacture premium-grade carpet backing yarns, twills, and heavy-duty Hessian fabric sacks.",
-    side: "right",
-  },
-  {
-    id: 4,
-    title: "Global Export Assurance",
-    phase: "PHASE 4",
-    description: "Subjecting all finished products to strict ISO 9001:2015 moisture compliance and durability testing before dispatching secure custom ocean shipments to our clients in over 35 countries.",
-    side: "left",
-  },
-];
+const GET_LANDING_PROCESS = gql`
+  query GetLandingProcess {
+    landingPage {
+      our_process {
+        id
+        phase
+        title
+        description
+        side
+      }
+    }
+  }
+`;
 
-const TimelineItem = ({ item, index }: { item: typeof phases[0], index: number }) => {
+const TimelineItem = ({ item, index }: { item: any, index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
 
@@ -82,6 +67,9 @@ const TimelineItem = ({ item, index }: { item: typeof phases[0], index: number }
 };
 
 const ProcessSection = () => {
+  const { data } = useQuery<any>(GET_LANDING_PROCESS, { errorPolicy: 'all' });
+  const phases = data?.landingPage?.our_process?.length ? data.landingPage.our_process : [];
+
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -129,8 +117,8 @@ const ProcessSection = () => {
 
           {/* Timeline Items */}
           <div className="relative z-10">
-            {phases.map((item, index) => (
-              <TimelineItem key={item.id} item={item} index={index} />
+            {phases.map((item: any, index: number) => (
+              <TimelineItem key={item.id || index} item={item} index={index} />
             ))}
           </div>
         </div>

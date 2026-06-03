@@ -23,206 +23,71 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-// Detailed Product Data Map (4 Concerns)
-const products = [
-  // Hasan Jute Mills Ltd (Unit 1)
-  {
-    id: "p1",
-    unitId: "1",
-    unitName: "Hasan Jute Mills Ltd",
-    title: "Standard Hessian Jute Bags",
-    description: "Premium food-grade and standard woven jute packaging bags designed for global agricultural exports such as cocoa, coffee, rice, and potatoes.",
-    img: "https://s.alicdn.com/@sc04/kf/H10bbd75fd3344674b8bd980f53613d0e9/Custom-Natural-Jute-Sack-Source-Factory-30kg-Food-Grade-Burlap-Bag-for-Grain-Cocoa-Coffee-Agricultural-Storage.png",
-    specs: [
-      { label: "Material", value: "100% Eco-Friendly Jute" },
-      { label: "Grade", value: "Food Grade / Hydrocarbon-Free" },
-      { label: "Dimensions", value: "44\" x 26.5\" (Standard)" },
-      { label: "Capacity", value: "50 kg - 100 kg" }
-    ],
-    features: ["Biodegradable & Organic", "Breathable Fabric", "Custom Printing Available"]
-  },
-  {
-    id: "p2",
-    unitId: "1",
-    unitName: "Hasan Jute Mills Ltd",
-    title: "Heavy Cees Jute Bags",
-    description: "Extra durable, double-warp jute sacking bags engineered for packaging heavy agricultural produce, grains, minerals, and industrial products.",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvUeOuiMJAfIBDD5N7XoVbriHIa3APY2vqTA&s",
-    specs: [
-      { label: "Weave", value: "Double Warp (2/1 Twill)" },
-      { label: "GSM", value: "900g to 1100g per Bag" },
-      { label: "Stitching", value: "Herakles (Reinforced Sides)" },
-      { label: "Capacity", value: "Up to 100 kg" }
-    ],
-    features: ["Super High Tensile Strength", "Resistant to Ripping", "Heavy-Duty Seaming"]
-  },
-  {
-    id: "p3",
-    unitId: "1",
-    unitName: "Hasan Jute Mills Ltd",
-    title: "Erosion Control Jute Geotextiles",
-    description: "High-density organic woven jute sheets and geotextile mats used in industrial wrapping, packaging, soil conservation, and erosion control.",
-    img: "https://5.imimg.com/data5/SELLER/Default/2025/10/550380119/FR/QU/IK/130477180/20kg-jute-gunny-bag.jpg",
-    specs: [
-      { label: "Fabric Type", value: "A-Twill, B-Twill, L-Twill" },
-      { label: "Width", value: "22\" to 45\" Available" },
-      { label: "Finish", value: "Calendered / Uncalendered" },
-      { label: "Eco-Status", value: "100% Organic Fibers" }
-    ],
-    features: ["Erosion Control Approved", "Excellent Moisture Retention", "Industrial-grade Strength"]
-  },
+import { useQuery, useMutation } from '@apollo/client/react';
+import { gql } from '@apollo/client';
 
-  // Hasan Jute & Spinning (Unit 2)
-  {
-    id: "p4",
-    unitId: "2",
-    unitName: "Hasan Jute & Spinning",
-    title: "Traditional Jute Twine & Sutli",
-    description: "High-tensile traditional jute twine (sutli) and yarn engineered with precision for general agricultural packaging and automated binding.",
-    img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665129/IB/SW/YY/145877526/1-kg-jute-sutli-roll-500x500.jpg",
-    specs: [
-      { label: "Count Range", value: "4 lbs to 72 lbs" },
-      { label: "Plies", value: "Single or Multi-ply" },
-      { label: "Tensile Strength", value: "CB > 95% Consistency" },
-      { label: "Spool Weight", value: "Custom Spools (up to 15 kg)" }
-    ],
-    features: ["Knotless Long Run", "Uniform Core Thickness", "Low Hairiness Index"]
-  },
-  {
-    id: "p5",
-    unitId: "2",
-    unitName: "Hasan Jute & Spinning",
-    title: "Polished Jute Twine (Sutli)",
-    description: "Multi-ply premium polished twine and ropes with superior knot strength, widely used in agriculture, horticulture, and secure tying.",
-    img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665130/DE/OU/BQ/145877526/1-kg-jute-sutli-roll.jpg",
-    specs: [
-      { label: "Types", value: "Polished, Unpolished, Bleached" },
-      { label: "Structure", value: "2-Ply, 3-Ply, 4-Ply" },
-      { label: "Packaging", value: "Ball, Cop, or Precision Tube" },
-      { label: "Usage", value: "Crop Support, Retail Packing" }
-    ],
-    features: ["High Knot Security", "Soft Touch Texture", "Weather & Rot Resistant"]
-  },
-  {
-    id: "p6",
-    unitId: "2",
-    unitName: "Hasan Jute & Spinning",
-    title: "Premium Jute Carpet Backing Yarn",
-    description: "Custom spun high-precision carpet backing yarn and specialty blended jute fibers processed to meet dynamic global carpet weaving standards.",
-    img: "https://images.jdmagicbox.com/quickquotes/images_main/jute-yarn-sutli-387624519-6ltlq.jpg",
-    specs: [
-      { label: "Processing", value: "ECF Bleaching / AZO-Free Dyeing" },
-      { label: "Blending", value: "Jute-Cotton, Jute-Coir Blends" },
-      { label: "Application", value: "Acoustic Panels, Geo-textiles" },
-      { label: "Form", value: "Compressed Bales" }
-    ],
-    features: ["Acoustic & Sound Dampening", "100% Bio-Content Base", "Thermal Insulation Utility"]
-  },
-
-  // Pulp & Paper Unit-1 (Unit 3)
-  {
-    id: "p7",
-    unitId: "3",
-    unitName: "Pulp & Paper Unit-1",
-    title: "Industrial Kraft Paper Roll",
-    description: "Extremely tough, high-strength industrial brown Kraft paper roll designed specifically for sustainable packaging, wrapping, and manufacturing.",
-    img: "https://5.imimg.com/data5/XP/TJ/MY-6436108/brown-kraft-paper-roll-500x500.jpg",
-    specs: [
-      { label: "GSM Range", value: "70 GSM - 120 GSM" },
-      { label: "Bursting Factor", value: "22 - 28 BF" },
-      { label: "Porosity", value: "High Gurley Air Resistance" },
-      { label: "Origin", value: "100% Recycled Fibers" }
-    ],
-    features: ["High Tensile Energy Absorption", "Anti-Slipping Rough Surface", "Multi-wall Sack Compatible"]
-  },
-  {
-    id: "p8",
-    unitId: "3",
-    unitName: "Pulp & Paper Unit-1",
-    title: "Corrugated Medium Liner Paper Roll",
-    description: "High-rigidity brown corrugated medium liner paper roll, providing superior structural fluting and protection for heavy shipping cartons.",
-    img: "https://www.startech.com.bd/image/cache/catalog/pos-printer/roll/pos-roll-500x500.webp",
-    specs: [
-      { label: "GSM Range", value: "100 GSM - 180 GSM" },
-      { label: "Moisture Content", value: "6.5% ± 1%" },
-      { label: "Cobb Values", value: "Water Resistant Coated" },
-      { label: "Stiffness", value: "High Ring Crush Test (RCT)" }
-    ],
-    features: ["High Crush Resistance", "Excellent Fluting Capability", "Eco-friendly Recycled Grade"]
-  },
-  {
-    id: "p9",
-    unitId: "3",
-    unitName: "Pulp & Paper Unit-1",
-    title: "Machine Glazed Wrapping Paper Roll",
-    description: "Premium MG kraft packaging paper rolls and wrapping sheets safe for food-grade protection and custom industrial wrapper box wrapping.",
-    img: "https://pixposbd.com/wp-content/uploads/2024/09/510yyfqzcoL._AC_UF8941000_QL80_.jpg",
-    specs: [
-      { label: "Weight", value: "50 GSM - 90 GSM" },
-      { label: "Formats", value: "Jumbo Rolls, Custom Sheets" },
-      { label: "Stretching", value: "Machine Glazed (MG)" },
-      { label: "FDA Status", value: "Safe for dry-food contact" }
-    ],
-    features: ["High Tear Resistance", "Clean & Consistent Surface", "Easy Folding & Pliable"]
-  },
-
-  // Hasan Metal Industries (Unit 4)
-  {
-    id: "p10",
-    unitId: "4",
-    unitName: "Hasan Metal Industries",
-    title: "Structural Steel Beams",
-    description: "High-tensile fabricated H-beams and I-beams built with extreme load-bearing capacity for modern high-rise and industrial complexes.",
-    img: "https://www.bruker.com/en/applications/industrial/metals/_jcr_content/teaserImage.coreimg.jpeg/1733859095146/metal-tubes.jpeg",
-    specs: [
-      { label: "Yield Strength", value: "345 MPa / Q345B" },
-      { label: "Standards", value: "ASTM A36, GB/T 1591" },
-      { label: "Lengths Available", value: "6m - 12m (Customisable)" },
-      { label: "Finishing", value: "Anti-Corrosive Red Oxide Primer" }
-    ],
-    features: ["Extreme Yield Resilience", "ISO 9001 Structural Grade", "Seismic Movement Compliant"]
-  },
-  {
-    id: "p11",
-    unitId: "4",
-    unitName: "Hasan Metal Industries",
-    title: "Pre-Engineered Metal Frames",
-    description: "Heavy-duty structural steel frames custom engineered with state-of-the-art CAD models for modular warehouse erections.",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIgJH3_4DyiBchhRGu6au5-uvnE8IwMYI3cw&s",
-    specs: [
-      { label: "Frame Type", value: "Modular PEB Structural" },
-      { label: "Design Tolerances", value: "Highly Precise (±1mm)" },
-      { label: "Coating Profile", value: "Zinc Phosphate primer" },
-      { label: "Wind Load Rating", value: "Up to 250 km/h" }
-    ],
-    features: ["Ultra-Fast Assembly Layout", "Reduced Site Erection Costs", "Highly Expandable Design"]
-  },
-  {
-    id: "p12",
-    unitId: "4",
-    unitName: "Hasan Metal Industries",
-    title: "Castings & Heavy Spares",
-    description: "Bespoke high-strength castings and replacement industrial spare parts forged to order for manufacturing facilities.",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2uHb-rqQObe5MFnRprIYqaGsoFOtAmkRLg&s",
-    specs: [
-      { label: "Forging Capacity", value: "10 Tons Single Melt" },
-      { label: "CNC Tolerances", value: "Highly Strict (±0.05 mm)" },
-      { label: "Raw Materials", value: "Cast Iron, Mild Steel, Alloys" },
-      { label: "NDT Inspection", value: "100% Ultrasonic Tested" }
-    ],
-    features: ["Vibration Absorbing Structures", "Highly Wear & Heat Resistant", "Precise CAD Replica Forgings"]
+const GET_PRODUCTS_PAGE_DATA = gql`
+  query GetProductsPageData {
+    factories(sort: "id:asc") {
+      documentId
+      title
+    }
+    products(sort: "id:asc") {
+      
+      documentId
+      title
+      description
+      image_url
+      image {
+        url
+      }
+      factory {
+        documentId
+        title
+      }
+      specs {
+        label
+        value
+      }
+      features {
+        text
+      }
+    }
   }
-];
+`;
 
-const concerns = [
-  { id: "all", name: "All Products" },
-  { id: "1", name: "Hasan Jute Mills Ltd" },
-  { id: "2", name: "Hasan Jute & Spinning" },
-  { id: "3", name: "Pulp & Paper Unit-1" },
-  { id: "4", name: "Hasan Metal Industries" }
-];
+const CREATE_PRODUCT_INQUIRY = gql`
+  mutation CreateProductInquiry(
+    $name: String!
+    $company: String
+    $email: String!
+    $phone: String
+    $quantity: String
+    $message: String
+    $product: ID
+  ) {
+    createProductInquiry(
+      data: {
+        name: $name
+        company: $company
+        email: $email
+        phone: $phone
+        quantity: $quantity
+        message: $message
+        product: $product
+      }
+    ) {
+      documentId
+    }
+  }
+`;
+
+
 
 export default function ProductsPage() {
+  const { data } = useQuery<any>(GET_PRODUCTS_PAGE_DATA, { errorPolicy: 'all' });
+  const [createInquiry] = useMutation(CREATE_PRODUCT_INQUIRY);
+
   const [selectedConcern, setSelectedConcern] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   
@@ -241,9 +106,31 @@ export default function ProductsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  // Dynamic Concerns Tabs mapping
+  const concerns = [
+    { id: "all", name: "All Products" },
+    ...(data?.factories?.map((f: any) => ({ id: f.documentId, name: f.title })) || [])
+  ];
+
+  // Dynamic Products mapping
+  const products = data?.products?.length
+    ? data.products.map((item: any) => ({
+        id: item.documentId,
+        unitId: item.factory?.documentId || "",
+        unitName: item.factory?.title || "Hasan Group Mill",
+        title: item.title,
+        description: item.description,
+        img: item.image?.url 
+          ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`) 
+          : item.image_url,
+        specs: item.specs || [],
+        features: item.features?.map((f: any) => f.text) || []
+      }))
+    : [];
+
   // Filtered Products
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
+    return products.filter((product: any) => {
       const matchesConcern = selectedConcern === "all" || product.unitId === selectedConcern;
       const matchesSearch = 
         product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -251,7 +138,7 @@ export default function ProductsPage() {
         product.unitName.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesConcern && matchesSearch;
     });
-  }, [selectedConcern, searchQuery]);
+  }, [selectedConcern, searchQuery, products]);
 
   // Open inquiry modal
   const handleOpenInquiry = (product: any) => {
@@ -261,15 +148,24 @@ export default function ProductsPage() {
     setIsInquiryModalOpen(true);
   };
 
-  // Submit Inquiry (MOCKED + WhatsApp & Mail Direct)
-  const handleSubmitInquiry = (e: React.FormEvent) => {
+  // Submit Inquiry (via Apollo Mutation)
+  const handleSubmitInquiry = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formName || !formEmail) return;
 
     setIsSubmitting(true);
-    
-    // Mimic API delay
-    setTimeout(() => {
+    try {
+      await createInquiry({
+        variables: {
+          name: formName,
+          company: formCompany,
+          email: formEmail,
+          phone: formPhone,
+          quantity: formQuantity,
+          message: formMessage,
+          product: selectedProduct?.id
+        }
+      });
       setIsSubmitting(false);
       setSubmitSuccess(true);
       
@@ -279,8 +175,13 @@ export default function ProductsPage() {
       setFormEmail("");
       setFormPhone("");
       setFormQuantity("");
-    }, 1500);
+    } catch (err) {
+      console.error("Mutation failed:", err);
+      setIsSubmitting(false);
+      alert("Inquiry submission failed. Please try again or contact us directly.");
+    }
   };
+
 
   const handleWhatsAppDirect = () => {
     const pTitle = selectedProduct?.title || "";
@@ -359,7 +260,7 @@ export default function ProductsPage() {
                   { value: "12+", label: "Product Classes" },
                   { value: "100%", label: "Bio-Degradable Jute" },
                   { value: "35+", label: "Countries Served" }
-                ].map((stat, idx) => (
+                ].map((stat: any, idx: number) => (
                   <div key={idx} className="border-l border-[#fed65b]/30 pl-4">
                     <div className="text-2xl md:text-3xl font-serif font-bold text-[#fed65b]">{stat.value}</div>
                     <div className="text-[10px] uppercase font-semibold text-white/60 tracking-wider mt-1">{stat.label}</div>
@@ -376,7 +277,7 @@ export default function ProductsPage() {
             
             {/* Filter Tabs */}
             <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
-              {concerns.map((tab) => (
+              {concerns.map((tab: any) => (
                 <button
                   key={tab.id}
                   onClick={() => setSelectedConcern(tab.id)}
@@ -439,7 +340,7 @@ export default function ProductsPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <AnimatePresence mode="popLayout">
-                {filteredProducts.map((product, index) => (
+                {filteredProducts.map((product: any, index: number) => (
                   <motion.div
                     layout
                     key={product.id}
@@ -487,7 +388,7 @@ export default function ProductsPage() {
                       <div className="space-y-2.5 mb-6 pt-5 border-t border-[#0b4619]/5">
                         <div className="text-[10px] uppercase font-bold text-[#064015]/40 tracking-wider">Specifications</div>
                         <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                          {product.specs.slice(0, 4).map((spec, i) => (
+                          {product.specs.slice(0, 4).map((spec: any, i: number) => (
                             <div key={i} className="flex flex-col border-b border-[#0b4619]/5 pb-1">
                               <span className="text-[9px] text-gray-400 uppercase font-medium">{spec.label}</span>
                               <span className="text-xs text-[#064015] font-semibold truncate">{spec.value}</span>
@@ -498,7 +399,7 @@ export default function ProductsPage() {
 
                       {/* Bullet Highlights */}
                       <div className="mb-8 space-y-1.5">
-                        {product.features.map((feat, i) => (
+                        {product.features.map((feat: any, i: number) => (
                           <div key={i} className="flex items-center gap-2 text-xs text-[#41493f]">
                             <CheckCircle size={14} className="text-[#d4af37] shrink-0" />
                             <span className="font-medium">{feat}</span>

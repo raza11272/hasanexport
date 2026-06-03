@@ -3,130 +3,54 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
 
-const categories = ["ALL", "PROCESS", "YARN", "PACKAGING"];
-
-const galleryItems = [
-  {
-    id: 1,
-    category: "PROCESS",
-    image: "https://www.bssnews.net/assets/news_photos/2026/04/14/image-377673-1776180496.jpg",
-    title: "Modern Processing Line",
-    span: "large"
-  },
-  {
-    id: 2,
-    category: "PACKAGING",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbT1wjtl6b0hbayqz0NRFcccQ_GdK3rVmU0A&s",
-    title: "Eco Jute Packaging",
-    span: "wide"
-  },
-  {
-    id: 3,
-    category: "PROCESS",
-    image: "https://www.anantabd.net/wp-content/uploads/2025/07/SPG01829.jpg",
-    title: "Automated Spinning Mill",
-    span: "small"
-  },
-  {
-    id: 4,
-    category: "YARN",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk42Y04jr3jCsGq_7CdhRPAClv88Kkp3Z_Yw&s",
-    title: "Spun Yarn Production",
-    span: "small"
-  },
-  {
-    id: 5,
-    category: "PACKAGING",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHjpHEwTt58gU3aJKkjxboSatEZVO1N_NrLw&s",
-    title: "Heavy Duty Gunny Bags",
-    span: "wide"
-  },
-  {
-    id: 6,
-    category: "YARN",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcZp1RBjpgHP2492gef5X2_dt8QgQkP9JhgA&s",
-    title: "Premium Golden Spools",
-    span: "small"
-  },
-  {
-    id: 7,
-    category: "PROCESS",
-    image: "https://www.indembkathmandu.gov.in/storage/gallery-images/1655820.jpg",
-    title: "Factory Quality Testing",
-    span: "large"
-  },
-  {
-    id: 8,
-    category: "PACKAGING",
-    image: "https://businessinbangladesh.com.bd/wp-content/uploads/2025/09/546626330_1299351095319579_1318494099473606276_n-1024x683.jpg",
-    title: "Industrial Storage & Logistics",
-    span: "wide"
-  },
-  {
-    id: 9,
-    category: "YARN",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs1Q-As_Ob_N9YIDMhAHouysCqihorsHp3zQ&s",
-    title: "Pure Jute Fiber Spools",
-    span: "small"
-  },
-  {
-    id: 10,
-    category: "PROCESS",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PEHHcgo99ddjI_bqyw-ZsA6Hx5t_nAG0Bw&s",
-    title: "Heavy Duty Pressing",
-    span: "small"
-  },
-  {
-    id: 11,
-    category: "PACKAGING",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jp4k0Y7wrwv4spbtRsWZtR8fkCgPA0JiTQ&s",
-    title: "Commercial Burlap Packaging",
-    span: "wide"
-  },
-  {
-    id: 12,
-    category: "YARN",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9QaHc8yg5t9ReE6tMhJpjsOlQoCJLrpxDfw&s",
-    title: "Premium Twist Twines",
-    span: "small"
-  },
-  {
-    id: 13,
-    category: "PACKAGING",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzf8z0Mz0KZ6NtnDDvpTg9epHSjhqSdP0pkg&s",
-    title: "Multi-ply Kraft Sack Rolls",
-    span: "wide"
-  },
-  {
-    id: 14,
-    category: "PROCESS",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvoc_kalyBMrmZ1TGHCf1B4FgMoTIqoldmzw&s",
-    title: "Textile Looms Calibration",
-    span: "large"
-  },
-  {
-    id: 15,
-    category: "PROCESS",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKXFeR9d1VPAb2Y9-YJXhjdNsMg90fL6xxGw&s",
-    title: "Modern Weaving Loom",
-    span: "small"
-  },
-  {
-    id: 16,
-    category: "YARN",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWSFa5UQbPunNeZmAWZ3Pj9RNeCOERNX8xSA&s",
-    title: "Organic Raw Jute Bundles",
-    span: "small"
+const GET_GALLERY_DATA = gql`
+  query GetGalleryData {
+    imageCategories {
+      documentId
+      name
+    }
+    galleries {
+      documentId
+      title
+      image_url
+      image {
+        url
+      }
+      category {
+        name
+      }
+      span
+    }
   }
-];
+`;
 
 const Gallery = () => {
+  const { data } = useQuery<any>(GET_GALLERY_DATA, { errorPolicy: 'all' });
   const [activeCategory, setActiveCategory] = useState("ALL");
 
-  const filteredItems = galleryItems.filter(item => 
+  const categories = data?.imageCategories?.length
+    ? ["ALL", ...data.imageCategories.map((c: any) => c.name)]
+    : ["ALL"];
+
+  const galleryItems = data?.galleries?.length
+    ? data.galleries.map((item: any) => ({
+        id: item.documentId,
+        category: item.category?.name || "PROCESS",
+        image: item.image?.url
+          ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
+          : item.image_url,
+        title: item.title,
+        span: item.span || "small"
+      }))
+    : [];
+
+  const filteredItems = galleryItems.filter((item: any) => 
     activeCategory === "ALL" || item.category === activeCategory
   );
+
 
   return (
     <section id="gallery" className="py-24 bg-[#fcf9f8]">
@@ -168,7 +92,7 @@ const Gallery = () => {
         {/* Masonry Columns Layout */}
         <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => (
+            {filteredItems.map((item: any, index: number) => (
               <motion.div
                 key={item.id}
                 layout

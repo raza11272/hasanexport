@@ -3,81 +3,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
 
-interface ProductItem {
-  id: number;
-  title: string;
-  category: string;
-  img: string;
-}
-
-const products: ProductItem[] = [
-  { 
-    id: 1, 
-    title: "Standard Hessian Jute Bags", 
-    category: "Jute Bags", 
-    img: "https://s.alicdn.com/@sc04/kf/H10bbd75fd3344674b8bd980f53613d0e9/Custom-Natural-Jute-Sack-Source-Factory-30kg-Food-Grade-Burlap-Bag-for-Grain-Cocoa-Coffee-Agricultural-Storage.png" 
-  },
-  { 
-    id: 2, 
-    title: "Heavy Cees Jute Bags", 
-    category: "Jute Sacks", 
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvUeOuiMJAfIBDD5N7XoVbriHIa3APY2vqTA&s" 
-  },
-  { 
-    id: 3, 
-    title: "Traditional Jute Twine & Sutli", 
-    category: "Jute Twine / Sutli", 
-    img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665129/IB/SW/YY/145877526/1-kg-jute-sutli-roll-500x500.jpg" 
-  },
-  { 
-    id: 4, 
-    title: "Polished Jute Twine (Sutli)", 
-    category: "Precision Twine", 
-    img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665130/DE/OU/BQ/145877526/1-kg-jute-sutli-roll.jpg" 
-  },
-  { 
-    id: 5, 
-    title: "Erosion Control Jute Geotextiles", 
-    category: "Jute Related", 
-    img: "https://5.imimg.com/data5/SELLER/Default/2025/10/550380119/FR/QU/IK/130477180/20kg-jute-gunny-bag.jpg" 
-  },
-  { 
-    id: 6, 
-    title: "Industrial Kraft Paper Roll", 
-    category: "Paper Roll", 
-    img: "https://5.imimg.com/data5/XP/TJ/MY-6436108/brown-kraft-paper-roll-500x500.jpg" 
-  },
-  { 
-    id: 7, 
-    title: "Corrugated Medium Liner Paper Roll", 
-    category: "Paper Roll", 
-    img: "https://www.startech.com.bd/image/cache/catalog/pos-printer/roll/pos-roll-500x500.webp" 
-  },
-  { 
-    id: 8, 
-    title: "Machine Glazed Wrapping Paper Roll", 
-    category: "Paper Roll", 
-    img: "https://pixposbd.com/wp-content/uploads/2024/09/510yyfqzcoL._AC_UF8941000_QL80_.jpg" 
-  },
-  { 
-    id: 9, 
-    title: "Premium Jute Carpet Backing Yarn", 
-    category: "Jute Yarn", 
-    img: "https://images.jdmagicbox.com/quickquotes/images_main/jute-yarn-sutli-387624519-6ltlq.jpg" 
-  },
-  { 
-    id: 10, 
-    title: "Heavy-Duty Structural Steel Beams", 
-    category: "Metal Industry", 
-    img: "https://www.bruker.com/en/applications/industrial/metals/_jcr_content/teaserImage.coreimg.jpeg/1733859095146/metal-tubes.jpeg" 
+const GET_MARQUEE_PRODUCTS = gql`
+  query GetMarqueeProducts {
+    products(sort: "id:asc") {
+      id
+      documentId
+      title
+      image_url
+      image {
+        url
+      }
+      category {
+        name
+      }
+    }
   }
-];
-
-// Duplicate the array to ensure seamless infinite looping scroll
-const doubledProducts = [...products, ...products, ...products];
+`;
 
 const ProductMarquee = () => {
+  const { data } = useQuery<any>(GET_MARQUEE_PRODUCTS, { errorPolicy: 'all' });
+  
+  const products = data?.products?.map((item: any) => ({
+    id: item.documentId,
+    title: item.title,
+    category: item.category?.name || "Premium Catalog",
+    img: item.image?.url 
+      ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
+      : item.image_url || ''
+  })) || [];
+
+  if (products.length === 0) return null;
+
+  // Duplicate the array to ensure seamless infinite looping scroll
+  const doubledProducts = [...products, ...products, ...products];
   return (
     <section className="py-24 bg-[#fcf9f8] overflow-hidden border-t border-[#0b4619]/5 relative">
       

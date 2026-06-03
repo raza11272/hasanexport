@@ -5,8 +5,22 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Share2, MessageSquare, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
+
+const GET_FOOTER_FACTORIES = gql`
+  query GetFooterFactories {
+    factories(sort: "id:asc") {
+      documentId
+      title
+    }
+  }
+`;
 
 const Footer = () => {
+  const { data } = useQuery<any>(GET_FOOTER_FACTORIES, { errorPolicy: 'all' });
+  const factories = data?.factories || [];
+
   return (
     <footer className="bg-[#1a1a1a] text-white pt-24 pb-12 px-6 md:px-16 overflow-hidden">
       <div className="max-w-[1280px] mx-auto">
@@ -39,25 +53,21 @@ const Footer = () => {
               ))}
             </div>
           </div>
-
+ 
           <div>
             <h4 className="text-[#d4af37] font-bold uppercase tracking-widest text-sm mb-8">Industrial Units</h4>
             <ul className="space-y-4">
-              {[
-                { name: 'Hasan Jute Mills', href: '/units/1' },
-                { name: 'Spinning & Yarn', href: '/units/2' },
-                { name: 'Pulp & Paper Unit 1', href: '/units/3' },
-                { name: 'Pulp & Paper Unit 2', href: '/units/4' }
-              ].map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
+              {factories.map((fac: any) => (
+                <li key={fac.documentId}>
+                  <Link href={`/units/${fac.documentId}`} className="text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 bg-[#d4af37] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {item.name}
+                    {fac.title}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
 
           <div>
             <h4 className="text-[#d4af37] font-bold uppercase tracking-widest text-sm mb-8">Corporate</h4>

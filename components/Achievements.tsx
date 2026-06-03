@@ -3,50 +3,43 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Leaf, Globe, ShieldCheck, Package, TrendingUp } from 'lucide-react';
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
 
-const achievements = [
-  {
-    icon: <Award className="text-[#d4af37]" size={24} />,
-    year: "2019",
-    title: "National Export Award",
-    description: "Awarded by the Export Promotion Bureau of Bangladesh for excellence in jute exports.",
-    color: "border-l-[#d4af37]"
-  },
-  {
-    icon: <Leaf className="text-[#0b4619]" size={24} />,
-    year: "2017",
-    title: "Green Industry Certification",
-    description: "Recognised for zero-waste manufacturing practices and sustainable mill operations.",
-    color: "border-l-[#0b4619]"
-  },
-  {
-    icon: <Globe className="text-[#d4af37]" size={24} />,
-    year: "2015",
-    title: "International Trade Partner",
-    description: "Partnered with leading European importers, expanding our global footprint across 35+ nations.",
-    color: "border-l-[#d4af37]"
-  },
-  {
-    icon: <ShieldCheck className="text-[#0b4619]" size={24} />,
-    title: "ISO 9001:2015 Certified",
-    description: "International quality management certification ensuring world-class production standards.",
-    color: "border-l-[#0b4619]"
-  },
-  {
-    icon: <Package className="text-[#d4af37]" size={24} />,
-    title: "Eco-Packaging Innovation",
-    description: "Launched biodegradable jute-based packaging solutions for the European luxury goods market.",
-    color: "border-l-[#d4af37]"
-  },
-  {
-    icon: <TrendingUp className="text-[#0b4619]" size={24} />,
-    title: "Record Export Milestone",
-    description: "Achieved highest-ever annual export volume, surpassing 12,000 metric tons to 35 countries.",
-    color: "border-l-[#0b4619]"
+const GET_LANDING_ACHIEVEMENTS = gql`
+  query GetLandingAchievements {
+    landingPage {
+      milestones {
+        id
+        icon
+        year
+        title
+        description
+        color
+      }
+    }
   }
-];
+`;
+
+const iconMap: Record<string, React.ReactNode> = {
+  Award: <Award className="text-[#d4af37]" size={24} />,
+  Leaf: <Leaf className="text-[#0b4619]" size={24} />,
+  Globe: <Globe className="text-[#d4af37]" size={24} />,
+  ShieldCheck: <ShieldCheck className="text-[#0b4619]" size={24} />,
+  Package: <Package className="text-[#d4af37]" size={24} />,
+  TrendingUp: <TrendingUp className="text-[#0b4619]" size={24} />,
+};
 
 const Achievements = () => {
+  const { data } = useQuery<any>(GET_LANDING_ACHIEVEMENTS, { errorPolicy: 'all' });
+
+  const achievements = data?.landingPage?.milestones?.length 
+    ? data.landingPage.milestones.map((m: any) => ({
+        ...m,
+        icon: iconMap[m.icon] || <Award className="text-[#d4af37]" size={24} />
+      }))
+    : [];
+
   return (
     <section id="heritage" className="py-24 bg-[#fcf9f8]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-16">
@@ -65,7 +58,7 @@ const Achievements = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {achievements.map((item, index) => (
+          {achievements.map((item: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

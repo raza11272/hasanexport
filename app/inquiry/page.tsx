@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
@@ -18,8 +18,58 @@ import {
   Scale, 
   Layers 
 } from 'lucide-react';
+import { useQuery, useMutation } from '@apollo/client/react';
+import { gql } from '@apollo/client';
+
+const GET_INQUIRY_PAGE_DATA = gql`
+  query GetInquiryPageData {
+    factories(sort: "id:asc") {
+      documentId
+      title
+    }
+  }
+`;
+
+const CREATE_EXPORT_INQUIRY = gql`
+  mutation CreateExportInquiry(
+    $name: String!
+    $company: String!
+    $designation: String
+    $country: String!
+    $email: String!
+    $phone: String
+    $factory: ID
+    $product_class: String
+    $quantity: String
+    $incoterm: String
+    $port: String
+    $message: String
+  ) {
+    createExportInquiry(
+      data: {
+        name: $name
+        company: $company
+        designation: $designation
+        country: $country
+        email: $email
+        phone: $phone
+        factory: $factory
+        product_class: $product_class
+        quantity: $quantity
+        incoterm: $incoterm
+        port: $port
+        message: $message
+      }
+    ) {
+      documentId
+    }
+  }
+`;
 
 export default function ExportInquiryPage() {
+  const { data } = useQuery<any>(GET_INQUIRY_PAGE_DATA, { errorPolicy: 'all' });
+  const [createExportInquiry] = useMutation(CREATE_EXPORT_INQUIRY);
+
   // Form submission states
   const [formName, setFormName] = useState("");
   const [formCompany, setFormCompany] = useState("");
@@ -27,7 +77,7 @@ export default function ExportInquiryPage() {
   const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formCountry, setFormCountry] = useState("");
-  const [formUnit, setFormUnit] = useState("1");
+  const [formUnit, setFormUnit] = useState("");
   const [formProduct, setFormProduct] = useState("");
   const [formQuantity, setFormQuantity] = useState("");
   const [formPort, setFormPort] = useState("");
@@ -37,25 +87,52 @@ export default function ExportInquiryPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Submit Inquiry (Mock API Submission & multi-channel backup)
-  const handleSubmit = (e: React.FormEvent) => {
+  // Auto-set the first factory documentId as selected when loaded
+  useEffect(() => {
+    if (data?.factories?.length && !formUnit) {
+      setFormUnit(data.factories[0].documentId);
+    }
+  }, [data, formUnit]);
+
+  // Submit Inquiry (via Apollo Mutation)
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formName || !formEmail || !formCompany) return;
 
     setIsSubmitting(true);
-    
-    // Mimic secure API transmission
-    setTimeout(() => {
+    try {
+      await createExportInquiry({
+        variables: {
+          name: formName,
+          company: formCompany,
+          designation: formDesignation,
+          country: formCountry,
+          email: formEmail,
+          phone: formPhone,
+          factory: formUnit || null,
+          product_class: formProduct,
+          quantity: formQuantity,
+          incoterm: formIncoterm,
+          port: formPort,
+          message: formMessage
+        }
+      });
       setIsSubmitting(false);
       setSubmitSuccess(true);
-    }, 1500);
+    } catch (err) {
+      console.error("Mutation failed:", err);
+      setIsSubmitting(false);
+      alert("Inquiry submission failed. Please try again or contact us directly.");
+    }
   };
 
   const handleWhatsAppSubmit = () => {
-    const concernName = 
+    const selectedFactory = data?.factories?.find((f: any) => f.documentId === formUnit);
+    const concernName = selectedFactory ? selectedFactory.title : (
       formUnit === "1" ? "Hasan Jute Mills Ltd" :
       formUnit === "2" ? "Hasan Jute & Spinning" :
-      formUnit === "3" ? "Pulp & Paper Unit-1" : "Hasan Metal Industries";
+      formUnit === "3" ? "Pulp & Paper Unit-1" : "Hasan Metal Industries"
+    );
 
     const message = `*NEW INDUSTRIAL EXPORT INQUIRY*\n\n` +
       `*1. Client Details:*\n` +
@@ -298,10 +375,18 @@ export default function ExportInquiryPage() {
                             onChange={(e) => setFormUnit(e.target.value)}
                             className="w-full pl-11 pr-4 py-3.5 bg-[#fcf9f8] border border-[#0b4619]/10 rounded-2xl text-sm font-sans focus:outline-none focus:ring-1 focus:ring-[#064015] appearance-none"
                           >
-                            <option value="1">Hasan Jute Mills Ltd (Unit 1)</option>
-                            <option value="2">Hasan Jute & Spinning (Unit 2)</option>
-                            <option value="3">Pulp & Paper Unit-1 (Unit 3)</option>
-                            <option value="4">Hasan Metal Industries (Unit 4)</option>
+                            {data?.factories?.map((f: any) => (
+                              <option key={f.documentId} value={f.documentId}>
+                                {f.title}
+                              </option>
+                            )) || (
+                              <>
+                                <option value="1">Hasan Jute Mills Ltd (Unit 1)</option>
+                                <option value="2">Hasan Jute & Spinning (Unit 2)</option>
+                                <option value="3">Pulp & Paper Unit-1 (Unit 3)</option>
+                                <option value="4">Hasan Metal Industries (Unit 4)</option>
+                              </>
+                            )}
                           </select>
                           <Layers className="absolute left-4 top-1/2 -translate-y-1/2 text-[#064015]/30" size={16} />
                         </div>

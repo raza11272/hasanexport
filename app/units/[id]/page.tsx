@@ -8,133 +8,87 @@ import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Download, Mail, Phone, MapPin, Factory, Settings, Leaf, Globe } from 'lucide-react';
 import Link from 'next/link';
 
-const unitData: Record<string, any> = {
-  "1": {
-    title: "Hasan Jute Mills Ltd",
-    tag: "Core Concern",
-    description: "Specializing in heavy-duty sacks and industrial woven fabrics for global agricultural export requirements.",
-    image: "https://sashamimjutemillsltd.com/wp-content/uploads/2024/10/Why-SA-Shamim-Jute-Mills-Ltd-is-the-Top-Jute-Mills-in-Bangladesh.jpg",
-    stats: [
-      { label: "Daily Output", value: "45 MT" },
-      { label: "Machinery", value: "250+ Looms" },
-      { label: "Workforce", value: "1,200+" },
-      { label: "Export Market", value: "35+ Nations" }
-    ],
-    specs: [
-      { name: "Product Type", value: "Hessian Sacks, Heavy Cees" },
-      { name: "Capacity", value: "15,000 MT / Year" },
-      { name: "Material", value: "100% Natural Jute Fiber" },
-      { name: "Export Grade", value: "Premium Grade A" },
-      { name: "Certifications", value: "ISO 9001, OEKO-TEX" }
-    ],
-    process: [
-      { step: "Selection", detail: "Sourcing premium raw jute from specific regions." },
-      { step: "Processing", detail: "Reting and stripping to extract robust fibers." },
-      { step: "Weaving", detail: "High-precision looms weaving industrial grade fabrics." },
-      { step: "Finishing", detail: "Specialized coating and stitching for heavy-duty use." }
-    ],
-    products: [
-      { title: "Standard Hessian Jute Bags", img: "https://s.alicdn.com/@sc04/kf/H10bbd75fd3344674b8bd980f53613d0e9/Custom-Natural-Jute-Sack-Source-Factory-30kg-Food-Grade-Burlap-Bag-for-Grain-Cocoa-Coffee-Agricultural-Storage.png" },
-      { title: "Heavy Cees Jute Bags", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvUeOuiMJAfIBDD5N7XoVbriHIa3APY2vqTA&s" },
-      { title: "Erosion Control Jute Geotextiles", img: "https://5.imimg.com/data5/SELLER/Default/2025/10/550380119/FR/QU/IK/130477180/20kg-jute-gunny-bag.jpg" }
-    ]
-  },
-  "2": {
-    title: "Hasan Jute & Spinning",
-    tag: "High Precision",
-    description: "Manufacturing premium yarn and high-tensile twine for technical textile applications.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGVreLiid8nwyINOSXS-gnvxkGszVfoDwHg&s",
-    stats: [
-      { label: "Spindle Count", value: "5,000+" },
-      { label: "Yarn Precision", value: "High-Tensile" },
-      { label: "Daily Output", value: "25 MT" },
-      { label: "Compliance", value: "Global Standard" }
-    ],
-    specs: [
-      { name: "Yarn Count", value: "4 lbs to 72 lbs" },
-      { name: "Twist Type", value: "S-Twist / Z-Twist" },
-      { name: "Application", value: "Carpet Backing, Cable Filling" },
-      { name: "Strength", value: "High-Tensile (CB > 95%)" },
-      { name: "Finish", value: "Natural, Bleached, Dyed" }
-    ],
-    process: [
-      { step: "Blending", detail: "Optimizing fiber mix for specific yarn counts." },
-      { step: "Spinning", detail: "Precision spinning for consistent thickness." },
-      { step: "Winding", detail: "Automated cone winding for industrial use." },
-      { step: "Testing", detail: "Tensile strength and moisture verification." }
-    ],
-    products: [
-      { title: "Traditional Jute Twine & Sutli", img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665129/IB/SW/YY/145877526/1-kg-jute-sutli-roll-500x500.jpg" },
-      { title: "Polished Jute Twine (Sutli)", img: "https://5.imimg.com/data5/SELLER/Default/2025/8/538665130/DE/OU/BQ/145877526/1-kg-jute-sutli-roll.jpg" },
-      { title: "Premium Jute Carpet Backing Yarn", img: "https://images.jdmagicbox.com/quickquotes/images_main/jute-yarn-sutli-387624519-6ltlq.jpg" }
-    ]
-  },
-  "3": {
-    title: "Pulp & Paper Unit-1",
-    tag: "Packaging",
-    description: "Dedicated production of high-strength industrial brown paper and sustainable packaging solutions.",
-    image: "https://static.vecteezy.com/system/resources/thumbnails/037/961/983/small/ai-generated-a-paper-production-line-at-a-waste-paper-recycling-factory-pulp-and-paper-mill-photo.jpg",
-    stats: [
-      { label: "GSM Stability", value: "±2%" },
-      { label: "Bursting Factor", value: "22-28" },
-      { label: "Recycle Rate", value: "100%" },
-      { label: "Tech Grade", value: "German Tech" }
-    ],
-    specs: [
-      { name: "Paper Type", value: "Brown Kraft Paper" },
-      { name: "GSM Range", value: "60 GSM to 180 GSM" },
-      { name: "Usage", value: "Industrial Sacks, Corrugation" },
-      { name: "Durability", value: "High Burst Factor" },
-      { name: "Eco-Status", value: "100% Recyclable" }
-    ],
-    process: [
-      { step: "Pulping", detail: "High-consistency pulping for fiber strength." },
-      { step: "Screening", detail: "Multi-stage cleaning to remove impurities." },
-      { step: "Pressing", detail: "Optimized water removal for density." },
-      { step: "Reeling", detail: "Precision winding for automated converters." }
-    ],
-    products: [
-      { title: "Industrial Kraft Paper Roll", img: "https://5.imimg.com/data5/XP/TJ/MY-6436108/brown-kraft-paper-roll-500x500.jpg" },
-      { title: "Corrugated Medium Liner Paper Roll", img: "https://www.startech.com.bd/image/cache/catalog/pos-printer/roll/pos-roll-500x500.webp" },
-      { title: "Machine Glazed Wrapping Paper Roll", img: "https://pixposbd.com/wp-content/uploads/2024/09/510yyfqzcoL._AC_UF8941000_QL80_.jpg" }
-    ]
-  },
-  "4": {
-    title: "Hasan Metal Industries",
-    tag: "Heavy Industry",
-    description: "Pioneering heavy metal fabrication, structural steel engineering, and precision spare parts manufacturing for global industrial infrastructures.",
-    image: "https://media.licdn.com/dms/image/v2/C5112AQGSNTM3NmIWHg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520246655383?e=2147483647&v=beta&t=TDnH6_YS6lRD6kohsbKgg3PivkanoWjlpvJiiF5hh0Q",
-    stats: [
-      { label: "Daily Output", value: "75 MT" },
-      { label: "Machineries", value: "CNC & Plasma" },
-      { label: "Workforce", value: "450+ Crew" },
-      { label: "Certifications", value: "ISO 9001, CE" }
-    ],
-    specs: [
-      { name: "Steel Category", value: "Structural Fabrication & Casting" },
-      { name: "Main Machinery", value: "High-Power CNC Laser, Furnaces" },
-      { name: "Material Grade", value: "Q345B, ASTM A36, Forged Steel" },
-      { name: "Custom Casting", value: "Up to 10 Tons Single Pour" },
-      { name: "Quality Standard", value: "NDT / Ultrasonic Tested" }
-    ],
-    process: [
-      { step: "Design", detail: "Bespoke CAD modeling & load calculations." },
-      { step: "Machining", detail: "High-precision laser cutting & CNC boring." },
-      { step: "Welding", detail: "Certified gas-shielded structural assembly." },
-      { step: "Coating", detail: "Protective sandblasting & primer coating." }
-    ],
-    products: [
-      { title: "Structural Steel Beams", img: "https://www.bruker.com/en/applications/industrial/metals/_jcr_content/teaserImage.coreimg.jpeg/1733859095146/metal-tubes.jpeg" },
-      { title: "Pre-Engineered Metal Frames", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIgJH3_4DyiBchhRGu6au5-uvnE8IwMYI3cw&s" },
-      { title: "Castings & Heavy Spares", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2uHb-rqQObe5MFnRprIYqaGsoFOtAmkRLg&s" }
-    ]
-  }
-};
 
+
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
+
+const GET_FACTORY_DETAILS = gql`
+  query GetFactoryDetails($documentId: ID!) {
+    factory(documentId: $documentId) {
+      documentId
+      title
+      tag
+      description
+      image_url
+      image {
+        url
+      }
+      stats {
+        label
+        value
+      }
+      specs {
+        name
+        value
+      }
+      process {
+        step
+        detail
+      }
+      products(sort: "id:asc") {
+        documentId
+        title
+        image_url
+        image {
+          url
+        }
+      }
+    }
+  }
+`;
+    
 export default function UnitDetailsPage() {
   const params = useParams();
   const id = params?.id as string;
-  const unit = unitData[id] || unitData["1"];
+
+  const { data } = useQuery<any>(GET_FACTORY_DETAILS, {
+    variables: { documentId: id || "" },
+    skip: !id,
+    errorPolicy: 'all'
+  });
+
+  const unit = data?.factory
+    ? {
+        title: data.factory.title,
+        tag: data.factory.tag,
+        description: data.factory.description,
+        image: data.factory.image?.url
+          ? (data.factory.image.url.startsWith('http') ? data.factory.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${data.factory.image.url}`)
+          : data.factory.image_url,
+        stats: data.factory.stats || [],
+        specs: data.factory.specs || [],
+        process: data.factory.process || [],
+        products: data.factory.products?.map((p: any) => ({
+          title: p.title,
+          img: p.image?.url
+            ? (p.image.url.startsWith('http') ? p.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${p.image.url}`)
+            : p.image_url
+        })) || []
+      }
+    : null;
+
+  if (!unit) {
+    return (
+      <div className="min-h-screen bg-[#fcf9f8] flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="font-serif text-2xl text-[#002e0b] mb-4">Loading Concern Profile...</h2>
+          <div className="w-10 h-10 border-4 border-[#0b4619] border-t-transparent rounded-full animate-spin mx-auto" />
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="min-h-screen bg-[#fcf9f8]">

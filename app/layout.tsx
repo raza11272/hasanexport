@@ -2,6 +2,7 @@ import { Inter, Noto_Serif } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Providers } from "@/components/providers";
 import { cn } from "@/lib/utils";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
@@ -34,11 +35,14 @@ export default function RootLayout({
       )}
     >
       <body className="font-sans">
-        <ThemeProvider>
-          {children}
-          <WhatsAppButton />
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider>
+            {children}
+            <WhatsAppButton />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )
 }
+

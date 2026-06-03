@@ -5,6 +5,7 @@ import ProcessSection from '@/components/ProcessSection';
 import MDMessage from '@/components/MDMessage';
 import Achievements from '@/components/Achievements';
 import Gallery from '@/components/Gallery';
+import TeamSection from '@/components/TeamSection';
 import ContactSection from '@/components/ContactSection';
 import GlobalFootprint from '@/components/GlobalFootprint';
 import IndustrialConcerns from '@/components/IndustrialConcerns';
@@ -48,6 +49,9 @@ export default function HomePage() {
         
         {/* Visual Showcase Section */}
         <Gallery />
+
+        {/* Board & Leadership Section */}
+        <TeamSection />
         
         {/* Engagement Section */}
         <ContactSection />
@@ -57,3 +61,4 @@ export default function HomePage() {
     </div>
   );
 }
+

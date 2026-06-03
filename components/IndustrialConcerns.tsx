@@ -6,50 +6,67 @@ import { ArrowUpRight, Factory, Settings, Leaf, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const concerns = [
+import { useQuery } from '@apollo/client/react';
+import { gql } from '@apollo/client';
+
+const GET_FACTORIES = gql`
+  query GetFactories {
+    factories(sort: "id:asc") {
+      documentId
+      title
+      tag
+      description
+      image_url
+      image {
+        url
+      }
+    }
+  }
+`;
+
+const concernStyles = [
   {
-    id: 1,
-    title: "Hasan Jute Mills Ltd",
-    description: "Specializing in heavy-duty sacks and industrial woven fabrics for global agricultural export requirements.",
-    tag: "Core Concern",
     color: "bg-[#fed65b]",
     textColor: "text-[#745c00]",
-    icon: <Factory size={24} />,
-    image: "https://sashamimjutemillsltd.com/wp-content/uploads/2024/10/Why-SA-Shamim-Jute-Mills-Ltd-is-the-Top-Jute-Mills-in-Bangladesh.jpg"
+    icon: <Factory size={24} />
   },
   {
-    id: 2,
-    title: "Hasan Jute & Spinning",
-    description: "Manufacturing premium yarn and high-tensile twine for technical textile applications.",
-    tag: "High Precision",
     color: "bg-[#b4f2b3]",
     textColor: "text-[#195123]",
-    icon: <Settings size={24} />,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGVreLiid8nwyINOSXS-gnvxkGszVfoDwHg&s"
+    icon: <Settings size={24} />
   },
   {
-    id: 3,
-    title: "Pulp & Paper Unit-1",
-    description: "Dedicated production of high-strength industrial brown paper and sustainable packaging solutions.",
-    tag: "Packaging",
     color: "bg-[#e2e2e2]",
     textColor: "text-[#1a1c1c]",
-    icon: <Leaf size={24} />,
-    image: "https://static.vecteezy.com/system/resources/thumbnails/037/961/983/small/ai-generated-a-paper-production-line-at-a-waste-paper-recycling-factory-pulp-and-paper-mill-photo.jpg"
+    icon: <Leaf size={24} />
   },
   {
-    id: 4,
-    title: "Hasan Metal Industries",
-    description: "Pioneering heavy metal fabrication, structural steel engineering, and precision spare parts manufacturing.",
-    tag: "Heavy Industry",
     color: "bg-white",
     textColor: "text-[#0b4619]",
-    icon: <Factory size={24} />,
-    image: "https://media.licdn.com/dms/image/v2/C5112AQGSNTM3NmIWHg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520246655383?e=2147483647&v=beta&t=TDnH6_YS6lRD6kohsbKgg3PivkanoWjlpvJiiF5hh0Q"
+    icon: <Factory size={24} />
   }
 ];
 
 const IndustrialConcerns = () => {
+  const { data } = useQuery<any>(GET_FACTORIES, { errorPolicy: 'all' });
+
+  const concerns = data?.factories?.map((fac: any, index: number) => {
+    const style = concernStyles[index % concernStyles.length];
+    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+    return {
+      id: fac.documentId,
+      title: fac.title,
+      description: fac.description,
+      tag: fac.tag,
+      color: style.color,
+      textColor: style.textColor,
+      icon: style.icon,
+      image: fac.image?.url 
+        ? (fac.image.url.startsWith('http') ? fac.image.url : `${strapiUrl}${fac.image.url}`)
+        : fac.image_url
+    };
+  }) || [];
+
   return (
     <section id="factories" className="py-24 px-6 md:px-16 max-w-[1280px] mx-auto">
       <div className="mb-16">
