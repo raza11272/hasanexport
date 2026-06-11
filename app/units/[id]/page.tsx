@@ -48,6 +48,119 @@ const GET_FACTORY_DETAILS = gql`
   }
 `;
     
+const MOCK_TEAM_MEMBERS: Record<string, Array<{ name: string; title: string; img: string }>> = {
+  'n4w56pffj53kihujenib0185': [
+    {
+      name: 'Mr. Md. Hasan',
+      title: 'Founder & Chairman, Hasan Group',
+      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Sarah Hasan',
+      title: 'Director of International Trade',
+      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Rahim Ahmed',
+      title: 'Chief Operations Officer',
+      img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Kazi Mohammad',
+      title: 'Head of Sustainable Innovation',
+      img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&h=600&fit=crop'
+    }
+  ],
+  'l2dsj0qp6ee0qy0dhss2avi9': [
+    {
+      name: 'Masud Rahman',
+      title: 'Senior Plant Manager',
+      img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Laila Sultana',
+      title: 'Lead Quality Auditor',
+      img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Farhan Saeed',
+      title: 'Spinning Supervisor',
+      img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Rina Chowdhury',
+      title: 'HR Specialist',
+      img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=600&fit=crop'
+    }
+  ],
+  'bfymz3bnzdt1xv0103ato959': [
+    {
+      name: 'Robert Chen',
+      title: 'Technical Director',
+      img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Anisul Islam',
+      title: 'Operations Manager',
+      img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Yousuf Khan',
+      title: 'Lead Paper Technologist',
+      img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Sadia Rahman',
+      title: 'Quality Control Specialist',
+      img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=600&fit=crop'
+    }
+  ],
+  'pyyh0n9f32r7xflorn0tw8wg': [
+    {
+      name: 'Amit Patel',
+      title: 'Chief Metallurgical Engineer',
+      img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Tariq Mahmud',
+      title: 'Safety & Compliance Inspector',
+      img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Vikram Singh',
+      title: 'CNC Workshop Lead',
+      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Nilufar Yeasmin',
+      title: 'Chief Safety Officer',
+      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
+    }
+  ],
+  'tfwlvcxm8g6zi7g7booeop8h': [
+    {
+      name: 'Mr. Md. Hasan',
+      title: 'Founder & Chairman, Hasan Group',
+      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Sarah Hasan',
+      title: 'Director of International Trade',
+      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Rahim Ahmed',
+      title: 'Chief Operations Officer',
+      img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Kazi Mohammad',
+      title: 'Head of Sustainable Innovation',
+      img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&h=600&fit=crop'
+    }
+  ]
+};
+
 export default function UnitDetailsPage() {
   const params = useParams();
   const id = params?.id as string;
@@ -74,7 +187,8 @@ export default function UnitDetailsPage() {
           img: p.image?.url
             ? (p.image.url.startsWith('http') ? p.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${p.image.url}`)
             : p.image_url
-        })) || []
+        })) || [],
+        team_members: MOCK_TEAM_MEMBERS[id] || MOCK_TEAM_MEMBERS['n4w56pffj53kihujenib0185']
       }
     : null;
 
@@ -361,6 +475,53 @@ export default function UnitDetailsPage() {
 
           </div>
         </section>
+
+        {/* Team Members Section */}
+        {unit.team_members && unit.team_members.length > 0 && (
+          <section className="py-24 bg-white border-t border-[#0b4619]/5">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-16">
+              <div className="flex items-center gap-4 mb-16">
+                <span className="w-12 h-px bg-[#d4af37]" />
+                <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#002e0b]">
+                  <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Unit</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Leadership</span>
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {unit.team_members.map((member: any, i: number) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.6 }}
+                    className="group relative bg-[#fcf9f8] rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-2xl hover:border-[#0b4619]/10 transition-all duration-500"
+                  >
+                    {/* Image Container */}
+                    <div className="aspect-[4/5] w-full overflow-hidden relative bg-[#064015]/5">
+                      <img
+                        src={member.img}
+                        alt={member.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Details Container */}
+                    <div className="p-8 text-center bg-white border-t border-[#0b4619]/5">
+                      <h3 className="font-serif text-2xl font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
+                        {member.name}
+                      </h3>
+                      <p className="text-[#d4af37] text-xs font-bold uppercase tracking-widest">
+                        {member.title}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />

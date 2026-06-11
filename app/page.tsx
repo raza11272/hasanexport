@@ -31,6 +31,9 @@ export default function HomePage() {
         
         {/* About / Vision Section */}
         <MDMessage />
+
+        {/* Board & Leadership Section */}
+        <TeamSection />
         
         {/* Business Scale Section */}
         <IndustrialConcerns />
@@ -49,9 +52,6 @@ export default function HomePage() {
         
         {/* Visual Showcase Section */}
         <Gallery />
-
-        {/* Board & Leadership Section */}
-        <TeamSection />
         
         {/* Engagement Section */}
         <ContactSection />
