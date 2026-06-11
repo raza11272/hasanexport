@@ -265,6 +265,53 @@ export default function UnitDetailsPage() {
           </div>
         </section>
 
+        {/* Team Members Section */}
+        {unit.team_members && unit.team_members.length > 0 && (
+          <section className="py-24 bg-white border-b border-[#0b4619]/5">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-16">
+              <div className="flex items-center gap-4 mb-16">
+                <span className="w-12 h-px bg-[#d4af37]" />
+                <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#002e0b]">
+                  <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Unit</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Leadership</span>
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {unit.team_members.map((member: any, i: number) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.6 }}
+                    className="group relative bg-[#fcf9f8] rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-2xl hover:border-[#0b4619]/10 transition-all duration-500"
+                  >
+                    {/* Image Container */}
+                    <div className="aspect-[4/5] w-full overflow-hidden relative bg-[#064015]/5">
+                      <img
+                        src={member.img}
+                        alt={member.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Details Container */}
+                    <div className="p-8 text-center bg-white border-t border-[#0b4619]/5">
+                      <h3 className="font-serif text-2xl font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
+                        {member.name}
+                      </h3>
+                      <p className="text-[#d4af37] text-xs font-bold uppercase tracking-widest">
+                        {member.title}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Content Section */}
         <section className="py-24 px-6 md:px-16 max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
@@ -476,52 +523,7 @@ export default function UnitDetailsPage() {
           </div>
         </section>
 
-        {/* Team Members Section */}
-        {unit.team_members && unit.team_members.length > 0 && (
-          <section className="py-24 bg-white border-t border-[#0b4619]/5">
-            <div className="max-w-[1280px] mx-auto px-6 md:px-16">
-              <div className="flex items-center gap-4 mb-16">
-                <span className="w-12 h-px bg-[#d4af37]" />
-                <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#002e0b]">
-                  <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-6xl">Unit</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal pl-2 font-normal text-4xl md:text-6xl">Leadership</span>
-                </h2>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {unit.team_members.map((member: any, i: number) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.6 }}
-                    className="group relative bg-[#fcf9f8] rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-2xl hover:border-[#0b4619]/10 transition-all duration-500"
-                  >
-                    {/* Image Container */}
-                    <div className="aspect-[4/5] w-full overflow-hidden relative bg-[#064015]/5">
-                      <img
-                        src={member.img}
-                        alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
-                      />
-                    </div>
 
-                    {/* Details Container */}
-                    <div className="p-8 text-center bg-white border-t border-[#0b4619]/5">
-                      <h3 className="font-serif text-2xl font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
-                        {member.name}
-                      </h3>
-                      <p className="text-[#d4af37] text-xs font-bold uppercase tracking-widest">
-                        {member.title}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
       </main>
 
       <Footer />
