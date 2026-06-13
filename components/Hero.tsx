@@ -12,6 +12,7 @@ const GET_HERO_DATA = gql`
       hero_slides {
         industry_name
         description
+        subtitle
         bg_image_url
         bg_image {
           url
@@ -34,6 +35,7 @@ const Hero = () => {
   const activeSlides = data?.landingPage?.hero_slides?.map((slide: any) => ({
     title: slide.industry_name,
     description: slide.description,
+    subtitle: slide.subtitle || "THE GOLDEN FIBER OF BANGLADESH",
     bgImage: slide.bg_image?.url
       ? (slide.bg_image.url.startsWith('http') ? slide.bg_image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${slide.bg_image.url}`)
       : slide.bg_image_url,
@@ -55,7 +57,7 @@ const Hero = () => {
 
         // Pause when fully typed
         if (nextText === currentFullText) {
-          setTimeout(() => setIsDeleting(true), 3500); // 3.5 seconds reading pause
+          setTimeout(() => setIsDeleting(true), 6000); // 6 seconds reading pause
         }
       } else {
         // Rapid backspacing deleting phase
@@ -70,10 +72,9 @@ const Hero = () => {
       }
     };
 
-    // Typing speed (100ms) vs delete speed (40ms)
     const typingTimer = setTimeout(
       handleTyping,
-      isDeleting ? 40 : 100
+      isDeleting ? 70 : 180
     );
 
     return () => clearTimeout(typingTimer);
@@ -103,7 +104,7 @@ const Hero = () => {
             exit={{ opacity: 0, scale: 1.15 }}
             transition={{
               opacity: { duration: 1.6, ease: "easeInOut" },
-              scale: { duration: 8.5, ease: "linear" }
+              scale: { duration: 14.0, ease: "linear" }
             }}
             className="absolute inset-0 w-full h-full"
           >
@@ -134,12 +135,12 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.5 }}
-              className="mb-8 bg-white/95 px-5 py-2.5 rounded-2xl inline-flex items-center justify-center shadow-lg backdrop-blur-md border border-white/20 hover:scale-102 transition-transform duration-300"
+              className="mt-16 md:mt-24 mb-8 bg-white/95 px-5 py-2.5 rounded-2xl inline-flex items-center justify-center shadow-lg backdrop-blur-md border border-white/20 hover:scale-102 transition-transform duration-300"
             >
               <img 
                 src={activeSlides[slideIndex].logoImage} 
                 alt="Concern Logo" 
-                className="h-7 md:h-9 object-contain w-auto"
+                className="h-14 md:h-20 object-contain w-auto"
               />
             </motion.div>
           </AnimatePresence>
@@ -151,16 +152,16 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-[9px] md:text-xs font-bold tracking-[0.45em] text-[#fed65b] uppercase mb-4 md:mb-6 block select-none"
         >
-          THE GOLDEN FIBER OF BANGLADESH
+          {activeSlides[slideIndex].subtitle}
         </motion.span>
 
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-serif text-3xl md:text-6xl text-white leading-tight mb-6 md:mb-8 font-bold uppercase select-none flex flex-col items-center justify-center gap-2"
+          className="font-serif  text-2xl text-white leading-tight mb-6 md:mb-8 font-bold uppercase select-none flex flex-col items-center justify-center gap-2"
         >
-          <span>Sustainable Industrial</span>
+          <span>CONCERNS OF HASAN GROUP</span>
           <span className="text-[#fed65b] italic font-normal text-glow min-h-[48px] md:min-h-[75px] flex items-center justify-center flex-wrap px-4 text-3xl md:text-6xl mt-2">
             {displayedText}
             {/* Blinking Cursor */}
