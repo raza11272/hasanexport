@@ -44,8 +44,31 @@ export default function TeamSection() {
     errorPolicy: 'all',
   });
 
+  const MOCK_TEAM = [
+    {
+      name: 'Mr. Md. Hasan',
+      title: 'Founder & Chairman, Hasan Group',
+      image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Sarah Hasan',
+      title: 'Director of International Trade',
+      image_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Rahim Ahmed',
+      title: 'Chief Operations Officer',
+      image_url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop'
+    },
+    {
+      name: 'Kazi Mohammad',
+      title: 'Head of Sustainable Innovation',
+      image_url: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&h=600&fit=crop'
+    }
+  ];
+
   const fetchedTeam = data?.teamMembers?.length ? data.teamMembers : [];
-  const team = fetchedTeam.slice(0, 2);
+  const team = fetchedTeam.length > 0 ? fetchedTeam : MOCK_TEAM;
 
   return (
     <section id="team" className="py-24 bg-white relative overflow-hidden">
@@ -70,7 +93,7 @@ export default function TeamSection() {
         </div>
 
         {/* Members Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {team.map((member: any, index: number) => {
             // Prefer Strapi media library url if uploaded, then fallback to seed image_url
             const imageSrc = member.image?.url 

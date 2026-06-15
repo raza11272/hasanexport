@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ProcessSection from '@/components/ProcessSection';
 import MDMessage from '@/components/MDMessage';
+import AuntMessage from '@/components/AuntMessage';
 import Achievements from '@/components/Achievements';
 import Gallery from '@/components/Gallery';
 import TeamSection from '@/components/TeamSection';
@@ -31,6 +32,9 @@ export default function HomePage() {
         
         {/* About / Vision Section */}
         <MDMessage />
+
+        {/* Director Message Section */}
+        <AuntMessage />
 
         {/* Board & Leadership Section */}
         <TeamSection />

@@ -36,6 +36,14 @@ const GET_FACTORY_DETAILS = gql`
         step
         detail
       }
+      team_members {
+        name
+        title
+        image_url
+        image {
+          url
+        }
+      }
       products(sort: "id:asc") {
         documentId
         title
@@ -188,7 +196,15 @@ export default function UnitDetailsPage() {
             ? (p.image.url.startsWith('http') ? p.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${p.image.url}`)
             : p.image_url
         })) || [],
-        team_members: MOCK_TEAM_MEMBERS[id] || MOCK_TEAM_MEMBERS['n4w56pffj53kihujenib0185']
+        team_members: data.factory.team_members && data.factory.team_members.length > 0
+          ? data.factory.team_members.map((m: any) => ({
+              name: m.name,
+              title: m.title,
+              img: m.image?.url
+                ? (m.image.url.startsWith('http') ? m.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${m.image.url}`)
+                : m.image_url
+            }))
+          : (MOCK_TEAM_MEMBERS[id] || MOCK_TEAM_MEMBERS['n4w56pffj53kihujenib0185'])
       }
     : null;
 
