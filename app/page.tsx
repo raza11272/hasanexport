@@ -17,7 +17,7 @@ export const metadata = {
   title: 'Hasan Group | Global Jute & Industrial Excellence',
   description: 'Premium industrial portal for Hasan Jute Mills and associated concerns. Leading the way in sustainable jute, spinning, and paper manufacturing.',
 };
-
+ 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#fcf9f8]">
