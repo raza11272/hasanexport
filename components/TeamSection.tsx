@@ -26,8 +26,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 const GET_TEAM_MEMBERS = gql`
   query GetTeamMembers {
-    teamMembers(sort: "id:asc") {
-      
+    teamMembers(sort: "id:asc", pagination: { limit: 3 }) {
       documentId
       name
       title
@@ -59,11 +58,6 @@ export default function TeamSection() {
       name: 'Rahim Ahmed',
       title: 'Chief Operations Officer',
       image_url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Kazi Mohammad',
-      title: 'Head of Sustainable Innovation',
-      image_url: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&h=600&fit=crop'
     }
   ];
 
@@ -92,8 +86,8 @@ export default function TeamSection() {
           <div className="w-20 h-[2px] bg-[#0b4619]/20 mx-auto mt-8" />
         </div>
 
-        {/* Members Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {/* Members Grid - Centered */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto justify-items-center">
           {team.map((member: any, index: number) => {
             // Prefer Strapi media library url if uploaded, then fallback to seed image_url
             const imageSrc = member.image?.url 
@@ -107,7 +101,7 @@ export default function TeamSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative bg-[#fcf9f8] rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-2xl hover:border-[#0b4619]/10 transition-all duration-500"
+                className="group relative bg-[#fcf9f8] rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-2xl hover:border-[#0b4619]/10 transition-all duration-500 w-full max-w-sm"
               >
                 {/* Image Container */}
                 <div className="aspect-[4/5] w-full overflow-hidden relative bg-[#064015]/5">
@@ -121,7 +115,7 @@ export default function TeamSection() {
 
                 {/* Details Container */}
                 <div className="p-8 text-center bg-white border-t border-[#0b4619]/5">
-                  <h3 className="font-serif text-2xl font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
+                  <h3 className="font-serif text-sm font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
                     {member.name}
                   </h3>
                   <p className="text-[#d4af37] text-xs font-bold uppercase tracking-widest">

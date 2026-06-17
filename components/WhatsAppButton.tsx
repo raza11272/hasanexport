@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const phoneNumber = '8801771855823'; // DMD direct contact number from footer
+  const phoneNumber = '8801713700276'; // DMD direct contact number from footer
   const message = 'Hello! I am visiting the Hasan Group website and would like to make an inquiry.';
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

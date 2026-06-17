@@ -5,19 +5,19 @@ import { motion } from 'framer-motion';
 
 const MDMessage = () => {
   return (
-    <section id="legacy" className="relative py-24 md:py-32 bg-[#fcf9f8] overflow-hidden">
+    <section id="legacy" className="relative pt-24 pb-6 md:pt-32 md:pb-8 bg-[#fcf9f8] overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute bottom-10 left-10 select-none pointer-events-none">
         <h2 className="text-[120px] md:text-[240px] font-serif font-bold text-[#0b4619]/[0.03] leading-none uppercase tracking-tighter">
-          Vision
+          Chairman & Managing Director
         </h2>
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          
+
           {/* Left Side: Photo with Spring Dropping Animation (Triggers every single scroll) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -180 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-80px" }}
@@ -26,10 +26,10 @@ const MDMessage = () => {
           >
             {/* Decorative Gold Frame Layer */}
             <div className="absolute -top-6 -right-6 w-full h-full border border-[#d4af37]/40 rounded-sm z-0" />
-            
+
             <div className="relative z-10 aspect-[4/5] overflow-hidden bg-[#e5e7eb] shadow-2xl">
-              <img 
-                src="/img/profilepic.jpeg" 
+              <img
+                src="/img/profilepic.jpeg"
                 alt="A.T.M Shafiqul Hasan"
                 className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
               />
@@ -39,15 +39,15 @@ const MDMessage = () => {
             {/* Subtle Label (Mobile Only) */}
             <div className="mt-4 md:hidden text-center">
               <h4 className="font-serif text-xl font-bold text-[#002e0b]">A.T.M Shafiqul Hasan</h4>
-              <p className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest">Managing Director</p>
+              <p className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest">Chairman & Managing Director</p>
             </div>
           </motion.div>
 
           {/* Right Side: Content (Triggers every single scroll) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            
+
             {/* MD Label Prefix (Slides in from Right on every scroll) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false }}
@@ -56,12 +56,12 @@ const MDMessage = () => {
             >
               <div className="h-[1px] w-12 bg-[#d4af37]" />
               <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] text-[#d4af37] uppercase">
-                MESSAGE FROM THE MD
+                MESSAGE FROM THE CHAIRMAN
               </span>
             </motion.div>
 
             {/* Quote Header (Slides up on every scroll) */}
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
@@ -79,27 +79,22 @@ const MDMessage = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="text-justify"
               >
-                For decades, Hasan Jute Mills Ltd. has stood as a bastion of quality, 
-                preserving the rich heritage of the Golden Fiber. Our commitment transcends 
-                mere manufacturing; it is an enduring promise to the earth, our weavers, 
-                and our global partners.
-              </motion.p>
-              
-              <motion.p
-                initial={{ opacity: 0, x: 80 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              >
-                In an era demanding environmental consciousness, we champion jute not just 
-                as a traditional commodity, but as the world's premier premium, eco-friendly 
-                alternative. Excellence is woven securely into every thread that departs our facilities.
+                <strong className="font-bold text-[#002e0b]">Hasan Group</strong> is built
+                on a foundation of trust, quality, and long-term vision. Since its
+                establishment, the organization has remained committed to delivering
+                excellence across all areas of its operations. We focus on maintaining
+                strong ethical standards, continuous improvement, and sustainable growth.
+                Our journey is guided by dedication, discipline, and a clear commitment
+                to creating lasting value in the industry. We continue to move forward
+                with the support of our team, partners, and stakeholders, aiming to
+                strengthen our position and expand responsibly.
               </motion.p>
             </div>
 
             {/* Footer Name and Title (Pops up on every scroll) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
@@ -110,7 +105,7 @@ const MDMessage = () => {
                 A.T.M Shafiqul Hasan
               </h4>
               <p className="text-xs font-bold text-[#d4af37] uppercase tracking-[0.25em]">
-                MANAGING DIRECTOR
+                CHAIRMAN & MANAGING DIRECTOR
               </p>
             </motion.div>
 

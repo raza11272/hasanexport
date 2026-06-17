@@ -57,7 +57,7 @@ const Navbar = () => {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-2.5 bg-[#fed65b] text-[#064015] font-bold text-[13px] rounded-lg hover:shadow-xl hover:shadow-[#fed65b]/20 transition-all hidden md:block uppercase tracking-wider"
+              className="px-8 py-2.5 bg-[#fed65b] text-[#064015] font-bold text-[13px] rounded-lg hover:shadow-xl hover:shadow-[#fed65b]/20 transition-all hidden md:block uppercase tracking-wider cursor-pointer"
             >
               Export Inquiry
             </motion.button>

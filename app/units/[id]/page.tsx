@@ -39,6 +39,7 @@ const GET_FACTORY_DETAILS = gql`
       team_members {
         name
         title
+        description
         image_url
         image {
           url
@@ -200,6 +201,7 @@ export default function UnitDetailsPage() {
           ? data.factory.team_members.map((m: any) => ({
               name: m.name,
               title: m.title,
+              description: m.description,
               img: m.image?.url
                 ? (m.image.url.startsWith('http') ? m.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${m.image.url}`)
                 : m.image_url
@@ -314,12 +316,17 @@ export default function UnitDetailsPage() {
 
                     {/* Details Container */}
                     <div className="p-8 text-center bg-white border-t border-[#0b4619]/5">
-                      <h3 className="font-serif text-2xl font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
+                      <h3 className="font-serif text-sm font-bold text-[#002e0b] mb-2 group-hover:text-[#d4af37] transition-colors">
                         {member.name}
                       </h3>
                       <p className="text-[#d4af37] text-xs font-bold uppercase tracking-widest">
                         {member.title}
                       </p>
+                      {member.description && (
+                        <p className="text-[#41493f]/80 text-[11px] mt-2 font-medium leading-relaxed max-w-[240px] mx-auto">
+                          {member.description}
+                        </p>
+                      )}
                     </div>
                   </motion.div>
                 ))}

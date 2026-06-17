@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const AuntMessage = () => {
   return (
-    <section id="director-legacy" className="relative py-24 md:py-32 bg-[#fcf9f8] overflow-hidden">
+    <section id="director-legacy" className="relative pt-6 pb-24 md:pt-16 md:pb-32 bg-[#fcf9f8] overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute bottom-10 right-10 select-none pointer-events-none">
         <h2 className="text-[120px] md:text-[240px] font-serif font-bold text-[#0b4619]/[0.02] leading-none uppercase tracking-tighter">
@@ -15,12 +15,12 @@ const AuntMessage = () => {
 
       <div className="max-w-[1280px] mx-auto px-6 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          
+
           {/* Left Side: Content (Desktop Left, Mobile Second) */}
           <div className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-1">
-            
+
             {/* Prefix Label */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false }}
@@ -34,7 +34,7 @@ const AuntMessage = () => {
             </motion.div>
 
             {/* Quote Header */}
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
@@ -51,28 +51,23 @@ const AuntMessage = () => {
                 initial={{ opacity: 0, x: -80 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              >
-                For decades, Hasan Jute Mills Ltd. has stood as a bastion of quality, 
-                preserving the rich heritage of the Golden Fiber. Our commitment transcends 
-                mere manufacturing; it is an enduring promise to the earth, our weavers, 
-                and our global partners.
-              </motion.p>
-              
-              <motion.p
-                initial={{ opacity: 0, x: -80 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
                 transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                className="text-justify"
               >
-                In an era demanding environmental consciousness, we champion jute not just 
-                as a traditional commodity, but as the world's premier premium, eco-friendly 
-                alternative. Excellence is woven securely into every thread that departs our facilities.
+                We emphasize efficient operations, strong coordination, and consistent
+                quality across all business activities. Our priority is to ensure smooth
+                execution of strategies and maintain high standards in day-to-day
+                management. At <strong className="font-bold text-[#002e0b]">Hasan Group</strong>,
+                we work closely with all departments to improve productivity, enhance
+                performance, and support sustainable business growth. Emphasis is given
+                to discipline, responsibility, and practical decision-making in every
+                operation. Our continuous effort is to strengthen internal systems and
+                ensure long-term stability and progress.
               </motion.p>
             </div>
 
             {/* Footer Name and Title */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
@@ -83,14 +78,14 @@ const AuntMessage = () => {
                 Sarah Hasan
               </h4>
               <p className="text-xs font-bold text-[#d4af37] uppercase tracking-[0.25em]">
-                DIRECTOR OF INTERNATIONAL TRADE
+                DIRECTOR
               </p>
             </motion.div>
 
           </div>
 
           {/* Right Side: Photo with Spring Dropping Animation (Desktop Right, Mobile First) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -180 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-80px" }}
@@ -99,10 +94,10 @@ const AuntMessage = () => {
           >
             {/* Decorative Gold Frame Layer */}
             <div className="absolute -top-6 -left-6 w-full h-full border border-[#d4af37]/40 rounded-sm z-0" />
-            
+
             <div className="relative z-10 aspect-[4/5] overflow-hidden bg-[#e5e7eb] shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop" 
+              <img
+                src="/img/imgaunt.jpeg"
                 alt="Sarah Hasan"
                 className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
               />

@@ -28,11 +28,11 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-6">
               <div className="bg-white px-3 py-1.5 rounded-lg flex items-center justify-center shadow-md border border-white/10 hover:shadow-lg hover:bg-white/95 transition-all duration-300">
-                <Image 
-                  src="/img/Hasan-Group.png" 
-                  alt="Hasan Group" 
-                  width={130} 
-                  height={36} 
+                <Image
+                  src="/img/Hasan-Group.png"
+                  alt="Hasan Group"
+                  width={130}
+                  height={36}
                   className="object-contain h-7 w-auto"
                 />
               </div>
@@ -42,7 +42,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               {[Share2, MessageSquare, ExternalLink].map((Icon, i) => (
-                <motion.a 
+                <motion.a
                   key={i}
                   whileHover={{ y: -3, color: '#d4af37' }}
                   href="#"
@@ -53,7 +53,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
- 
+
           <div>
             <h4 className="text-[#d4af37] font-bold uppercase tracking-widest text-sm mb-8">Industrial Units</h4>
             <ul className="space-y-4">
@@ -75,22 +75,22 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-[#d4af37] mt-1" />
                 <div>
-                  <div className="text-xs text-white/40 uppercase">Contact DMD</div>
-                  <div className="text-sm">+88 01771 855823</div>
+                  <div className="text-xs text-white/40 uppercase">Contact Number</div>
+                  <div className="text-sm">01713-700276</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={18} className="text-[#d4af37] mt-1" />
                 <div>
                   <div className="text-xs text-white/40 uppercase">Email Support</div>
-                  <div className="text-sm">brohasan773@gmail.com</div>
+                  <div className="text-sm">hgshbd22@gmail.com</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#d4af37] mt-1" />
                 <div>
-                  <div className="text-xs text-white/40 uppercase">Headquarters</div>
-                  <div className="text-sm">Islampur, Harigari, Bogra</div>
+                  <div className="text-xs text-white/40 uppercase">Head Office</div>
+                  <div className="text-sm">Hasan Centre, Shantibagh, Seujgari, Bogura-5800</div>
                 </div>
               </li>
             </ul>
@@ -100,12 +100,12 @@ const Footer = () => {
             <h4 className="text-[#d4af37] font-bold uppercase tracking-widest text-sm mb-8">Newsletter</h4>
             <p className="text-white/60 text-sm mb-6">Subscribe for technical updates and industrial insights.</p>
             <div className="flex flex-col gap-3">
-              <input 
-                type="email" 
-                placeholder="Email Address" 
+              <input
+                type="email"
+                placeholder="Email Address"
                 className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#d4af37] transition-colors"
               />
-              <button className="w-full py-3 bg-[#d4af37] text-[#1a1a1a] font-bold rounded-xl hover:opacity-90 transition-opacity">
+              <button className="w-full py-3 bg-[#d4af37] text-[#1a1a1a] font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
                 Subscribe Now
               </button>
             </div>
@@ -118,10 +118,10 @@ const Footer = () => {
             <span className="hidden md:inline text-white/10">|</span>
             <span>
               Powered by{' '}
-              <a 
-                href="https://wavelinecorp.com/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://wavelinecorp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#d4af37] hover:text-[#d4af37]/80 hover:underline transition-colors"
               >
                 Waveline Corp.

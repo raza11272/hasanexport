@@ -57,7 +57,7 @@ const Hero = () => {
 
         // Pause when fully typed
         if (nextText === currentFullText) {
-          setTimeout(() => setIsDeleting(true), 6000); // 6 seconds reading pause
+          setTimeout(() => setIsDeleting(true), 2000); // 2 seconds reading pause
         }
       } else {
         // Rapid backspacing deleting phase
@@ -74,7 +74,7 @@ const Hero = () => {
 
     const typingTimer = setTimeout(
       handleTyping,
-      isDeleting ? 70 : 180
+      isDeleting ? 50 : 100
     );
 
     return () => clearTimeout(typingTimer);
@@ -224,31 +224,6 @@ const Hero = () => {
         }
       `}</style>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-      >
-        <div className="w-[2px] h-12 bg-gradient-to-b from-[#d4af37] to-transparent" />
-      </motion.div>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        {activeSlides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => {
-              setSlideIndex(idx);
-              setDisplayedText("");
-              setIsDeleting(false);
-            }}
-            className={`h-[2.5px] rounded-full transition-all duration-500 ${
-              slideIndex === idx ? "w-12 bg-[#fed65b]" : "w-12 bg-white/20 hover:bg-white/40"
-            }`}
-          />
-        ))}
-      </div>
 
     </section>
   );

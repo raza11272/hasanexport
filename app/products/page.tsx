@@ -88,7 +88,6 @@ export default function ProductsPage() {
   const { data } = useQuery<any>(GET_PRODUCTS_PAGE_DATA, { errorPolicy: 'all' });
   const [createInquiry] = useMutation(CREATE_PRODUCT_INQUIRY);
 
-  const [selectedConcern, setSelectedConcern] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   
   // Modal Inquiry States
@@ -106,12 +105,6 @@ export default function ProductsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Dynamic Concerns Tabs mapping
-  const concerns = [
-    { id: "all", name: "All Products" },
-    ...(data?.factories?.map((f: any) => ({ id: f.documentId, name: f.title })) || [])
-  ];
-
   // Dynamic Products mapping
   const products = data?.products?.length
     ? data.products.map((item: any) => ({
@@ -128,17 +121,24 @@ export default function ProductsPage() {
       }))
     : [];
 
-  // Filtered Products
-  const filteredProducts = useMemo(() => {
+  const concernsList = data?.factories?.length
+    ? data.factories.map((f: any) => ({ id: f.documentId, name: f.title }))
+    : [];
+
+  const activeConcerns = concernsList.length > 0
+    ? concernsList
+    : Array.from(new Set(products.map((p: any) => JSON.stringify({ id: p.unitId, name: p.unitName })))).map((s: string) => JSON.parse(s));
+
+  // Searched Products
+  const searchedProducts = useMemo(() => {
     return products.filter((product: any) => {
-      const matchesConcern = selectedConcern === "all" || product.unitId === selectedConcern;
-      const matchesSearch = 
+      return (
         product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.unitName.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesConcern && matchesSearch;
+        product.unitName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     });
-  }, [selectedConcern, searchQuery, products]);
+  }, [searchQuery, products]);
 
   // Open inquiry modal
   const handleOpenInquiry = (product: any) => {
@@ -271,27 +271,10 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* CONTROLS SECTION (Search and Tabs) */}
+        {/* CONTROLS SECTION (Search) */}
         <section className="py-12 bg-white border-b border-[#0b4619]/5 sticky top-[72px] z-40 shadow-sm backdrop-blur-md bg-white/95">
-          <div className="max-w-[1280px] mx-auto px-6 md:px-16 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="max-w-[1280px] mx-auto px-6 md:px-16 flex justify-center">
             
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
-              {concerns.map((tab: any) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setSelectedConcern(tab.id)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                    selectedConcern === tab.id
-                      ? "bg-[#064015] text-[#fed65b] shadow-md border-transparent scale-102"
-                      : "bg-[#fcf9f8] text-[#064015]/75 hover:bg-[#064015]/5 border border-[#0b4619]/10"
-                  }`}
-                >
-                  {tab.name}
-                </button>
-              ))}
-            </div>
-
             {/* Search Bar */}
             <div className="relative max-w-md w-full">
               <input
@@ -317,7 +300,7 @@ export default function ProductsPage() {
 
         {/* PRODUCTS GRID */}
         <section className="py-20 max-w-[1280px] mx-auto px-6 md:px-16 min-h-[500px]">
-          {filteredProducts.length === 0 ? (
+          {searchedProducts.length === 0 ? (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -328,108 +311,119 @@ export default function ProductsPage() {
               </div>
               <h3 className="font-serif text-2xl font-bold text-[#064015] mb-2">No Products Found</h3>
               <p className="text-[#41493f] max-w-md mx-auto text-sm">
-                We couldn't find any products matching your search query. Try clearing your filters or testing a different search term.
+                We couldn't find any products matching your search query. Try typing a different search term.
               </p>
               <button 
-                onClick={() => { setSelectedConcern("all"); setSearchQuery(""); }}
+                onClick={() => setSearchQuery("")}
                 className="mt-6 px-6 py-2.5 bg-[#064015] text-[#fed65b] rounded-full text-xs font-bold uppercase tracking-wider"
               >
-                Clear All Filters
+                Clear Search
               </button>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <AnimatePresence mode="popLayout">
-                {filteredProducts.map((product: any, index: number) => (
-                  <motion.div
-                    layout
-                    key={product.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.3) }}
-                    className="bg-white rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-xl hover:border-[#0b4619]/10 transition-all duration-300 flex flex-col h-full group"
-                  >
-                    
-                    {/* Visual Card Image */}
-                    <div className="aspect-[4/3] w-full overflow-hidden relative bg-[#064015]/5">
-                      <img 
-                        src={product.img} 
-                        alt={product.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
-                      />
-                      
-                      {/* Dark Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/80 via-transparent to-transparent" />
-                      
-                      {/* Concern Tag Badge */}
-                      <div className="absolute top-4 left-4 z-10">
-                        <span className="px-3.5 py-1.5 bg-[#064015] text-[#fed65b] rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 border border-[#fed65b]/20 shadow-md">
-                          <Factory size={10} />
-                          {product.unitName}
-                        </span>
-                      </div>
-                    </div>
+            <div className="space-y-20">
+              {activeConcerns.map((concern: any) => {
+                const productsForConcern = searchedProducts.filter((p: any) => p.unitId === concern.id);
+                if (productsForConcern.length === 0) return null;
 
-                    {/* Content Section */}
-                    <div className="p-8 flex flex-col flex-grow">
-                      
-                      {/* Title & Description */}
-                      <h3 className="font-serif text-2xl font-bold text-[#064015] mb-3 group-hover:text-[#d4af37] transition-colors">
-                        {product.title}
+                return (
+                  <div key={concern.id} className="space-y-8">
+                    {/* Concern Category Title */}
+                    <div className="flex items-center gap-4">
+                      <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#064015] uppercase tracking-wider">
+                        {concern.name}
                       </h3>
-                      
-                      <p className="text-[#41493f] text-sm leading-relaxed mb-6 flex-grow font-sans line-clamp-3">
-                        {product.description}
-                      </p>
-
-                      {/* Technical Specs Small Table */}
-                      <div className="space-y-2.5 mb-6 pt-5 border-t border-[#0b4619]/5">
-                        <div className="text-[10px] uppercase font-bold text-[#064015]/40 tracking-wider">Specifications</div>
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                          {product.specs.slice(0, 4).map((spec: any, i: number) => (
-                            <div key={i} className="flex flex-col border-b border-[#0b4619]/5 pb-1">
-                              <span className="text-[9px] text-gray-400 uppercase font-medium">{spec.label}</span>
-                              <span className="text-xs text-[#064015] font-semibold truncate">{spec.value}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Bullet Highlights */}
-                      <div className="mb-8 space-y-1.5">
-                        {product.features.map((feat: any, i: number) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-[#41493f]">
-                            <CheckCircle size={14} className="text-[#d4af37] shrink-0" />
-                            <span className="font-medium">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="grid grid-cols-2 gap-3 mt-auto">
-                        <button
-                          onClick={() => handleOpenInquiry(product)}
-                          className="py-3 bg-[#064015] text-[#fed65b] font-bold rounded-xl text-[11px] uppercase tracking-wider hover:bg-[#fed65b] hover:text-[#064015] transition-all shadow-md flex items-center justify-center gap-1.5 group/btn"
-                        >
-                          Direct Inquiry
-                          <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
-                        </button>
-                        <Link
-                          href={`/units/${product.unitId}`}
-                          className="py-3 bg-[#fcf9f8] text-[#064015] border border-[#0b4619]/10 font-bold rounded-xl text-[11px] uppercase tracking-wider hover:bg-[#064015]/5 transition-all flex items-center justify-center gap-1.5"
-                        >
-                          Factory Profile
-                          <ArrowUpRight size={12} />
-                        </Link>
-                      </div>
-
+                      <div className="flex-grow h-[1px] bg-[#0b4619]/10" />
                     </div>
 
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+                    {/* Products Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {productsForConcern.map((product: any) => (
+                        <div
+                          key={product.id}
+                          className="bg-white rounded-[32px] overflow-hidden border border-[#0b4619]/5 shadow-sm hover:shadow-xl hover:border-[#0b4619]/10 transition-all duration-300 flex flex-col h-full group"
+                        >
+                          {/* Visual Card Image */}
+                          <div className="aspect-[4/3] w-full overflow-hidden relative bg-[#064015]/5">
+                            <img 
+                              src={product.img} 
+                              alt={product.title} 
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                              loading="lazy"
+                            />
+                            
+                            {/* Dark Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/80 via-transparent to-transparent" />
+                            
+                            {/* Concern Tag Badge */}
+                            <div className="absolute top-4 left-4 z-10">
+                              <span className="px-3.5 py-1.5 bg-[#064015] text-[#fed65b] rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 border border-[#fed65b]/20 shadow-md">
+                                <Factory size={10} />
+                                {product.unitName}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Content Section */}
+                          <div className="p-8 flex flex-col flex-grow">
+                            
+                            {/* Title & Description */}
+                            <h3 className="font-serif text-2xl font-bold text-[#064015] mb-3 group-hover:text-[#d4af37] transition-colors">
+                              {product.title}
+                            </h3>
+                            
+                            <p className="text-[#41493f] text-sm leading-relaxed mb-6 flex-grow font-sans line-clamp-3">
+                              {product.description}
+                            </p>
+
+                            {/* Technical Specs Small Table */}
+                            <div className="space-y-2.5 mb-6 pt-5 border-t border-[#0b4619]/5">
+                              <div className="text-[10px] uppercase font-bold text-[#064015]/40 tracking-wider">Specifications</div>
+                              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                                {product.specs.slice(0, 4).map((spec: any, i: number) => (
+                                  <div key={i} className="flex flex-col border-b border-[#0b4619]/5 pb-1">
+                                    <span className="text-[9px] text-gray-400 uppercase font-medium">{spec.label}</span>
+                                    <span className="text-xs text-[#064015] font-semibold truncate">{spec.value}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Bullet Highlights */}
+                            <div className="mb-8 space-y-1.5">
+                              {product.features.map((feat: any, i: number) => (
+                                <div key={i} className="flex items-center gap-2 text-xs text-[#41493f]">
+                                  <CheckCircle size={14} className="text-[#d4af37] shrink-0" />
+                                  <span className="font-medium">{feat}</span>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="grid grid-cols-2 gap-3 mt-auto">
+                              <button
+                                onClick={() => handleOpenInquiry(product)}
+                                className="py-3 bg-[#064015] text-[#fed65b] font-bold rounded-xl text-[11px] uppercase tracking-wider hover:bg-[#fed65b] hover:text-[#064015] transition-all shadow-md flex items-center justify-center gap-1.5 group/btn cursor-pointer"
+                              >
+                                Direct Inquiry
+                                <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
+                              </button>
+                              <Link
+                                href={`/units/${product.unitId}`}
+                                className="py-3 bg-[#fcf9f8] text-[#064015] border border-[#0b4619]/10 font-bold rounded-xl text-[11px] uppercase tracking-wider hover:bg-[#064015]/5 transition-all flex items-center justify-center gap-1.5"
+                              >
+                                Factory Profile
+                                <ArrowUpRight size={12} />
+                              </Link>
+                            </div>
+
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </section>

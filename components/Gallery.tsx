@@ -29,11 +29,6 @@ const GET_GALLERY_DATA = gql`
 
 const Gallery = () => {
   const { data } = useQuery<any>(GET_GALLERY_DATA, { errorPolicy: 'all' });
-  const [activeCategory, setActiveCategory] = useState("ALL");
-
-  const categories = data?.imageCategories?.length
-    ? ["ALL", ...data.imageCategories.map((c: any) => c.name)]
-    : ["ALL"];
 
   const galleryItems = data?.galleries?.length
     ? data.galleries.map((item: any) => ({
@@ -47,16 +42,18 @@ const Gallery = () => {
       }))
     : [];
 
-  const filteredItems = galleryItems.filter((item: any) => 
-    activeCategory === "ALL" || item.category === activeCategory
-  );
-
+  const fetchedCategories = data?.imageCategories?.map((c: any) => c.name) || [];
+  
+  // Fallback to unique categories in items if fetchedCategories is empty
+  const categoriesList = fetchedCategories.length > 0 
+    ? fetchedCategories 
+    : Array.from(new Set(galleryItems.map((item: any) => item.category)));
 
   return (
     <section id="gallery" className="py-24 bg-[#fcf9f8]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-16">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
             <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] text-[#0b4619] uppercase mb-4 block">
               PRODUCT SHOWCASE
@@ -72,55 +69,51 @@ const Gallery = () => {
           </button>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-4 mb-16">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-8 py-2.5 rounded-full text-xs font-bold tracking-widest transition-all ${
-                activeCategory === cat 
-                ? "bg-[#d4af37] text-white shadow-lg shadow-[#d4af37]/30 scale-105" 
-                : "bg-white text-[#41493f] hover:bg-[#fcf9f8] border border-[#0b4619]/5"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {/* Gallery Grouped by Category */}
+        <div className="space-y-20">
+          {categoriesList.map((cat: string) => {
+            const itemsForCat = galleryItems.filter((item: any) => item.category === cat);
+            if (itemsForCat.length === 0) return null;
 
-        {/* Masonry Columns Layout */}
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
-          <AnimatePresence mode="popLayout">
-            {filteredItems.map((item: any, index: number) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5 }}
-                className="break-inside-avoid mb-4 relative group rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-              >
-                <img 
-                  src={item.image} 
-                  alt={item.title}
-                  className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  style={{
-                    height: item.span === 'large' ? '380px' : 
-                            item.span === 'wide' ? '220px' : 
-                            '280px'
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-[0.2em] mb-1">
-                    {item.category}
-                  </span>
-                  <h4 className="text-white font-serif text-xl font-bold leading-tight">{item.title}</h4>
+            return (
+              <div key={cat} className="space-y-8">
+                {/* Category Title */}
+                <div className="flex items-center gap-4">
+                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#002e0b] uppercase tracking-wider">
+                    {cat}
+                  </h3>
+                  <div className="flex-grow h-[1px] bg-[#0b4619]/10" />
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+
+                {/* Masonry Columns Layout */}
+                <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
+                  {itemsForCat.map((item: any) => (
+                    <div
+                      key={item.id}
+                      className="break-inside-avoid mb-4 relative group rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    >
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        style={{
+                          height: item.span === 'large' ? '380px' : 
+                                  item.span === 'wide' ? '220px' : 
+                                  '280px'
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span className="text-[10px] font-bold text-[#d4af37] uppercase tracking-[0.2em] mb-1">
+                          {item.category}
+                        </span>
+                        <h4 className="text-white font-serif text-xl font-bold leading-tight">{item.title}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
