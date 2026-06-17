@@ -65,9 +65,9 @@ const MOCK_TEAM_MEMBERS: Record<string, Array<{ name: string; title: string; img
       img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
     },
     {
-      name: 'Sarah Hasan',
+      name: 'Sultana Siddiqua',
       title: 'Director of International Trade',
-      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
+      img: '/img/sultana_siddiqua.png'
     },
     {
       name: 'Rahim Ahmed',
@@ -153,9 +153,9 @@ const MOCK_TEAM_MEMBERS: Record<string, Array<{ name: string; title: string; img
       img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
     },
     {
-      name: 'Sarah Hasan',
+      name: 'Sultana Siddiqua',
       title: 'Director of International Trade',
-      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
+      img: '/img/sultana_siddiqua.png'
     },
     {
       name: 'Rahim Ahmed',
@@ -169,6 +169,33 @@ const MOCK_TEAM_MEMBERS: Record<string, Array<{ name: string; title: string; img
     }
   ]
 };
+
+const LadyPlaceholder = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#fcf9f8] to-[#edf3ed] relative">
+    {/* Subtle patterns in background */}
+    <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0b4619_1px,transparent_1px)] [background-size:16px_16px]" />
+    
+    <svg
+      viewBox="0 0 200 200"
+      className="w-40 h-40 text-[#002e0b]/20 hover:scale-105 transition-transform duration-500"
+      fill="currentColor"
+    >
+      <circle cx="100" cy="100" r="80" className="fill-none stroke-[#d4af37]/30" strokeWidth="2" strokeDasharray="4 4" />
+      <circle cx="100" cy="80" r="28" className="fill-[#0b4619]/10 stroke-[#0b4619]/30" strokeWidth="2" />
+      <path
+        d="M100,45 C80,45 68,60 68,80 C68,100 78,110 88,115 C75,125 55,140 55,160 C70,160 130,160 145,160 C145,140 125,125 112,115 C122,110 132,100 132,80 C132,60 120,45 100,45 Z"
+        className="fill-[#0b4619]/15 stroke-[#0b4619]/40"
+        strokeWidth="2"
+      />
+      <path
+        d="M100,108 C108,108 118,125 125,140"
+        className="fill-none stroke-[#d4af37]/40"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  </div>
+);
 
 export default function UnitDetailsPage() {
   const params = useParams();
@@ -306,12 +333,16 @@ export default function UnitDetailsPage() {
                   >
                     {/* Image Container */}
                     <div className="aspect-[4/5] w-full overflow-hidden relative bg-[#064015]/5">
-                      <img
-                        src={member.img}
-                        alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
-                      />
+                      {member.name === 'Sultana Siddiqua' || member.name === 'Sarah Hasan' ? (
+                        <LadyPlaceholder />
+                      ) : (
+                        <img
+                          src={member.img}
+                          alt={member.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          loading="lazy"
+                        />
+                      )}
                     </div>
 
                     {/* Details Container */}

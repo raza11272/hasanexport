@@ -3,6 +3,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const LadyPlaceholder = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#fcf9f8] to-[#edf3ed] relative">
+    {/* Subtle patterns in background */}
+    <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0b4619_1px,transparent_1px)] [background-size:16px_16px]" />
+    
+    <svg
+      viewBox="0 0 200 200"
+      className="w-48 h-48 text-[#002e0b]/20 hover:scale-105 transition-transform duration-500"
+      fill="currentColor"
+    >
+      {/* Circle background */}
+      <circle cx="100" cy="100" r="80" className="fill-none stroke-[#d4af37]/30" strokeWidth="2" strokeDasharray="4 4" />
+      
+      {/* Inner head/shoulders representing a female director with a hijab/scarf */}
+      {/* Head */}
+      <circle cx="100" cy="80" r="28" className="fill-[#0b4619]/10 stroke-[#0b4619]/30" strokeWidth="2" />
+      {/* Hijab/Scarf frame */}
+      <path
+        d="M100,45 C80,45 68,60 68,80 C68,100 78,110 88,115 C75,125 55,140 55,160 C70,160 130,160 145,160 C145,140 125,125 112,115 C122,110 132,100 132,80 C132,60 120,45 100,45 Z"
+        className="fill-[#0b4619]/15 stroke-[#0b4619]/40"
+        strokeWidth="2"
+      />
+      {/* Draped detail */}
+      <path
+        d="M100,108 C108,108 118,125 125,140"
+        className="fill-none stroke-[#d4af37]/40"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  </div>
+);
+
 const AuntMessage = () => {
   return (
     <section id="director-legacy" className="relative pt-6 pb-24 md:pt-16 md:pb-32 bg-[#fcf9f8] overflow-hidden">
@@ -75,7 +108,7 @@ const AuntMessage = () => {
               className="mt-12 pt-8 border-t border-[#0b4619]/10"
             >
               <h4 className="font-serif text-3xl md:text-4xl font-bold text-[#002e0b] mb-2 tracking-tight">
-                Sarah Hasan
+                Sultana Siddiqua
               </h4>
               <p className="text-xs font-bold text-[#d4af37] uppercase tracking-[0.25em]">
                 DIRECTOR
@@ -96,17 +129,12 @@ const AuntMessage = () => {
             <div className="absolute -top-6 -left-6 w-full h-full border border-[#d4af37]/40 rounded-sm z-0" />
 
             <div className="relative z-10 aspect-[4/5] overflow-hidden bg-[#e5e7eb] shadow-2xl">
-              <img
-                src="/img/imgaunt.jpeg"
-                alt="Sarah Hasan"
-                className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/20 to-transparent" />
+              <LadyPlaceholder />
             </div>
 
             {/* Subtle Label (Mobile Only) */}
             <div className="mt-4 md:hidden text-center">
-              <h4 className="font-serif text-xl font-bold text-[#002e0b]">Sarah Hasan</h4>
+              <h4 className="font-serif text-xl font-bold text-[#002e0b]">Sultana Siddiqua</h4>
               <p className="text-[10px] font-bold text-[#d4af37] uppercase tracking-widest">Director of International Trade</p>
             </div>
           </motion.div>
