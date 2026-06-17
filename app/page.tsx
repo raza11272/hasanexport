@@ -12,7 +12,7 @@ import GlobalFootprint from '@/components/GlobalFootprint';
 import IndustrialConcerns from '@/components/IndustrialConcerns';
 import ProductMarquee from '@/components/ProductMarquee';
 import Footer from '@/components/Footer';
-  
+   
 export const metadata = {
   title: 'Hasan Group | Global Jute & Industrial Excellence',
   description: 'Premium industrial portal for Hasan Jute Mills and associated concerns. Leading the way in sustainable jute, spinning, and paper manufacturing.',
