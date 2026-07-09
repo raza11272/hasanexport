@@ -169,7 +169,8 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
       '/img/Factories/spinning/PXL_20260624_081715146.NIGHT.jpg',
       '/img/Factories/spinning/PXL_20260624_081721113.NIGHT.jpg',
       '/img/Factories/spinning/PXL_20260624_081730819.NIGHT.jpg',
-      '/img/Factories/spinning/PXL_20260624_081848073.NIGHT.jpg'
+      '/img/Factories/spinning/PXL_20260624_081848073.NIGHT.jpg',
+      '/img/Factories/spinning/PXL_20260624_081848073.NIGHT (2).jpg'
     ]
   },
   'bfymz3bnzdt1xv0103ato959': {
@@ -177,7 +178,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
     title: 'Hasan Pulp & Paper Mills',
     tag: 'Packaging',
     description: 'Dedicated production of high-strength industrial brown paper and sustainable packaging solutions.',
-    image_url: '/img/Factories/paper/PXL_20260624_055006506.jpg',
+    image_url: '/img/Factories/paper/PXL_20260624_055021686.jpg',
     video_url: 'https://www.youtube.com/embed/J3qeRooh7WI?autoplay=1&mute=1&loop=1&playlist=J3qeRooh7WI&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
     stats: [
       { label: 'GSM Stability', value: '±2%' },
@@ -221,7 +222,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
       }
     ],
     images: [
-      '/img/Factories/paper/PXL_20260624_055006506.jpg',
+      '/img/Factories/paper/PXL_20260624_055021686 (2).jpg',
       '/img/Factories/paper/PXL_20260624_055021686.jpg',
       '/img/Factories/paper/PXL_20260624_055031668.jpg',
       '/img/Factories/paper/PXL_20260624_055137773.jpg',
@@ -245,7 +246,6 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
       '/img/Factories/paper/PXL_20260624_061551805.jpg',
       '/img/Factories/paper/PXL_20260624_061614209.NIGHT.jpg',
       '/img/Factories/paper/PXL_20260624_061823242.jpg',
-      '/img/Factories/paper/PXL_20260624_062015012.jpg',
       '/img/Factories/paper/PXL_20260624_062142304.jpg',
       '/img/Factories/paper/PXL_20260624_062147747.jpg',
       '/img/Factories/paper/PXL_20260624_062150274.jpg',
@@ -274,7 +274,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
     title: 'Hasan Metal Industries',
     tag: 'Heavy Industry',
     description: 'Pioneering heavy metal fabrication, structural steel engineering, and precision spare parts manufacturing for global industrial infrastructures.',
-    image_url: '/img/Factories/metal/PXL_20260624_051011628.jpg',
+    image_url: '/img/Factories/metal/IMG_6497.jpg',
     video_url: 'https://www.youtube.com/embed/aRAYAuPVgcQ?autoplay=1&mute=1&loop=1&playlist=aRAYAuPVgcQ&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
     stats: [
       { label: 'Daily Output', value: '75 MT' },
@@ -318,6 +318,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
       }
     ],
     images: [
+      '/img/Factories/metal/IMG_6497.jpg',
       '/img/Factories/metal/PXL_20260624_050439844.jpg',
       '/img/Factories/metal/PXL_20260624_050535237.NIGHT.jpg',
       '/img/Factories/metal/PXL_20260624_050615110.NIGHT.jpg',
@@ -334,8 +335,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
       '/img/Factories/metal/PXL_20260624_051020089.jpg',
       '/img/Factories/metal/PXL_20260624_051042315.jpg',
       '/img/Factories/metal/PXL_20260624_051046938.jpg',
-      '/img/Factories/metal/PXL_20260624_051106700.NIGHT.jpg',
-      '/img/Factories/metal/PXL_20260624_051830040.jpg'
+      '/img/Factories/metal/PXL_20260624_051106700.NIGHT.jpg'
     ]
   },
   'msvpupyfca88mfr07msgh6wv': {
@@ -343,7 +343,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
     title: 'Hasan Flour Mill',
     tag: 'Agro Food Processing',
     description: 'Leading producer of premium quality flour, Maida, and Suji, utilizing advanced milling technology to deliver pure, high-grade agro products.',
-    image_url: '/img/Factories/flour/PXL_20260624_082829727.NIGHT.jpg',
+    image_url: '/img/Factories/jute/PXL_20260624_082829727.NIGHT.jpg',
     video_url: 'https://www.youtube.com/embed/ickhlb2LVMY?autoplay=1&mute=1&loop=1&playlist=ickhlb2LVMY&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
     stats: [],
     specs: [],
@@ -356,7 +356,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
     title: 'Hasan Feed Mill',
     tag: 'Agro & Animal Nutrition',
     description: 'Premier manufacturer of high-quality animal feed, delivering scientifically formulated, nutrient-rich poultry, fish, and cattle feeds.',
-    image_url: '/img/Factories/feed/PXL_20260624_084229942.NIGHT.jpg',
+    image_url: '/img/Factories/jute/PXL_20260624_084229942.NIGHT.jpg',
     video_url: 'https://www.youtube.com/embed/gPnpgvLs5NA?autoplay=1&mute=1&loop=1&playlist=gPnpgvLs5NA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
     stats: [],
     specs: [],
@@ -369,7 +369,7 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
     title: 'Hasan Transport',
     tag: 'Logistics & Supply Chain',
     description: 'Leading nationwide transport and logistics provider, offering reliable freight forwarding, efficient fleet management, and secure supply chain solutions.',
-    image_url: '/img/Factories/transport/PXL_20260624_055445139.jpg',
+    image_url: '/img/Factories/paper/PXL_20260624_055445139.jpg',
     video_url: 'https://www.youtube.com/embed/m9Q8zYsT5d0?autoplay=1&mute=1&loop=1&playlist=m9Q8zYsT5d0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
     stats: [],
     specs: [],
