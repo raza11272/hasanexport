@@ -347,7 +347,7 @@ export default function UnitDetailsPage() {
             ) : (
               <div className="w-full h-full bg-[#002e0b]" />
             )}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#002e0b] via-[#002e0b]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#002e0b]/60 via-[#002e0b]/40 to-transparent" />
           </div>
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-16 w-full py-4 md:py-0">
