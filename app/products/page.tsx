@@ -4,16 +4,16 @@ import React, { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, 
-  ArrowRight, 
-  ArrowUpRight, 
-  CheckCircle, 
-  Phone, 
-  Mail, 
-  Globe, 
-  FileText, 
-  X, 
+import {
+  Search,
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle,
+  Phone,
+  Mail,
+  Globe,
+  FileText,
+  X,
   Send,
   MessageSquare,
   Sparkles,
@@ -89,11 +89,11 @@ export default function ProductsPage() {
   const [createInquiry] = useMutation(CREATE_PRODUCT_INQUIRY);
 
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   // Modal Inquiry States
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  
+
   // Form submission states
   const [formName, setFormName] = useState("");
   const [formCompany, setFormCompany] = useState("");
@@ -101,24 +101,24 @@ export default function ProductsPage() {
   const [formPhone, setFormPhone] = useState("");
   const [formMessage, setFormMessage] = useState("");
   const [formQuantity, setFormQuantity] = useState("");
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Dynamic Products mapping
   const products = data?.products?.length
     ? data.products.map((item: any) => ({
-        id: item.documentId,
-        unitId: item.factory?.documentId || "",
-        unitName: item.factory?.title || "Hasan Group Mill",
-        title: item.title,
-        description: item.description,
-        img: item.image?.url 
-          ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`) 
-          : item.image_url,
-        specs: item.specs || [],
-        features: item.features?.map((f: any) => f.text) || []
-      }))
+      id: item.documentId,
+      unitId: item.factory?.documentId || "",
+      unitName: item.factory?.title || "Hasan Group Mill",
+      title: item.title,
+      description: item.description,
+      img: item.image?.url
+        ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
+        : item.image_url,
+      specs: item.specs || [],
+      features: item.features?.map((f: any) => f.text) || []
+    }))
     : [];
 
   const concernsList = data?.factories?.length
@@ -127,7 +127,7 @@ export default function ProductsPage() {
 
   const activeConcerns = concernsList.length > 0
     ? concernsList
-    : Array.from(new Set(products.map((p: any) => JSON.stringify({ id: p.unitId, name: p.unitName })))).map((s: string) => JSON.parse(s));
+    : Array.from(new Set(products.map((p: any) => JSON.stringify({ id: p.unitId, name: p.unitName })))).map((s: any) => JSON.parse(s));
 
   // Searched Products
   const searchedProducts = useMemo(() => {
@@ -168,7 +168,7 @@ export default function ProductsPage() {
       });
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      
+
       // Clear form inputs
       setFormName("");
       setFormCompany("");
@@ -194,15 +194,15 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-[#fcf9f8] text-[#1a1c1c] relative overflow-hidden">
       {/* Background Subtle Texture */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0" 
-        style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} 
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }}
       />
 
       <Navbar />
 
       <main className="pt-24 relative z-10">
-        
+
         {/* HERO SECTION */}
         <section className="relative py-24 bg-[#064015] overflow-hidden">
           {/* Subtle vector grid decoration */}
@@ -218,7 +218,7 @@ export default function ProductsPage() {
           </div>
           {/* Top glowing gold ambient light */}
           <div className="absolute top-0 left-1/4 w-[500px] h-[250px] bg-[#fed65b]/20 blur-[120px] rounded-full" />
-          
+
           <div className="max-w-[1280px] mx-auto px-6 md:px-16 relative z-10">
             <div className="max-w-3xl">
               <motion.div
@@ -229,7 +229,7 @@ export default function ProductsPage() {
               >
                 <Sparkles size={14} /> Global Industrial Exports
               </motion.div>
-              
+
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -238,7 +238,7 @@ export default function ProductsPage() {
               >
                 Premium <span className="text-[#fed65b]">Export</span> Products
               </motion.h1>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -274,7 +274,7 @@ export default function ProductsPage() {
         {/* CONTROLS SECTION (Search) */}
         <section className="py-12 bg-white border-b border-[#0b4619]/5 sticky top-[72px] z-40 shadow-sm backdrop-blur-md bg-white/95">
           <div className="max-w-[1280px] mx-auto px-6 md:px-16 flex justify-center">
-            
+
             {/* Search Bar */}
             <div className="relative max-w-md w-full">
               <input
@@ -286,7 +286,7 @@ export default function ProductsPage() {
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#064015]/40" size={18} />
               {searchQuery && (
-                <button 
+                <button
                   onClick={() => setSearchQuery("")}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
@@ -301,7 +301,7 @@ export default function ProductsPage() {
         {/* PRODUCTS GRID */}
         <section className="py-20 max-w-[1280px] mx-auto px-6 md:px-16 min-h-[500px]">
           {searchedProducts.length === 0 ? (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-center py-20 bg-white rounded-3xl border border-dashed border-[#0b4619]/10 shadow-sm"
@@ -313,7 +313,7 @@ export default function ProductsPage() {
               <p className="text-[#41493f] max-w-md mx-auto text-sm">
                 We couldn't find any products matching your search query. Try typing a different search term.
               </p>
-              <button 
+              <button
                 onClick={() => setSearchQuery("")}
                 className="mt-6 px-6 py-2.5 bg-[#064015] text-[#fed65b] rounded-full text-xs font-bold uppercase tracking-wider"
               >
@@ -345,16 +345,16 @@ export default function ProductsPage() {
                         >
                           {/* Visual Card Image */}
                           <div className="aspect-[4/3] w-full overflow-hidden relative bg-[#064015]/5">
-                            <img 
-                              src={product.img} 
-                              alt={product.title} 
+                            <img
+                              src={product.img}
+                              alt={product.title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                               loading="lazy"
                             />
-                            
+
                             {/* Dark Gradient Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/80 via-transparent to-transparent" />
-                            
+
                             {/* Concern Tag Badge */}
                             <div className="absolute top-4 left-4 z-10">
                               <span className="px-3.5 py-1.5 bg-[#064015] text-[#fed65b] rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 border border-[#fed65b]/20 shadow-md">
@@ -366,12 +366,12 @@ export default function ProductsPage() {
 
                           {/* Content Section */}
                           <div className="p-8 flex flex-col flex-grow">
-                            
+
                             {/* Title & Description */}
                             <h3 className="font-serif text-2xl font-bold text-[#064015] mb-3 group-hover:text-[#d4af37] transition-colors">
                               {product.title}
                             </h3>
-                            
+
                             <p className="text-[#41493f] text-sm leading-relaxed mb-6 flex-grow font-sans line-clamp-3">
                               {product.description}
                             </p>
@@ -432,7 +432,7 @@ export default function ProductsPage() {
         <section className="bg-[#064015] py-20 px-6 md:px-16 text-white relative overflow-hidden">
           <div className="absolute right-0 bottom-0 w-96 h-96 bg-white/5 rounded-full -mr-32 -mb-32 blur-[60px]" />
           <div className="absolute left-10 top-10 w-48 h-48 bg-[#fed65b]/10 rounded-full blur-[40px]" />
-          
+
           <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             <div className="lg:col-span-8">
               <span className="text-[#fed65b] text-xs font-bold uppercase tracking-widest mb-4 inline-block">Direct Global Channel</span>
@@ -442,7 +442,7 @@ export default function ProductsPage() {
               </p>
             </div>
             <div className="lg:col-span-4 flex flex-col md:flex-row lg:flex-col gap-4">
-              <button 
+              <button
                 onClick={() => {
                   setSelectedProduct(products[0]);
                   setFormMessage("Hello Hasan Group Sales, we need custom specs for a bulk export order. Please contact our corporate buying desk.");
@@ -453,9 +453,9 @@ export default function ProductsPage() {
               >
                 Inquire Bespoke Order <ArrowRight size={18} />
               </button>
-              <a 
+              <a
                 href="https://wa.me/8801771855823"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all text-sm uppercase tracking-wider"
               >
@@ -473,7 +473,7 @@ export default function ProductsPage() {
       <AnimatePresence>
         {isInquiryModalOpen && selectedProduct && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            
+
             {/* Dark blur backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -490,7 +490,7 @@ export default function ProductsPage() {
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="bg-white rounded-[40px] shadow-2xl border border-[#0b4619]/10 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative z-10 scrollbar-thin"
             >
-              
+
               {/* Header */}
               <div className="bg-[#064015] px-8 py-6 text-white flex justify-between items-center relative rounded-t-[40px]">
                 <div>
@@ -508,7 +508,7 @@ export default function ProductsPage() {
               {/* Form Content */}
               <div className="p-8">
                 {submitSuccess ? (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-12"
@@ -520,7 +520,7 @@ export default function ProductsPage() {
                     <p className="text-gray-500 max-w-md mx-auto text-sm leading-relaxed mb-8">
                       Thank you. Your industrial inquiry for <strong className="text-[#064015]">{selectedProduct.title}</strong> has been secured. Our Export Desk will contact you with customized catalog pricing within 12 hours.
                     </p>
-                    
+
                     <div className="flex flex-col sm:flex-row justify-center gap-3">
                       <button
                         onClick={handleWhatsAppDirect}
@@ -538,13 +538,13 @@ export default function ProductsPage() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmitInquiry} className="space-y-5">
-                    
+
                     {/* Selected Product Card Detail */}
                     <div className="flex gap-4 p-4 bg-[#fcf9f8] rounded-2xl border border-[#0b4619]/5 items-center mb-2">
-                      <img 
-                        src={selectedProduct.img} 
-                        alt={selectedProduct.title} 
-                        className="w-16 h-16 object-cover rounded-xl border border-[#0b4619]/10" 
+                      <img
+                        src={selectedProduct.img}
+                        alt={selectedProduct.title}
+                        className="w-16 h-16 object-cover rounded-xl border border-[#0b4619]/10"
                       />
                       <div>
                         <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Product Selection</div>

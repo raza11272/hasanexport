@@ -61,7 +61,7 @@ const IndustrialConcerns = () => {
       color: style.color,
       textColor: style.textColor,
       icon: style.icon,
-      image: fac.image?.url 
+      image: fac.image?.url
         ? (fac.image.url.startsWith('http') ? fac.image.url : `${strapiUrl}${fac.image.url}`)
         : fac.image_url
     };
@@ -90,7 +90,7 @@ const IndustrialConcerns = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {concerns.map((concern, index) => (
+        {concerns.map((concern: any, index: number) => (
           <motion.div
             key={concern.id}
             initial={{ opacity: 0, y: 30 }}

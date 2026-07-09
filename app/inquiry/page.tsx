@@ -4,19 +4,19 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { 
-  Send, 
-  MessageSquare, 
-  Phone, 
-  CheckCircle, 
-  Building, 
-  Globe, 
-  Mail, 
-  User, 
-  FileText, 
-  Anchor, 
-  Scale, 
-  Layers 
+import {
+  Send,
+  MessageSquare,
+  Phone,
+  CheckCircle,
+  Building,
+  Globe,
+  Mail,
+  User,
+  FileText,
+  Anchor,
+  Scale,
+  Layers
 } from 'lucide-react';
 import { useQuery, useMutation } from '@apollo/client/react';
 import { gql } from '@apollo/client';
@@ -130,8 +130,8 @@ export default function ExportInquiryPage() {
     const selectedFactory = data?.factories?.find((f: any) => f.documentId === formUnit);
     const concernName = selectedFactory ? selectedFactory.title : (
       formUnit === "1" ? "Hasan Jute Mills Ltd" :
-      formUnit === "2" ? "Hasan Jute & Spinning" :
-      formUnit === "3" ? "Pulp & Paper Unit-1" : "Hasan Metal Industries"
+        formUnit === "2" ? "Hasan Jute & Spinning" :
+          formUnit === "3" ? "Pulp & Paper Unit-1" : "Hasan Metal Industries"
     );
 
     const message = `*NEW INDUSTRIAL EXPORT INQUIRY*\n\n` +
@@ -156,15 +156,15 @@ export default function ExportInquiryPage() {
   return (
     <div className="min-h-screen bg-[#fcf9f8] text-[#1a1c1c] relative overflow-hidden">
       {/* Background Subtle Texture */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0" 
-        style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} 
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }}
       />
 
       <Navbar />
 
       <main className="pt-24 relative z-10">
-        
+
         {/* HERO SECTION */}
         <section className="relative py-20 bg-[#064015] overflow-hidden">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -179,7 +179,7 @@ export default function ExportInquiryPage() {
           </div>
           {/* Ambient Lighting */}
           <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-[#fed65b]/10 blur-[130px] rounded-full" />
-          
+
           <div className="max-w-[1280px] mx-auto px-6 md:px-16 relative z-10 text-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -189,7 +189,7 @@ export default function ExportInquiryPage() {
             >
               <Globe size={14} /> B2B Global Trade Desk
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ export default function ExportInquiryPage() {
             >
               Export <span className="text-[#fed65b]">Inquiry</span> Portal
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -232,7 +232,7 @@ export default function ExportInquiryPage() {
 
             <div className="p-8 md:p-12">
               {submitSuccess ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
@@ -244,7 +244,7 @@ export default function ExportInquiryPage() {
                   <p className="text-gray-500 max-w-lg mx-auto text-sm leading-relaxed mb-10">
                     Thank you. Your detailed B2B export specification has been secured. Our Export Desk will contact your corporate office with customized pricing and compliance sheets within 12 hours.
                   </p>
-                  
+
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <button
                       onClick={handleWhatsAppSubmit}
@@ -262,13 +262,13 @@ export default function ExportInquiryPage() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
-                  
+
                   {/* Part 1: Contact Details */}
                   <div>
                     <h3 className="text-xs font-bold uppercase tracking-widest text-[#d4af37] border-l-2 border-[#d4af37] pl-3 mb-6">
                       1. Corporate Identity & Contact
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="relative">
                         <label className="block text-[11px] uppercase font-extrabold text-[#002e0b] tracking-wider mb-2">Full Name *</label>
@@ -365,7 +365,7 @@ export default function ExportInquiryPage() {
                     <h3 className="text-xs font-bold uppercase tracking-widest text-[#d4af37] border-l-2 border-[#d4af37] pl-3 mb-6">
                       2. Product & Procurement Scope
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-[11px] uppercase font-extrabold text-[#002e0b] tracking-wider mb-2">Target Concern / Mill *</label>
@@ -380,13 +380,13 @@ export default function ExportInquiryPage() {
                                 {f.title}
                               </option>
                             )) || (
-                              <>
-                                <option value="1">Hasan Jute Mills Ltd (Unit 1)</option>
-                                <option value="2">Hasan Jute & Spinning (Unit 2)</option>
-                                <option value="3">Pulp & Paper Unit-1 (Unit 3)</option>
-                                <option value="4">Hasan Metal Industries (Unit 4)</option>
-                              </>
-                            )}
+                                <>
+                                  <option value="1">Hasan Jute Mills Ltd (Unit 1)</option>
+                                  <option value="2">Hasan Jute & Spinning (Unit 2)</option>
+                                  <option value="3">Pulp & Paper Unit-1 (Unit 3)</option>
+                                  <option value="4">Hasan Metal Industries (Unit 4)</option>
+                                </>
+                              )}
                           </select>
                           <Layers className="absolute left-4 top-1/2 -translate-y-1/2 text-[#064015]/30" size={16} />
                         </div>
@@ -456,7 +456,7 @@ export default function ExportInquiryPage() {
                     <h3 className="text-xs font-bold uppercase tracking-widest text-[#d4af37] border-l-2 border-[#d4af37] pl-3 mb-6">
                       3. Bespoke Specifications & Packing Details
                     </h3>
-                    
+
                     <div>
                       <label className="block text-[11px] uppercase font-extrabold text-[#002e0b] tracking-wider mb-2">Technical Description / R&D Criteria</label>
                       <textarea
@@ -484,7 +484,7 @@ export default function ExportInquiryPage() {
                         </>
                       )}
                     </button>
-                    
+
                     <button
                       type="button"
                       onClick={handleWhatsAppSubmit}

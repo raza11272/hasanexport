@@ -32,21 +32,21 @@ const Gallery = () => {
 
   const galleryItems = data?.galleries?.length
     ? data.galleries.map((item: any) => ({
-        id: item.documentId,
-        category: item.category?.name || "PROCESS",
-        image: item.image?.url
-          ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
-          : item.image_url,
-        title: item.title,
-        span: item.span || "small"
-      }))
+      id: item.documentId,
+      category: item.category?.name || "PROCESS",
+      image: item.image?.url
+        ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
+        : item.image_url,
+      title: item.title,
+      span: item.span || "small"
+    }))
     : [];
 
   const fetchedCategories = data?.imageCategories?.map((c: any) => c.name) || [];
-  
+
   // Fallback to unique categories in items if fetchedCategories is empty
-  const categoriesList = fetchedCategories.length > 0 
-    ? fetchedCategories 
+  const categoriesList = fetchedCategories.length > 0
+    ? fetchedCategories
     : Array.from(new Set(galleryItems.map((item: any) => item.category)));
 
   return (
@@ -63,7 +63,7 @@ const Gallery = () => {
             </h2>
             <div className="w-20 h-[2px] bg-[#0b4619]/20 mt-6" />
           </div>
-          
+
           <button className="flex items-center gap-2 px-6 py-3 border border-[#d4af37] text-[#d4af37] font-bold rounded-sm hover:bg-[#d4af37] hover:text-white transition-all group">
             EXPLORE ALL WORKS <ChevronDown size={18} className="group-hover:translate-y-1 transition-transform" />
           </button>
@@ -92,14 +92,14 @@ const Gallery = () => {
                       key={item.id}
                       className="break-inside-avoid mb-4 relative group rounded-2xl overflow-hidden shadow-xl cursor-pointer"
                     >
-                      <img 
-                        src={item.image} 
+                      <img
+                        src={item.image}
                         alt={item.title}
                         className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         style={{
-                          height: item.span === 'large' ? '380px' : 
-                                  item.span === 'wide' ? '220px' : 
-                                  '280px'
+                          height: item.span === 'large' ? '380px' :
+                            item.span === 'wide' ? '220px' :
+                              '280px'
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
