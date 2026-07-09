@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
+import { resolveImage } from '@/lib/utils';
 
 const GET_GALLERY_DATA = gql`
   query GetGalleryData {

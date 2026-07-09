@@ -9,12 +9,30 @@ import { CheckCircle, ArrowRight, Download, Mail, Phone, MapPin, Factory, Settin
 import Link from 'next/link';
 import { MOCK_FACTORIES, MOCK_PRODUCTS } from '@/lib/mockData';
 import { Playfair_Display } from 'next/font/google';
+import { resolveImage } from '@/lib/utils';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '600', '700', '800'],
   display: 'swap',
 });
+
+const getEmbedUrl = (url?: string) => {
+  if (!url) return '';
+  let videoId = '';
+  if (url.includes('youtu.be/')) {
+    videoId = url.split('youtu.be/')[1]?.split(/[?#]/)[0];
+  } else if (url.includes('youtube.com/watch')) {
+    videoId = url.split('v=')[1]?.split('&')[0];
+  } else if (url.includes('youtube.com/embed/')) {
+    videoId = url.split('embed/')[1]?.split(/[?#]/)[0];
+  }
+  
+  if (videoId) {
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1`;
+  }
+  return url;
+};
 
 
 
@@ -30,6 +48,10 @@ const GET_FACTORY_DETAILS = gql`
       description
       image_url
       image {
+        url
+      }
+      video_url
+      images {
         url
       }
       stats {
@@ -244,29 +266,25 @@ export default function UnitDetailsPage() {
       title: data.factory.title,
       tag: data.factory.tag,
       description: data.factory.description,
-      image: data.factory.image?.url
-        ? (data.factory.image.url.startsWith('http') ? data.factory.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${data.factory.image.url}`)
-        : data.factory.image_url,
+      image: resolveImage(data.factory.image, data.factory.image_url),
       stats: data.factory.stats || [],
       specs: data.factory.specs || [],
       process: data.factory.process || [],
       products: data.factory.products?.map((p: any) => ({
         title: p.title,
-        img: p.image?.url
-          ? (p.image.url.startsWith('http') ? p.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${p.image.url}`)
-          : p.image_url
+        img: resolveImage(p.image, p.image_url)
       })) || [],
       team_members: data.factory.team_members && data.factory.team_members.length > 0
         ? data.factory.team_members.map((m: any) => ({
           name: m.name,
           title: m.title,
           description: m.description,
-          img: m.image?.url
-            ? (m.image.url.startsWith('http') ? m.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${m.image.url}`)
-            : m.image_url
+          img: resolveImage(m.image, m.image_url)
         }))
         : (MOCK_TEAM_MEMBERS[id] || MOCK_TEAM_MEMBERS['n4w56pffj53kihujenib0185']),
-      images: resolvedMock?.images || []
+      images: (data.factory.images && data.factory.images.length > 0)
+        ? data.factory.images.map((img: any) => resolveImage(img, null))
+        : (resolvedMock?.images || [])
     }
     : (resolvedMock
       ? {
@@ -282,6 +300,9 @@ export default function UnitDetailsPage() {
         images: resolvedMock.images || []
       }
       : null);
+
+  const videoUrl = data?.factory?.video_url || resolvedMock?.video_url;
+  const embedUrl = getEmbedUrl(videoUrl);
 
   if (!unit) {
     return (
@@ -303,17 +324,17 @@ export default function UnitDetailsPage() {
         {/* Unit Hero Section */}
         <section className="relative w-full aspect-video md:h-[550px] md:aspect-auto flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
-            {resolvedMock?.video_url ? (
-              resolvedMock.video_url.includes('youtube.com') ? (
+            {videoUrl ? (
+              embedUrl.includes('youtube.com/embed') ? (
                 <iframe
-                  src={resolvedMock.video_url}
+                  src={embedUrl}
                   className="absolute top-1/2 left-1/2 w-[115%] h-[115%] -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-[1.35] pointer-events-none border-none select-none"
                   allow="autoplay; encrypted-media"
                   style={{ pointerEvents: 'none' }}
                 />
               ) : (
                 <video
-                  src={resolvedMock.video_url}
+                  src={videoUrl}
                   autoPlay
                   loop
                   muted

@@ -3,6 +3,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
+import { resolveImage } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Mail, ArrowUpRight } from 'lucide-react';
 
@@ -117,9 +118,7 @@ export default function TeamSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto justify-items-center">
           {team.map((member: any, index: number) => {
             // Prefer Strapi media library url if uploaded, then fallback to seed image_url
-            const imageSrc = member.image?.url 
-              ? (member.image.url.startsWith('http') ? member.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${member.image.url}`) 
-              : member.image_url;
+            const imageSrc = resolveImage(member.image, member.image_url);
 
             return (
               <motion.div

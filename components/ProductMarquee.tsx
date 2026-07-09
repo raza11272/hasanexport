@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
+import { resolveImage } from '@/lib/utils';
 
 const GET_MARQUEE_PRODUCTS = gql`
   query GetMarqueeProducts {
@@ -30,9 +31,7 @@ const ProductMarquee = () => {
     id: item.documentId,
     title: item.title,
     category: item.category?.name || "Premium Catalog",
-    img: item.image?.url 
-      ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
-      : item.image_url || ''
+    img: resolveImage(item.image, item.image_url)
   })) || [];
 
   if (products.length === 0) return null;

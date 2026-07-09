@@ -337,6 +337,45 @@ export const MOCK_FACTORIES: Record<string, Factory> = {
       '/img/Factories/metal/PXL_20260624_051106700.NIGHT.jpg',
       '/img/Factories/metal/PXL_20260624_051830040.jpg'
     ]
+  },
+  'msvpupyfca88mfr07msgh6wv': {
+    documentId: 'msvpupyfca88mfr07msgh6wv',
+    title: 'Hasan Flour Mill',
+    tag: 'Agro Food Processing',
+    description: 'Leading producer of premium quality flour, Maida, and Suji, utilizing advanced milling technology to deliver pure, high-grade agro products.',
+    image_url: '/img/Factories/flour/PXL_20260624_082829727.NIGHT.jpg',
+    video_url: 'https://www.youtube.com/embed/ickhlb2LVMY?autoplay=1&mute=1&loop=1&playlist=ickhlb2LVMY&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
+    stats: [],
+    specs: [],
+    process: [],
+    team_members: [],
+    images: []
+  },
+  'kcmwkfakndozp07sipr09v3a': {
+    documentId: 'kcmwkfakndozp07sipr09v3a',
+    title: 'Hasan Feed Mill',
+    tag: 'Agro & Animal Nutrition',
+    description: 'Premier manufacturer of high-quality animal feed, delivering scientifically formulated, nutrient-rich poultry, fish, and cattle feeds.',
+    image_url: '/img/Factories/feed/PXL_20260624_084229942.NIGHT.jpg',
+    video_url: 'https://www.youtube.com/embed/gPnpgvLs5NA?autoplay=1&mute=1&loop=1&playlist=gPnpgvLs5NA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
+    stats: [],
+    specs: [],
+    process: [],
+    team_members: [],
+    images: []
+  },
+  'kg1f4ktjkudfcfl0qvly6gsb': {
+    documentId: 'kg1f4ktjkudfcfl0qvly6gsb',
+    title: 'Hasan Transport',
+    tag: 'Logistics & Supply Chain',
+    description: 'Leading nationwide transport and logistics provider, offering reliable freight forwarding, efficient fleet management, and secure supply chain solutions.',
+    image_url: '/img/Factories/transport/PXL_20260624_055445139.jpg',
+    video_url: 'https://www.youtube.com/embed/m9Q8zYsT5d0?autoplay=1&mute=1&loop=1&playlist=m9Q8zYsT5d0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1',
+    stats: [],
+    specs: [],
+    process: [],
+    team_members: [],
+    images: []
   }
 };
 

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Factory, Settings, Leaf, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { resolveImage } from '@/lib/utils';
 
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
@@ -52,7 +53,6 @@ const IndustrialConcerns = () => {
 
   const concerns = data?.factories?.map((fac: any, index: number) => {
     const style = concernStyles[index % concernStyles.length];
-    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
     return {
       id: fac.documentId,
       title: fac.title,
@@ -61,9 +61,7 @@ const IndustrialConcerns = () => {
       color: style.color,
       textColor: style.textColor,
       icon: style.icon,
-      image: fac.image?.url
-        ? (fac.image.url.startsWith('http') ? fac.image.url : `${strapiUrl}${fac.image.url}`)
-        : fac.image_url
+      image: resolveImage(fac.image, fac.image_url)
     };
   }) || [];
 

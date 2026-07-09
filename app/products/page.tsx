@@ -22,6 +22,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import Link from 'next/link';
+import { resolveImage } from '@/lib/utils';
 
 import { useQuery, useMutation } from '@apollo/client/react';
 import { gql } from '@apollo/client';
@@ -113,9 +114,7 @@ export default function ProductsPage() {
       unitName: item.factory?.title || "Hasan Group Mill",
       title: item.title,
       description: item.description,
-      img: item.image?.url
-        ? (item.image.url.startsWith('http') ? item.image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${item.image.url}`)
-        : item.image_url,
+      img: resolveImage(item.image, item.image_url),
       specs: item.specs || [],
       features: item.features?.map((f: any) => f.text) || []
     }))

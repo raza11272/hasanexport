@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
+import { resolveImage } from '@/lib/utils';
 
 const GET_HERO_DATA = gql`
   query GetHeroData {
@@ -36,12 +37,8 @@ const Hero = () => {
     title: slide.industry_name,
     description: slide.description,
     subtitle: slide.subtitle || "THE GOLDEN FIBER OF BANGLADESH",
-    bgImage: slide.bg_image?.url
-      ? (slide.bg_image.url.startsWith('http') ? slide.bg_image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${slide.bg_image.url}`)
-      : slide.bg_image_url,
-    logoImage: slide.logo_image?.url
-      ? (slide.logo_image.url.startsWith('http') ? slide.logo_image.url : `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${slide.logo_image.url}`)
-      : slide.logo_image_url
+    bgImage: resolveImage(slide.bg_image, slide.bg_image_url),
+    logoImage: resolveImage(slide.logo_image, slide.logo_image_url)
   })) || [];
 
   useEffect(() => {
