@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
 import { resolveImage } from '@/lib/utils';
@@ -90,14 +89,14 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#121111]">
-      
+
       {/* Cinematic Zoom Background Slider */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <AnimatePresence mode="popLayout">
           <motion.div
             key={slideIndex}
             initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1.10 }}
+            animate={{ opacity: 0.45, scale: 1.10 }}
             exit={{ opacity: 0, scale: 1.15 }}
             transition={{
               opacity: { duration: 1.6, ease: "easeInOut" },
@@ -106,9 +105,9 @@ const Hero = () => {
             className="absolute inset-0 w-full h-full"
           >
             {activeSlides[slideIndex].bgImage ? (
-              <img 
-                src={activeSlides[slideIndex].bgImage} 
-                alt={activeSlides[slideIndex].title} 
+              <img
+                src={activeSlides[slideIndex].bgImage}
+                alt={activeSlides[slideIndex].title}
                 className="w-full h-full object-cover select-none pointer-events-none"
               />
             ) : (
@@ -117,12 +116,12 @@ const Hero = () => {
           </motion.div>
         </AnimatePresence>
         {/* Dark Overlay with Gradient */}
-        <div className="absolute inset-0 bg-black/65 bg-gradient-to-b from-black/55 via-transparent to-black/90 z-10" />
+        <div className="absolute inset-0 bg-black/10 bg-gradient-to-b from-black/15 via-transparent to-black/20 z-10" />
       </div>
 
       {/* Content Container */}
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto pt-20 md:pt-0 flex flex-col items-center justify-center">
-        
+
         {/* Logo Image above title */}
         {activeSlides[slideIndex].logoImage && (
           <AnimatePresence mode="wait">
@@ -134,16 +133,16 @@ const Hero = () => {
               transition={{ duration: 0.5 }}
               className="mt-16 md:mt-24 mb-8 bg-white/95 px-5 py-2.5 rounded-2xl inline-flex items-center justify-center shadow-lg backdrop-blur-md border border-white/20 hover:scale-102 transition-transform duration-300"
             >
-              <img 
-                src={activeSlides[slideIndex].logoImage} 
-                alt="Concern Logo" 
+              <img
+                src={activeSlides[slideIndex].logoImage}
+                alt="Concern Logo"
                 className="h-14 md:h-20 object-contain w-auto"
               />
             </motion.div>
           </AnimatePresence>
         )}
 
-        <motion.span 
+        <motion.span
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -152,7 +151,7 @@ const Hero = () => {
           {activeSlides[slideIndex].subtitle}
         </motion.span>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -162,8 +161,8 @@ const Hero = () => {
           <span className="text-[#fed65b] italic font-normal text-glow min-h-[48px] md:min-h-[75px] flex items-center justify-center flex-wrap px-4 text-3xl md:text-6xl mt-2">
             {displayedText}
             {/* Blinking Cursor */}
-            <span 
-              className="w-[3px] md:w-[5px] h-[28px] md:h-[50px] bg-[#fed65b] ml-2 inline-block animate-blink shrink-0 shadow-lg shadow-[#fed65b]/50" 
+            <span
+              className="w-[3px] md:w-[5px] h-[28px] md:h-[50px] bg-[#fed65b] ml-2 inline-block animate-blink shrink-0 shadow-lg shadow-[#fed65b]/50"
               style={{ verticalAlign: 'middle' }}
             />
           </span>
@@ -172,7 +171,7 @@ const Hero = () => {
         {/* Dynamic Slide Description with crossfade */}
         <div className="min-h-[60px] md:min-h-[90px] flex items-center justify-center w-full">
           <AnimatePresence mode="wait">
-            <motion.p 
+            <motion.p
               key={slideIndex}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -185,26 +184,7 @@ const Hero = () => {
           </AnimatePresence>
         </div>
 
-        {/* Action Buttons */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full md:w-auto"
-        >
-          <Link 
-            href="/#legacy"
-            className="px-10 py-3.5 md:py-4 bg-[#fed65b] hover:bg-white text-[#002e0b] hover:text-[#002e0b] font-bold rounded-sm hover:scale-105 transition-all uppercase tracking-widest text-[11px] md:text-xs shadow-2xl flex items-center justify-center"
-          >
-            Discover Our Legacy
-          </Link>
-          <Link 
-            href="/products"
-            className="px-10 py-3.5 md:py-4 border border-white text-white font-bold rounded-sm hover:bg-white hover:text-[#002e0b] transition-all uppercase tracking-widest text-[11px] md:text-xs flex items-center justify-center backdrop-blur-sm"
-          >
-            Explore Catalog
-          </Link>
-        </motion.div>
+
       </div>
 
       {/* Custom Styles for Cursor Blink Animation and Text Glow */}

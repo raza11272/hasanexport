@@ -377,12 +377,12 @@ export default function ProductsPage() {
 
                             {/* Technical Specs Small Table */}
                             <div className="space-y-2.5 mb-6 pt-5 border-t border-[#0b4619]/5">
-                              <div className="text-[10px] uppercase font-bold text-[#064015]/40 tracking-wider">Specifications</div>
-                              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                              <div className="text-xs uppercase font-bold text-[#064015]/60 tracking-wider">Specifications</div>
+                              <div className="grid grid-cols-2 gap-x-4 gap-y-3">
                                 {product.specs.slice(0, 4).map((spec: any, i: number) => (
-                                  <div key={i} className="flex flex-col border-b border-[#0b4619]/5 pb-1">
-                                    <span className="text-[9px] text-gray-400 uppercase font-medium">{spec.label}</span>
-                                    <span className="text-xs text-[#064015] font-semibold truncate">{spec.value}</span>
+                                  <div key={i} className="flex flex-col border-b border-[#0b4619]/10 pb-1.5">
+                                    <span className="text-[11px] text-gray-500 uppercase font-bold tracking-wide">{spec.label}</span>
+                                    <span className="text-sm md:text-base text-[#064015] font-bold leading-tight">{spec.value}</span>
                                   </div>
                                 ))}
                               </div>

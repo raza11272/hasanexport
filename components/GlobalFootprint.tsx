@@ -1,53 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const GlobalFootprint = () => {
-  const factories = [
-    "HASAN JUTE MILLS LTD",
-    "HASAN JUTE & SPINNING",
-    "PULP & PAPER UNIT-1",
-    "HASAN METAL INDUSTRIES"
-  ];
 
-  const [displayedText, setDisplayedText] = useState("");
-  const [factoryIndex, setFactoryIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentFullText = factories[factoryIndex];
-
-    const handleTyping = () => {
-      if (!isDeleting) {
-        // Typing phase
-        const nextText = currentFullText.slice(0, displayedText.length + 1);
-        setDisplayedText(nextText);
-
-        // Pause when fully typed
-        if (nextText === currentFullText) {
-          setTimeout(() => setIsDeleting(true), 2200);
-        }
-      } else {
-        // Rapid backspacing deleting phase
-        const nextText = currentFullText.slice(0, displayedText.length - 1);
-        setDisplayedText(nextText);
-
-        // Cycle to next factory when fully deleted
-        if (nextText === "") {
-          setIsDeleting(false);
-          setFactoryIndex((prev) => (prev + 1) % factories.length);
-        }
-      }
-    };
-
-    // Realistic typing speed (100ms) vs rapid deleting speed (40ms)
-    const typingTimer = setTimeout(
-      handleTyping,
-      isDeleting ? 40 : 100
-    );
-
-    return () => clearTimeout(typingTimer);
-  }, [displayedText, isDeleting, factoryIndex]);
 
   return (
     <section 
@@ -80,26 +36,10 @@ const GlobalFootprint = () => {
       </div>
 
       {/* FOREGROUND HIGH-END TYPING LAYER */}
-      <div className="relative z-20 max-w-5xl mx-auto w-full flex flex-col items-center justify-center gap-2 md:gap-4">
-        
-        {/* Cinematic Header Prefix */}
-        <span className="text-white/90 text-xs md:text-sm font-mono uppercase tracking-[0.45em] mb-2 md:mb-4 select-none">
-          Connecting The World Through
-        </span>
-
-        {/* Dynamic Looping Factory Names Typing */}
-        <h2 className="font-serif text-3xl md:text-7xl font-bold uppercase tracking-tight leading-none select-none flex items-center justify-center flex-wrap">
-          {/* Dynamic Factory Title */}
-          <span className="text-[#fed65b] italic font-normal text-glow whitespace-pre-wrap px-4 text-3xl md:text-7xl">
-            {displayedText}
-          </span>
-          {/* Blinking Cursor */}
-          <span 
-            className="w-[4px] md:w-[6px] h-[28px] md:h-[60px] bg-[#fed65b] ml-1 inline-block animate-blink shrink-0 shadow-lg shadow-[#fed65b]/50" 
-            style={{ verticalAlign: 'middle' }}
-          />
+      <div className="relative z-20 max-w-5xl mx-auto w-full px-4 text-center">
+        <h2 className="font-serif text-xl sm:text-3xl md:text-5xl lg:text-6xl text-[#fed65b] italic font-normal text-glow leading-tight uppercase select-none">
+          Hasan Group of Industries
         </h2>
-        
       </div>
 
       {/* Custom Styles for Cursor Blink Animation and Text Glow */}

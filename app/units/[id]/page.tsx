@@ -6,34 +6,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, ArrowRight, Download, Mail, Phone, MapPin, Factory, Settings, Leaf, Globe, X, ChevronLeft, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
-import { MOCK_FACTORIES, MOCK_PRODUCTS } from '@/lib/mockData';
-import { Playfair_Display } from 'next/font/google';
-import { resolveImage } from '@/lib/utils';
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  display: 'swap',
-});
-
-const getEmbedUrl = (url?: string) => {
-  if (!url) return '';
-  let videoId = '';
-  if (url.includes('youtu.be/')) {
-    videoId = url.split('youtu.be/')[1]?.split(/[?#]/)[0];
-  } else if (url.includes('youtube.com/watch')) {
-    videoId = url.split('v=')[1]?.split('&')[0];
-  } else if (url.includes('youtube.com/embed/')) {
-    videoId = url.split('embed/')[1]?.split(/[?#]/)[0];
-  }
-  
-  if (videoId) {
-    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1`;
-  }
-  return url;
-};
-
+import { resolveImage, getStrapiMediaUrl } from '@/lib/utils';
+import VideoBackground from '@/components/VideoBackground';
 
 
 import { useQuery } from '@apollo/client/react';
@@ -51,7 +25,7 @@ const GET_FACTORY_DETAILS = gql`
         url
       }
       video_url
-      images {
+      images(pagination: { limit: -1 }) {
         url
       }
       stats {
@@ -66,7 +40,7 @@ const GET_FACTORY_DETAILS = gql`
         step
         detail
       }
-      team_members {
+      team_members(pagination: { limit: -1 }) {
         name
         title
         description
@@ -75,7 +49,7 @@ const GET_FACTORY_DETAILS = gql`
           url
         }
       }
-      products(sort: "id:asc") {
+      products(sort: "id:asc", pagination: { limit: -1 }) {
         documentId
         title
         image_url
@@ -87,118 +61,7 @@ const GET_FACTORY_DETAILS = gql`
   }
 `;
 
-const MOCK_TEAM_MEMBERS: Record<string, Array<{ name: string; title: string; img: string }>> = {
-  'n4w56pffj53kihujenib0185': [
-    {
-      name: 'Mr. Md. Hasan',
-      title: 'Founder & Chairman, Hasan Group',
-      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Sultana Siddiqua',
-      title: 'Director of International Trade',
-      img: '/img/sultana_siddiqua.png'
-    },
-    {
-      name: 'Rahim Ahmed',
-      title: 'Chief Operations Officer',
-      img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Kazi Mohammad',
-      title: 'Head of Sustainable Innovation',
-      img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&h=600&fit=crop'
-    }
-  ],
-  'l2dsj0qp6ee0qy0dhss2avi9': [
-    {
-      name: 'Masud Rahman',
-      title: 'Senior Plant Manager',
-      img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Laila Sultana',
-      title: 'Lead Quality Auditor',
-      img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Farhan Saeed',
-      title: 'Spinning Supervisor',
-      img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Rina Chowdhury',
-      title: 'HR Specialist',
-      img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=600&fit=crop'
-    }
-  ],
-  'bfymz3bnzdt1xv0103ato959': [
-    {
-      name: 'Robert Chen',
-      title: 'Technical Director',
-      img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Anisul Islam',
-      title: 'Operations Manager',
-      img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Yousuf Khan',
-      title: 'Lead Paper Technologist',
-      img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Sadia Rahman',
-      title: 'Quality Control Specialist',
-      img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=600&fit=crop'
-    }
-  ],
-  'pyyh0n9f32r7xflorn0tw8wg': [
-    {
-      name: 'Amit Patel',
-      title: 'Chief Metallurgical Engineer',
-      img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Tariq Mahmud',
-      title: 'Safety & Compliance Inspector',
-      img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Vikram Singh',
-      title: 'CNC Workshop Lead',
-      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Nilufar Yeasmin',
-      title: 'Chief Safety Officer',
-      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop'
-    }
-  ],
-  'tfwlvcxm8g6zi7g7booeop8h': [
-    {
-      name: 'Mr. Md. Hasan',
-      title: 'Founder & Chairman, Hasan Group',
-      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Sultana Siddiqua',
-      title: 'Director of International Trade',
-      img: '/img/sultana_siddiqua.png'
-    },
-    {
-      name: 'Rahim Ahmed',
-      title: 'Chief Operations Officer',
-      img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop'
-    },
-    {
-      name: 'Kazi Mohammad',
-      title: 'Head of Sustainable Innovation',
-      img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&h=600&fit=crop'
-    }
-  ]
-};
+
 
 const LadyPlaceholder = () => (
   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#fcf9f8] to-[#edf3ed] relative">
@@ -240,26 +103,7 @@ export default function UnitDetailsPage() {
     errorPolicy: 'all'
   });
 
-  const getMockUnitByTitleOrId = (unitId: string, title?: string) => {
-    if (MOCK_FACTORIES[unitId]) return MOCK_FACTORIES[unitId];
-    if (!title) return null;
-    const titleLower = title.toLowerCase();
-    if (titleLower.includes('spinning')) {
-      return MOCK_FACTORIES['l2dsj0qp6ee0qy0dhss2avi9']; // spinning
-    }
-    if (titleLower.includes('paper') || titleLower.includes('pulp')) {
-      return MOCK_FACTORIES['bfymz3bnzdt1xv0103ato959']; // paper
-    }
-    if (titleLower.includes('metal')) {
-      return MOCK_FACTORIES['pyyh0n9f32r7xflorn0tw8wg']; // metal
-    }
-    if (titleLower.includes('jute')) {
-      return MOCK_FACTORIES['n4w56pffj53kihujenib0185']; // jute mills
-    }
-    return null;
-  };
 
-  const resolvedMock = getMockUnitByTitleOrId(id, data?.factory?.title);
 
   const unit = data?.factory
     ? {
@@ -274,35 +118,17 @@ export default function UnitDetailsPage() {
         title: p.title,
         img: resolveImage(p.image, p.image_url)
       })) || [],
-      team_members: data.factory.team_members && data.factory.team_members.length > 0
-        ? data.factory.team_members.map((m: any) => ({
-          name: m.name,
-          title: m.title,
-          description: m.description,
-          img: resolveImage(m.image, m.image_url)
-        }))
-        : (MOCK_TEAM_MEMBERS[id] || MOCK_TEAM_MEMBERS['n4w56pffj53kihujenib0185']),
-      images: (data.factory.images && data.factory.images.length > 0)
-        ? data.factory.images.map((img: any) => resolveImage(img, null))
-        : (resolvedMock?.images || [])
+      team_members: data.factory.team_members?.map((m: any) => ({
+        name: m.name,
+        title: m.title,
+        description: m.description,
+        img: resolveImage(m.image, m.image_url)
+      })) || [],
+      images: data.factory.images?.map((img: any) => resolveImage(img, null)) || []
     }
-    : (resolvedMock
-      ? {
-        title: resolvedMock.title,
-        tag: resolvedMock.tag,
-        description: resolvedMock.description,
-        image: resolvedMock.image_url,
-        stats: resolvedMock.stats || [],
-        specs: resolvedMock.specs || [],
-        process: resolvedMock.process || [],
-        products: MOCK_PRODUCTS.filter(p => p.factoryId === resolvedMock.documentId).map(p => ({ title: p.title, img: p.image_url })),
-        team_members: resolvedMock.team_members || [],
-        images: resolvedMock.images || []
-      }
-      : null);
+    : null;
 
-  const videoUrl = data?.factory?.video_url || resolvedMock?.video_url;
-  const embedUrl = getEmbedUrl(videoUrl);
+  const videoUrl = data?.factory?.video_url ? getStrapiMediaUrl(data.factory.video_url) : '';
 
   if (!unit) {
     return (
@@ -322,41 +148,30 @@ export default function UnitDetailsPage() {
 
       <main className="pt-20">
         {/* Unit Hero Section */}
-        <section className="relative w-full aspect-video md:h-[550px] md:aspect-auto flex items-center overflow-hidden">
+        <section className="relative w-full aspect-video md:h-[550px] md:aspect-auto flex items-start justify-center overflow-hidden pt-4 md:pt-8">
           <div className="absolute inset-0 z-0">
             {videoUrl ? (
-              embedUrl.includes('youtube.com/embed') ? (
-                <iframe
-                  src={embedUrl}
-                  className="absolute top-1/2 left-1/2 w-[115%] h-[115%] -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-[1.35] pointer-events-none border-none select-none"
-                  allow="autoplay; encrypted-media"
-                  style={{ pointerEvents: 'none' }}
-                />
-              ) : (
-                <video
-                  src={videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              )
-            ) : unit.image ? (
-              <img src={unit.image} alt={unit.title} className="w-full h-full object-cover" />
+              <VideoBackground
+                videoUrl={videoUrl}
+                posterUrl={unit.image || undefined}
+                className="absolute inset-0"
+              />
             ) : (
               <div className="w-full h-full bg-[#002e0b]" />
             )}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#002e0b]/60 via-[#002e0b]/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#002e0b]/70 via-[#002e0b]/30 to-transparent" />
           </div>
 
-          <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-16 w-full py-4 md:py-0">
+          <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-16 w-full py-4 md:py-0 flex justify-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="max-w-3xl text-center md:text-left flex flex-col items-center md:items-start"
+              className="max-w-3xl text-center flex flex-col items-center justify-center"
             >
-              <h1 className="text-2xl sm:text-3xl md:text-7xl font-extrabold text-white uppercase font-fancy tracking-[0.02em] leading-tight break-words">
+              <h1
+                className="text-xl sm:text-2xl md:text-5xl font-normal text-[#fed65b] italic font-serif uppercase tracking-[0.02em] leading-tight break-words"
+                style={{ textShadow: '0 0 25px rgba(254, 214, 91, 0.2)' }}
+              >
                 {unit.title}
               </h1>
             </motion.div>
@@ -386,15 +201,15 @@ export default function UnitDetailsPage() {
                   >
                     {/* Image Container */}
                     <div className="aspect-[4/5] w-full overflow-hidden relative bg-[#064015]/5">
-                      {member.name === 'Sultana Siddiqua' || member.name === 'Sarah Hasan' ? (
-                        <LadyPlaceholder />
-                      ) : (
+                      {member.img ? (
                         <img
                           src={member.img}
                           alt={member.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           loading="lazy"
                         />
+                      ) : (
+                        <LadyPlaceholder />
                       )}
                     </div>
 
@@ -700,7 +515,7 @@ export default function UnitDetailsPage() {
                     e.stopPropagation();
                     setActiveImageIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : unit.images.length - 1));
                   }}
-                  className="absolute left-2 md:left-6 z-10 text-white/70 hover:text-white bg-black/50 hover:bg-black/70 p-3 md:p-4 rounded-full transition-colors"
+                  className="absolute left-2 md:left-6 z-10 text-white bg-[#002e0b]/80 hover:bg-[#002e0b] p-3 md:p-4 rounded-full transition-colors cursor-pointer"
                 >
                   <ChevronLeft size={24} />
                 </button>
@@ -710,7 +525,7 @@ export default function UnitDetailsPage() {
                     e.stopPropagation();
                     setActiveImageIndex((prev) => (prev !== null && prev < unit.images.length - 1 ? prev + 1 : 0));
                   }}
-                  className="absolute right-2 md:right-6 z-10 text-white/70 hover:text-white bg-black/50 hover:bg-black/70 p-3 md:p-4 rounded-full transition-colors"
+                  className="absolute right-2 md:right-6 z-10 text-white bg-[#002e0b]/80 hover:bg-[#002e0b] p-3 md:p-4 rounded-full transition-colors cursor-pointer"
                 >
                   <ChevronRight size={24} />
                 </button>
@@ -739,3 +554,5 @@ export default function UnitDetailsPage() {
     </div>
   );
 }
+
+

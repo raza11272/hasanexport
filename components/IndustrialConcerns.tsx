@@ -110,11 +110,13 @@ const IndustrialConcerns = () => {
 
               {/* Content */}
               <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end">
-                <div className="mb-4">
-                  <span className={`px-3 py-1 ${concern.color} ${concern.textColor} rounded-full text-[10px] font-bold uppercase tracking-wider`}>
-                    {concern.tag}
-                  </span>
-                </div>
+                {concern.tag && concern.tag.trim() !== '' && (
+                  <div className="mb-4">
+                    <span className={`px-3 py-1 ${concern.color} ${concern.textColor} rounded-full text-[10px] font-bold uppercase tracking-wider`}>
+                      {concern.tag}
+                    </span>
+                  </div>
+                )}
 
                 <h3 className="font-serif text-3xl font-bold text-white mb-2 flex items-center gap-3">
                   {concern.title}
