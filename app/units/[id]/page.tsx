@@ -25,6 +25,9 @@ const GET_FACTORY_DETAILS = gql`
         url
       }
       video_url
+      video {
+        url
+      }
       images(pagination: { limit: -1 }) {
         url
       }
@@ -128,7 +131,11 @@ export default function UnitDetailsPage() {
     }
     : null;
 
-  const videoUrl = data?.factory?.video_url ? getStrapiMediaUrl(data.factory.video_url) : '';
+  const videoUrl = data?.factory?.video?.url
+    ? getStrapiMediaUrl(data.factory.video.url)
+    : data?.factory?.video_url
+      ? getStrapiMediaUrl(data.factory.video_url)
+      : '/video/factory_fallback.mp4';
 
   if (!unit) {
     return (
