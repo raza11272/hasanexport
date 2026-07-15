@@ -21,18 +21,69 @@ export default function VideoBackground({ videoUrl, posterUrl, className = '' }:
   const ytId = getYoutubeId(videoUrl);
 
   if (!ytId) {
-    return (
-      <div className={`relative w-full h-full overflow-hidden ${className}`}>
-        <video
-          src={videoUrl}
-          autoPlay loop muted playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
-    );
+    return <DirectVideoBackground videoUrl={videoUrl} posterUrl={posterUrl} className={className} />;
   }
 
   return <YouTubeBackground ytId={ytId} posterUrl={posterUrl} className={className} />;
+}
+
+function DirectVideoBackground({ videoUrl, posterUrl, className = '' }: {
+  videoUrl: string;
+  posterUrl?: string;
+  className?: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showCover, setShowCover] = useState(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.readyState >= 3) {
+      setShowCover(false);
+    }
+
+    const handlePlaying = () => setShowCover(false);
+    video.addEventListener('playing', handlePlaying);
+    video.addEventListener('canplaythrough', handlePlaying);
+    video.addEventListener('play', handlePlaying);
+
+    // Fallback: hide cover after 4 seconds
+    const fallback = setTimeout(() => setShowCover(false), 4000);
+
+    return () => {
+      clearTimeout(fallback);
+      video.removeEventListener('playing', handlePlaying);
+      video.removeEventListener('canplaythrough', handlePlaying);
+      video.removeEventListener('play', handlePlaying);
+    };
+  }, [videoUrl]);
+
+  return (
+    <div className={`relative w-full h-full overflow-hidden ${className}`}>
+      <video
+        ref={videoRef}
+        src={videoUrl}
+        poster={posterUrl}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {posterUrl && (
+        <img
+          src={posterUrl}
+          alt="Video loading cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-700"
+          style={{
+            opacity: showCover ? 1 : 0,
+            transition: 'opacity 0.7s ease-in-out'
+          }}
+        />
+      )}
+    </div>
+  );
 }
 
 function YouTubeBackground({ ytId, posterUrl, className = '' }: {
@@ -95,7 +146,6 @@ function YouTubeBackground({ ytId, posterUrl, className = '' }: {
 
   return (
     <div className={`relative w-full h-full overflow-hidden   ${className}`}>
-
       {/* YouTube iframe — always present, full bleed, no controls */}
       <iframe
         ref={iframeRef}
@@ -106,8 +156,17 @@ function YouTubeBackground({ ytId, posterUrl, className = '' }: {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78%] h-[177.78%] min-w-full min-h-full"
         style={{ pointerEvents: 'none', border: 'none' }}
       />
-
-
+      {posterUrl && (
+        <img
+          src={posterUrl}
+          alt="Video loading cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-700"
+          style={{
+            opacity: showCover ? 1 : 0,
+            transition: 'opacity 0.7s ease-in-out'
+          }}
+        />
+      )}
     </div>
   );
 }
