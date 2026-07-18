@@ -27,7 +27,8 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 const GET_TEAM_MEMBERS = gql`
   query GetTeamMembers {
-    teamMembers(sort: "id:asc", pagination: { limit: 3 }) {
+    teamMembers(pagination: { limit: 10 }) {
+      id
       documentId
       name
       title
@@ -90,7 +91,14 @@ export default function TeamSection() {
   ];
 
   const fetchedTeam = data?.teamMembers?.length ? data.teamMembers : [];
-  const team = fetchedTeam.length > 0 ? fetchedTeam : MOCK_TEAM;
+  
+  // Custom sorting and filtering based on user request (ID 1, 3, 5)
+  const targetIds = ['1', '3', '5'];
+  const filteredTeam = fetchedTeam
+    .filter((member: any) => targetIds.includes(member.id?.toString()))
+    .sort((a: any, b: any) => targetIds.indexOf(a.id?.toString()) - targetIds.indexOf(b.id?.toString()));
+
+  const team = filteredTeam.length > 0 ? filteredTeam : (fetchedTeam.length > 0 ? fetchedTeam.slice(0, 3) : MOCK_TEAM);
 
   return (
     <section id="team" className="py-24 bg-white relative overflow-hidden">

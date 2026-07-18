@@ -21,9 +21,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#fcf9f8]">
-      {/* Background Subtle Texture */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0" 
-           style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} />
+      {/* Removed texture overlay to ensure no dots appear over video */}
       
       <Navbar />
       

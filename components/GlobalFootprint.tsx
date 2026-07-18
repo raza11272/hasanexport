@@ -8,7 +8,7 @@ const GlobalFootprint = () => {
   return (
     <section 
       id="global-reach" 
-      className="relative w-full min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden py-24 px-6 text-center bg-[#121111]"
+      className="relative w-full min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden py-24 px-6 text-center "
     >
       
       {/* FULL-BLEED BACKGROUND VIDEO CONTAINER */}
@@ -21,7 +21,7 @@ const GlobalFootprint = () => {
         />
         
         {/* Very Light Dark Emerald Overlay for maximum video pop */}
-        <div className="absolute inset-0 bg-[#121111]/45 bg-gradient-to-b from-[#121111]/70 via-transparent to-[#121111]/80 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b via-transparent  z-10" />
         
         {/* Holographic Scanline Texture */}
         <div 

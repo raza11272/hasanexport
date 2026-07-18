@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@apollo/client/react';
 import { gql } from '@apollo/client';
 import { resolveImage } from '@/lib/utils';
+import VideoBackground from './VideoBackground';
 
 const GET_HERO_DATA = gql`
   query GetHeroData {
@@ -78,7 +79,7 @@ const Hero = () => {
 
   if (activeSlides.length === 0) {
     return (
-      <section className="h-screen w-full bg-[#121111] flex items-center justify-center">
+      <section className="h-screen w-full bg-transparent flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[#fed65b] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <span className="text-white/60 text-xs font-mono uppercase tracking-widest">Loading Portal...</span>
@@ -88,35 +89,11 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#121111]">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-transparent">
 
-      {/* Cinematic Zoom Background Slider */}
+      {/* Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            key={slideIndex}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 0.45, scale: 1.10 }}
-            exit={{ opacity: 0, scale: 1.15 }}
-            transition={{
-              opacity: { duration: 1.6, ease: "easeInOut" },
-              scale: { duration: 14.0, ease: "linear" }
-            }}
-            className="absolute inset-0 w-full h-full"
-          >
-            {activeSlides[slideIndex].bgImage ? (
-              <img
-                src={activeSlides[slideIndex].bgImage}
-                alt={activeSlides[slideIndex].title}
-                className="w-full h-full object-cover select-none pointer-events-none"
-              />
-            ) : (
-              <div className="w-full h-full bg-[#064015]" />
-            )}
-          </motion.div>
-        </AnimatePresence>
-        {/* Dark Overlay with Gradient */}
-        <div className="absolute inset-0 bg-black/10 bg-gradient-to-b from-black/15 via-transparent to-black/20 z-10" />
+        <VideoBackground videoUrl="https://youtu.be/eoQj0GFkuVE" />
       </div>
 
       {/* Content Container */}
