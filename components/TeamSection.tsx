@@ -27,8 +27,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 const GET_TEAM_MEMBERS = gql`
   query GetTeamMembers {
-    teamMembers(pagination: { limit: 10 }) {
-      id
+    teamMembers(sort: "id:asc", pagination: { limit: 10 }) {
       documentId
       name
       title
@@ -92,13 +91,22 @@ export default function TeamSection() {
 
   const fetchedTeam = data?.teamMembers?.length ? data.teamMembers : [];
   
-  // Custom sorting and filtering based on user request (ID 1, 3, 5)
-  const targetIds = ['1', '3', '5'];
-  const filteredTeam = fetchedTeam
-    .filter((member: any) => targetIds.includes(member.id?.toString()))
-    .sort((a: any, b: any) => targetIds.indexOf(a.id?.toString()) - targetIds.indexOf(b.id?.toString()));
+  let team = MOCK_TEAM;
+  if (fetchedTeam.length > 0) {
+    // Try to find specifically Yasa, Dewan, and Safaeit by name
+    const yasa = fetchedTeam.find((m: any) => m.name.toLowerCase().includes('yeasa') || m.name.toLowerCase().includes('yasa') || m.name.toLowerCase().includes('joy'));
+    const dewan = fetchedTeam.find((m: any) => m.name.toLowerCase().includes('dewan'));
+    const safaeit = fetchedTeam.find((m: any) => m.name.toLowerCase().includes('safaeit'));
 
-  const team = filteredTeam.length > 0 ? filteredTeam : (fetchedTeam.length > 0 ? fetchedTeam.slice(0, 3) : MOCK_TEAM);
+    if (yasa && dewan && safaeit) {
+      team = [yasa, dewan, safaeit];
+    } else if (fetchedTeam.length >= 5) {
+      // Fallback: If we have at least 5 members, pick exactly indices 0, 2, 4 (which correspond to id 1, 3, 5 if there are no gaps)
+      team = [fetchedTeam[0], fetchedTeam[2], fetchedTeam[4]];
+    } else {
+      team = fetchedTeam.slice(0, 3);
+    }
+  }
 
   return (
     <section id="team" className="py-24 bg-white relative overflow-hidden">
