@@ -12,7 +12,7 @@ import { gql } from '@apollo/client';
 
 const GET_FACTORIES = gql`
   query GetFactories {
-    factories(sort: "id:asc") {
+    factories(sort: "createdAt:asc") {
       documentId
       title
       tag

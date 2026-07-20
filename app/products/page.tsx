@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -29,29 +29,29 @@ import { gql } from '@apollo/client';
 
 const GET_PRODUCTS_PAGE_DATA = gql`
   query GetProductsPageData {
-    factories(sort: "id:asc") {
+    categories(sort: "id:asc") {
       documentId
-      title
-    }
-    products(sort: "id:asc") {
-      
-      documentId
-      title
-      description
-      image_url
-      image {
-        url
-      }
-      factory {
+      name
+      products(pagination: { limit: -1 }) {
         documentId
         title
-      }
-      specs {
-        label
-        value
-      }
-      features {
-        text
+        description
+        image_url
+        image {
+          url
+        }
+        factory {
+          documentId
+          title
+        }
+        specs {
+          label
+          value
+        }
+        features {
+          text
+        }
+        createdAt
       }
     }
   }
@@ -86,10 +86,19 @@ const CREATE_PRODUCT_INQUIRY = gql`
 
 
 export default function ProductsPage() {
-  const { data } = useQuery<any>(GET_PRODUCTS_PAGE_DATA, { errorPolicy: 'all' });
   const [createInquiry] = useMutation(CREATE_PRODUCT_INQUIRY);
 
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [restData, setRestData] = useState<any>(null);
+
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://hasanserver.srv1399648.hstgr.cloud';
+    fetch(`${apiUrl}/api/categories?populate[products][populate][0]=image&populate[products][populate][1]=specs&populate[products][populate][2]=features&populate[products][populate][3]=factory`)
+      .then(res => res.json())
+      .then(d => setRestData(d))
+      .catch(e => console.error(e));
+  }, []);
 
   // Modal Inquiry States
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
@@ -107,21 +116,24 @@ export default function ProductsPage() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Dynamic Products mapping
-  const products = data?.products?.length
-    ? data.products.map((item: any) => ({
-      id: item.documentId,
-      unitId: item.factory?.documentId || "",
-      unitName: item.factory?.title || "Hasan Group Mill",
-      title: item.title,
-      description: item.description,
-      img: resolveImage(item.image, item.image_url),
-      specs: item.specs || [],
-      features: item.features?.map((f: any) => f.text) || []
-    }))
+  const products = restData?.data?.length
+    ? restData.data.flatMap((category: any) =>
+      (category.products || []).map((item: any) => ({
+        id: item.documentId,
+        unitId: category.documentId,
+        factoryId: item.factory?.documentId,
+        unitName: category.name,
+        title: item.title,
+        description: item.description,
+        img: resolveImage(item.image, item.image_url),
+        specs: item.specs || [],
+        features: item.features?.map((f: any) => f.text) || []
+      }))
+    )
     : [];
 
-  const concernsList = data?.factories?.length
-    ? data.factories.map((f: any) => ({ id: f.documentId, name: f.title }))
+  const concernsList = restData?.data?.length
+    ? restData.data.map((c: any) => ({ id: c.documentId, name: c.name }))
     : [];
 
   const activeConcerns = concernsList.length > 0
@@ -376,17 +388,18 @@ export default function ProductsPage() {
                             </p>
 
                             {/* Technical Specs Small Table */}
-                            <div className="space-y-2.5 mb-6 pt-5 border-t border-[#0b4619]/5">
-                              <div className="text-xs uppercase font-bold text-[#064015]/60 tracking-wider">Specifications</div>
-                              <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-                                {product.specs.slice(0, 4).map((spec: any, i: number) => (
-                                  <div key={i} className="flex flex-col border-b border-[#0b4619]/10 pb-1.5">
-                                    <span className="text-[11px] text-gray-500 uppercase font-bold tracking-wide">{spec.label}</span>
-                                    <span className="text-sm md:text-base text-[#064015] font-bold leading-tight">{spec.value}</span>
-                                  </div>
-                                ))}
+                            {product.specs && product.specs.length > 0 && (
+                              <div className="space-y-2.5 mb-6 pt-5 border-t border-[#0b4619]/5">
+                                <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                                  {product.specs.slice(0, 4).map((spec: any, i: number) => (
+                                    <div key={i} className="flex flex-col border-b border-[#0b4619]/10 pb-1.5">
+                                      <span className="text-[11px] text-gray-500 uppercase font-bold tracking-wide">{spec.label}</span>
+                                      <span className="text-sm md:text-base text-[#064015] font-bold leading-tight">{spec.value}</span>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
+                            )}
 
                             {/* Bullet Highlights */}
                             <div className="mb-8 space-y-1.5">
@@ -408,7 +421,7 @@ export default function ProductsPage() {
                                 <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
                               </button>
                               <Link
-                                href={`/units/${product.unitId}`}
+                                href={`/units/${product.factoryId || product.unitId}`}
                                 className="py-3 bg-[#fcf9f8] text-[#064015] border border-[#0b4619]/10 font-bold rounded-xl text-[11px] uppercase tracking-wider hover:bg-[#064015]/5 transition-all flex items-center justify-center gap-1.5"
                               >
                                 Factory Profile

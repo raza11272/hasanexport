@@ -23,7 +23,7 @@ import { gql } from '@apollo/client';
 
 const GET_INQUIRY_PAGE_DATA = gql`
   query GetInquiryPageData {
-    factories(sort: "id:asc") {
+    factories(sort: "createdAt:asc") {
       documentId
       title
     }

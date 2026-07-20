@@ -10,7 +10,7 @@ import { gql } from '@apollo/client';
 
 const GET_FOOTER_FACTORIES = gql`
   query GetFooterFactories {
-    factories(sort: "id:asc") {
+    factories(sort: "createdAt:asc") {
       documentId
       title
     }

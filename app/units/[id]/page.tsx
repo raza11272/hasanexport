@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -304,7 +305,7 @@ export default function UnitDetailsPage() {
                     transition={{ delay: i * 0.1 }}
                     className="flex justify-between items-center p-6 bg-white border border-[#0b4619]/5 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <span className="text-[#41493f]/60 font-bold text-[10px] uppercase tracking-wider">{spec.name}</span>
+                    <span className="text-[#002e0b] font-bold text-sm md:text-base capitalize tracking-wide">{spec.name}</span>
                     <span className="text-[#0b4619] font-bold text-sm">{spec.value}</span>
                   </motion.div>
                 ))}
@@ -415,22 +416,24 @@ export default function UnitDetailsPage() {
                     transition={{ delay: i * 0.1 }}
                     className="group cursor-pointer"
                   >
-                    <div className="aspect-[3/4] rounded-2xl md:rounded-[32px] overflow-hidden mb-3 md:mb-4 relative">
-                      <img
-                        src={product.img}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        alt={product.title}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
-                        <button className="w-full py-3 bg-white text-[#0b4619] font-bold rounded-xl text-xs uppercase tracking-widest shadow-xl">
-                          View Details
-                        </button>
+                    <Link href="/products" className="block">
+                      <div className="aspect-[3/4] rounded-2xl md:rounded-[32px] overflow-hidden mb-3 md:mb-4 relative">
+                        <img
+                          src={product.img}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          alt={product.title}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
+                          <button className="w-full py-3 bg-white text-[#0b4619] font-bold rounded-xl text-xs uppercase tracking-widest shadow-xl">
+                            View Details
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <h4 className="font-serif text-sm md:text-lg font-bold text-[#002e0b] group-hover:text-[#d4af37] transition-colors line-clamp-1">
-                      {product.title}
-                    </h4>
+                      <h4 className="font-serif text-sm md:text-lg font-bold text-[#002e0b] group-hover:text-[#d4af37] transition-colors line-clamp-1">
+                        {product.title}
+                      </h4>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
