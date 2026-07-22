@@ -38,7 +38,7 @@ const Navbar = () => {
             { name: 'Products', href: '/products' },
             { name: 'Global', href: '/#global-reach' },
             { name: 'Process', href: '/#process' },
-            { name: 'Gallery', href: '/#gallery' },
+            { name: 'Gallery', href: '/gallery' },
             { name: 'Contact', href: '/#contact' },
           ].map((item) => (
             <Link 
@@ -87,7 +87,7 @@ const Navbar = () => {
               { name: 'Products', href: '/products' },
               { name: 'Global', href: '/#global-reach' },
               { name: 'Process', href: '/#process' },
-              { name: 'Gallery', href: '/#gallery' },
+              { name: 'Gallery', href: '/gallery' },
               { name: 'Contact', href: '/#contact' },
             ].map((item) => (
               <Link 
