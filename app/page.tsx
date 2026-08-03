@@ -12,22 +12,22 @@ import GlobalFootprint from '@/components/GlobalFootprint';
 import IndustrialConcerns from '@/components/IndustrialConcerns';
 import ProductMarquee from '@/components/ProductMarquee';
 import Footer from '@/components/Footer';
-              
+
 export const metadata = {
   title: 'Hasan Group | Global Jute & Industrial Excellence',
   description: 'Premium industrial portal for Hasan Jute Mills and associated concerns. Leading the way in sustainable jute, spinning, and paper manufacturing.',
 };
- 
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#fcf9f8]">
       {/* Removed texture overlay to ensure no dots appear over video */}
-      
+
       <Navbar />
-      
+
       <main className="relative z-10">
         <Hero />
-        
+
         {/* About / Vision Section */}
         <MDMessage />
 
@@ -36,29 +36,29 @@ export default function HomePage() {
 
         {/* Board & Leadership Section */}
         <TeamSection />
-        
+
         {/* Business Scale Section */}
         <IndustrialConcerns />
-        
+
         {/* Dynamic Infinite Product Marquee Section */}
         <ProductMarquee />
-        
+
         {/* Global Impact Section */}
         <GlobalFootprint />
-        
+
         {/* Quality & Manufacturing Section */}
         <ProcessSection />
-        
+
         {/* Trust & Social Proof Section */}
         <Achievements />
-        
+
         {/* Visual Showcase Section */}
         <Gallery />
-        
+
         {/* Engagement Section */}
         <ContactSection />
       </main>
-      
+
       <Footer />
     </div>
   );

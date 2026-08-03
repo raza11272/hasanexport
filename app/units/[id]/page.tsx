@@ -19,6 +19,7 @@ const GET_FACTORY_DETAILS = gql`
     factory(documentId: $documentId) {
       documentId
       title
+      innertitle
       tag
       description
       image_url
@@ -111,7 +112,7 @@ export default function UnitDetailsPage() {
 
   const unit = data?.factory
     ? {
-      title: data.factory.title,
+      title: data.factory.innertitle?.trim() || data.factory.title,
       tag: data.factory.tag,
       description: data.factory.description,
       image: resolveImage(data.factory.image, data.factory.image_url),
@@ -403,34 +404,43 @@ export default function UnitDetailsPage() {
               <div className="flex items-center justify-center md:justify-start gap-4 mb-10">
                 <span className="w-12 h-[2px] bg-[#d4af37] hidden md:block" />
                 <h2 className="font-serif text-3xl font-bold text-[#002e0b] text-center md:text-left">
-                  <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-5xl pr-1">Primary</span> <span className="text-[#d4af37] font-signature normal-case tracking-normal font-normal text-4xl md:text-5xl">Outputs</span>
+                  <span className="font-signature text-[#002e0b] normal-case tracking-normal font-normal text-4xl md:text-5xl pr-1">Primary</span>{' '}
+                  <span className="text-[#d4af37] font-signature normal-case tracking-normal font-normal text-4xl md:text-5xl">Outputs</span>
                 </h2>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-                {unit.products.map((product: any, i: number) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {unit.products.map((product: any, pi: number) => (
                   <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="group cursor-pointer"
+                    key={pi}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: pi * 0.1, duration: 0.5 }}
+                    className="group"
                   >
                     <Link href="/products" className="block">
-                      <div className="aspect-[3/4] rounded-2xl md:rounded-[32px] overflow-hidden mb-3 md:mb-4 relative">
-                        <img
-                          src={product.img}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                          alt={product.title}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#002e0b]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
-                          <button className="w-full py-3 bg-white text-[#0b4619] font-bold rounded-xl text-xs uppercase tracking-widest shadow-xl">
-                            View Details
-                          </button>
+                      <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl md:rounded-[32px] bg-[#f9f8f6] relative flex items-center justify-center p-3 shadow-sm group-hover:shadow-md transition-all duration-500">
+                        {product.img ? (
+                          <img
+                            src={product.img}
+                            alt={product.title}
+                            className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="text-[#002e0b]/40 text-xs">No Image</div>
+                        )}
+
+                        {/* Hover Overlay with VIEW DETAILS Pill Button */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b4619]/80 via-[#0b4619]/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 px-4">
+                          <span className="w-full text-center py-2.5 px-4 bg-white text-[#002e0b] font-bold text-xs uppercase tracking-wider rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                            VIEW DETAILS
+                          </span>
                         </div>
                       </div>
-                      <h4 className="font-serif text-sm md:text-lg font-bold text-[#002e0b] group-hover:text-[#d4af37] transition-colors line-clamp-1">
+
+                      <h4 className="font-serif text-base md:text-lg font-bold text-[#002e0b] mt-3 group-hover:text-[#d4af37] transition-colors">
                         {product.title}
                       </h4>
                     </Link>
