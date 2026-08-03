@@ -420,12 +420,12 @@ export default function UnitDetailsPage() {
                     className="group"
                   >
                     <Link href="/products" className="block">
-                      <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl md:rounded-[32px] bg-[#f9f8f6] relative flex items-center justify-center p-3 shadow-sm group-hover:shadow-md transition-all duration-500">
+                      <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl md:rounded-[32px] bg-[#f9f8f6] relative flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-500">
                         {product.img ? (
                           <img
                             src={product.img}
                             alt={product.title}
-                            className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             loading="lazy"
                           />
                         ) : (
