@@ -480,7 +480,7 @@ export default function UnitDetailsPage() {
                 </div>
                 <div>
                   <div className="text-[10px] uppercase font-bold text-white/40 tracking-widest mb-1">Sales Hotline</div>
-                  <div className="text-lg font-bold text-white">+88 01771 855823</div>
+                  <div className="text-lg font-bold text-white">+88 01713 700276</div>
                 </div>
               </div>
 
@@ -491,7 +491,7 @@ export default function UnitDetailsPage() {
                 </div>
                 <div>
                   <div className="text-[10px] uppercase font-bold text-white/40 tracking-widest mb-1">Email Inquiry</div>
-                  <div className="text-sm md:text-base font-bold text-white break-all">brohasan773@gmail.com</div>
+                  <div className="text-sm md:text-base font-bold text-white break-all">hgshbd22@gmail.com</div>
                 </div>
               </div>
             </div>
